@@ -1,11 +1,14 @@
 package com.windcf.controller;
 
-import com.windcf.ApiResponse;
+import com.windcf.common.api.ApiResponse;
 import com.windcf.entity.User;
 import com.windcf.service.VhUserService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.Min;
 
 /**
  * @author chunf
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description TODO
  */
 @RestController
+@Validated
 public class TestController {
     private final VhUserService vhUserService;
 
@@ -22,7 +26,7 @@ public class TestController {
     }
 
     @GetMapping("/{id}")
-    public ApiResponse<User> test(@PathVariable Long id) {
+    public ApiResponse<User> test(@PathVariable @Min(1) Long id) {
         return ApiResponse.success(vhUserService.getUser(id));
     }
 }

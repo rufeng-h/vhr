@@ -1,4 +1,4 @@
-package com.windcf;
+package com.windcf.common.api;
 
 import java.io.Serializable;
 
