@@ -1,7 +1,7 @@
 logging:
   level:
     web: DEBUG
-    com.rufeng.healthman: DEBUG
+    com.windcf.vhr: DEBUG
     sql: DEBUG
 mybatis:
   configuration:
@@ -12,4 +12,4 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /docs
-  packages-to-scan: com.windcf.web.controller
+  packages-to-scan: com.windcf.vhr.web.controller

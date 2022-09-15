@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.JobMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Job">
+    <!--@mbg.generated-->
+    <!--@Table hr_job-->
+    <id column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="job_area" jdbcType="BIGINT" property="jobArea" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="job_year" jdbcType="TINYINT" property="jobYear" />
+    <result column="job_edu" jdbcType="CHAR" property="jobEdu" />
+    <result column="job_salary" jdbcType="VARCHAR" property="jobSalary" />
+    <result column="job_duty" jdbcType="LONGVARCHAR" property="jobDuty" />
+    <result column="job_req" jdbcType="LONGVARCHAR" property="jobReq" />
+    <result column="job_ind" jdbcType="CHAR" property="jobInd" />
+    <result column="job_weal" jdbcType="LONGVARCHAR" property="jobWeal" />
+    <result column="job_created" jdbcType="TIMESTAMP" property="jobCreated" />
+    <result column="job_modified" jdbcType="TIMESTAMP" property="jobModified" />
+    <result column="job_expired" jdbcType="TIMESTAMP" property="jobExpired" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    job_id, job_area, job_name, job_year, job_edu, job_salary, job_duty, job_req, job_ind, 
+    job_weal, job_created, job_modified, job_expired
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_job
+    where job_id = #{jobId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_job
+    where job_id = #{jobId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="job_id" keyProperty="jobId" parameterType="com.windcf.vhr.model.entity.Job" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_job (job_area, job_name, job_year, 
+      job_edu, job_salary, job_duty, 
+      job_req, job_ind, job_weal, 
+      job_created, job_modified, job_expired
+      )
+    values (#{jobArea,jdbcType=BIGINT}, #{jobName,jdbcType=VARCHAR}, #{jobYear,jdbcType=TINYINT}, 
+      #{jobEdu,jdbcType=CHAR}, #{jobSalary,jdbcType=VARCHAR}, #{jobDuty,jdbcType=LONGVARCHAR}, 
+      #{jobReq,jdbcType=LONGVARCHAR}, #{jobInd,jdbcType=CHAR}, #{jobWeal,jdbcType=LONGVARCHAR}, 
+      #{jobCreated,jdbcType=TIMESTAMP}, #{jobModified,jdbcType=TIMESTAMP}, #{jobExpired,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="job_id" keyProperty="jobId" parameterType="com.windcf.vhr.model.entity.Job" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobArea != null">
+        job_area,
+      </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="jobYear != null">
+        job_year,
+      </if>
+      <if test="jobEdu != null">
+        job_edu,
+      </if>
+      <if test="jobSalary != null">
+        job_salary,
+      </if>
+      <if test="jobDuty != null">
+        job_duty,
+      </if>
+      <if test="jobReq != null">
+        job_req,
+      </if>
+      <if test="jobInd != null">
+        job_ind,
+      </if>
+      <if test="jobWeal != null">
+        job_weal,
+      </if>
+      <if test="jobCreated != null">
+        job_created,
+      </if>
+      <if test="jobModified != null">
+        job_modified,
+      </if>
+      <if test="jobExpired != null">
+        job_expired,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobArea != null">
+        #{jobArea,jdbcType=BIGINT},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobYear != null">
+        #{jobYear,jdbcType=TINYINT},
+      </if>
+      <if test="jobEdu != null">
+        #{jobEdu,jdbcType=CHAR},
+      </if>
+      <if test="jobSalary != null">
+        #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDuty != null">
+        #{jobDuty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobReq != null">
+        #{jobReq,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobInd != null">
+        #{jobInd,jdbcType=CHAR},
+      </if>
+      <if test="jobWeal != null">
+        #{jobWeal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobCreated != null">
+        #{jobCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobModified != null">
+        #{jobModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobExpired != null">
+        #{jobExpired,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Job">
+    <!--@mbg.generated-->
+    update hr_job
+    <set>
+      <if test="jobArea != null">
+        job_area = #{jobArea,jdbcType=BIGINT},
+      </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobYear != null">
+        job_year = #{jobYear,jdbcType=TINYINT},
+      </if>
+      <if test="jobEdu != null">
+        job_edu = #{jobEdu,jdbcType=CHAR},
+      </if>
+      <if test="jobSalary != null">
+        job_salary = #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDuty != null">
+        job_duty = #{jobDuty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobReq != null">
+        job_req = #{jobReq,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobInd != null">
+        job_ind = #{jobInd,jdbcType=CHAR},
+      </if>
+      <if test="jobWeal != null">
+        job_weal = #{jobWeal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobCreated != null">
+        job_created = #{jobCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobModified != null">
+        job_modified = #{jobModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobExpired != null">
+        job_expired = #{jobExpired,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where job_id = #{jobId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Job">
+    <!--@mbg.generated-->
+    update hr_job
+    set job_area = #{jobArea,jdbcType=BIGINT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_year = #{jobYear,jdbcType=TINYINT},
+      job_edu = #{jobEdu,jdbcType=CHAR},
+      job_salary = #{jobSalary,jdbcType=VARCHAR},
+      job_duty = #{jobDuty,jdbcType=LONGVARCHAR},
+      job_req = #{jobReq,jdbcType=LONGVARCHAR},
+      job_ind = #{jobInd,jdbcType=CHAR},
+      job_weal = #{jobWeal,jdbcType=LONGVARCHAR},
+      job_created = #{jobCreated,jdbcType=TIMESTAMP},
+      job_modified = #{jobModified,jdbcType=TIMESTAMP},
+      job_expired = #{jobExpired,jdbcType=TIMESTAMP}
+    where job_id = #{jobId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_job
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="job_area = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobArea,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="job_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_year = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobYear,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="job_edu = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobEdu,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_salary = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobSalary,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_duty = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobDuty,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_req = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobReq,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_ind = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobInd,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_weal = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobWeal,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="job_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="job_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="job_expired = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobExpired,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where job_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.jobId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_job
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="job_area = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobArea != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobArea,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobName != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_year = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobYear != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobYear,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_edu = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobEdu != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobEdu,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_salary = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobSalary != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobSalary,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_duty = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobDuty != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobDuty,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_req = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobReq != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobReq,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_ind = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobInd != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobInd,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_weal = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobWeal != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobWeal,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobCreated != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobModified != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="job_expired = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.jobExpired != null">
+            when job_id = #{item.jobId,jdbcType=BIGINT} then #{item.jobExpired,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where job_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.jobId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="job_id" keyProperty="jobId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_job
+    (job_area, job_name, job_year, job_edu, job_salary, job_duty, job_req, job_ind, job_weal, 
+      job_created, job_modified, job_expired)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.jobArea,jdbcType=BIGINT}, #{item.jobName,jdbcType=VARCHAR}, #{item.jobYear,jdbcType=TINYINT}, 
+        #{item.jobEdu,jdbcType=CHAR}, #{item.jobSalary,jdbcType=VARCHAR}, #{item.jobDuty,jdbcType=LONGVARCHAR}, 
+        #{item.jobReq,jdbcType=LONGVARCHAR}, #{item.jobInd,jdbcType=CHAR}, #{item.jobWeal,jdbcType=LONGVARCHAR}, 
+        #{item.jobCreated,jdbcType=TIMESTAMP}, #{item.jobModified,jdbcType=TIMESTAMP}, 
+        #{item.jobExpired,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="job_id" keyProperty="jobId" parameterType="com.windcf.vhr.model.entity.Job" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        job_id,
+      </if>
+      job_area,
+      job_name,
+      job_year,
+      job_edu,
+      job_salary,
+      job_duty,
+      job_req,
+      job_ind,
+      job_weal,
+      job_created,
+      job_modified,
+      job_expired,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      #{jobArea,jdbcType=BIGINT},
+      #{jobName,jdbcType=VARCHAR},
+      #{jobYear,jdbcType=TINYINT},
+      #{jobEdu,jdbcType=CHAR},
+      #{jobSalary,jdbcType=VARCHAR},
+      #{jobDuty,jdbcType=LONGVARCHAR},
+      #{jobReq,jdbcType=LONGVARCHAR},
+      #{jobInd,jdbcType=CHAR},
+      #{jobWeal,jdbcType=LONGVARCHAR},
+      #{jobCreated,jdbcType=TIMESTAMP},
+      #{jobModified,jdbcType=TIMESTAMP},
+      #{jobExpired,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
+      job_area = #{jobArea,jdbcType=BIGINT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_year = #{jobYear,jdbcType=TINYINT},
+      job_edu = #{jobEdu,jdbcType=CHAR},
+      job_salary = #{jobSalary,jdbcType=VARCHAR},
+      job_duty = #{jobDuty,jdbcType=LONGVARCHAR},
+      job_req = #{jobReq,jdbcType=LONGVARCHAR},
+      job_ind = #{jobInd,jdbcType=CHAR},
+      job_weal = #{jobWeal,jdbcType=LONGVARCHAR},
+      job_created = #{jobCreated,jdbcType=TIMESTAMP},
+      job_modified = #{jobModified,jdbcType=TIMESTAMP},
+      job_expired = #{jobExpired,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="job_id" keyProperty="jobId" parameterType="com.windcf.vhr.model.entity.Job" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="jobArea != null">
+        job_area,
+      </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="jobYear != null">
+        job_year,
+      </if>
+      <if test="jobEdu != null">
+        job_edu,
+      </if>
+      <if test="jobSalary != null">
+        job_salary,
+      </if>
+      <if test="jobDuty != null">
+        job_duty,
+      </if>
+      <if test="jobReq != null">
+        job_req,
+      </if>
+      <if test="jobInd != null">
+        job_ind,
+      </if>
+      <if test="jobWeal != null">
+        job_weal,
+      </if>
+      <if test="jobCreated != null">
+        job_created,
+      </if>
+      <if test="jobModified != null">
+        job_modified,
+      </if>
+      <if test="jobExpired != null">
+        job_expired,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="jobArea != null">
+        #{jobArea,jdbcType=BIGINT},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobYear != null">
+        #{jobYear,jdbcType=TINYINT},
+      </if>
+      <if test="jobEdu != null">
+        #{jobEdu,jdbcType=CHAR},
+      </if>
+      <if test="jobSalary != null">
+        #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDuty != null">
+        #{jobDuty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobReq != null">
+        #{jobReq,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobInd != null">
+        #{jobInd,jdbcType=CHAR},
+      </if>
+      <if test="jobWeal != null">
+        #{jobWeal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobCreated != null">
+        #{jobCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobModified != null">
+        #{jobModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobExpired != null">
+        #{jobExpired,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="jobArea != null">
+        job_area = #{jobArea,jdbcType=BIGINT},
+      </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobYear != null">
+        job_year = #{jobYear,jdbcType=TINYINT},
+      </if>
+      <if test="jobEdu != null">
+        job_edu = #{jobEdu,jdbcType=CHAR},
+      </if>
+      <if test="jobSalary != null">
+        job_salary = #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDuty != null">
+        job_duty = #{jobDuty,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobReq != null">
+        job_req = #{jobReq,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobInd != null">
+        job_ind = #{jobInd,jdbcType=CHAR},
+      </if>
+      <if test="jobWeal != null">
+        job_weal = #{jobWeal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jobCreated != null">
+        job_created = #{jobCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobModified != null">
+        job_modified = #{jobModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobExpired != null">
+        job_expired = #{jobExpired,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

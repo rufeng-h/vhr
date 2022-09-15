@@ -9,6 +9,7 @@
         <module>vhr-web</module>
         <module>vhr-mapper</module>
         <module>vhr-entity</module>
+        <module>vhr-security</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

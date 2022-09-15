@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.windcf.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.windcf.entity.User">
+<mapper namespace="com.windcf.vhr.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.User">
     <!--@mbg.generated-->
     <!--@Table `user`-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -24,12 +24,12 @@
     delete from `user`
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.windcf.entity.User" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.windcf.vhr.model.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user` (username, `password`)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.windcf.entity.User" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.windcf.vhr.model.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -49,7 +49,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.entity.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.User">
     <!--@mbg.generated-->
     update `user`
     <set>
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.windcf.entity.User">
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.User">
     <!--@mbg.generated-->
     update `user`
     set username = #{username,jdbcType=VARCHAR},
@@ -98,7 +98,7 @@
       (#{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.windcf.entity.User" useGeneratedKeys="true">
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.windcf.vhr.model.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -125,7 +125,7 @@
       `password` = #{password,jdbcType=VARCHAR},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.windcf.entity.User" useGeneratedKeys="true">
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.windcf.vhr.model.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">

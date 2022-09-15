@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.ApplyMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Apply">
+    <!--@mbg.generated-->
+    <!--@Table hr_apply-->
+    <id column="apy_id" jdbcType="BIGINT" property="apyId" />
+    <result column="apy_cand_id" jdbcType="BIGINT" property="apyCandId" />
+    <result column="apy_job_id" jdbcType="BIGINT" property="apyJobId" />
+    <result column="apy_status" jdbcType="CHAR" property="apyStatus" />
+    <result column="apy_created" jdbcType="TIMESTAMP" property="apyCreated" />
+    <result column="apy_modified" jdbcType="TIMESTAMP" property="apyModified" />
+    <result column="apy_oper_admin" jdbcType="BIGINT" property="apyOperAdmin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    apy_id, apy_cand_id, apy_job_id, apy_status, apy_created, apy_modified, apy_oper_admin
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_apply
+    where apy_id = #{apyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_apply
+    where apy_id = #{apyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="apy_id" keyProperty="apyId" parameterType="com.windcf.vhr.model.entity.Apply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_apply (apy_cand_id, apy_job_id, apy_status, 
+      apy_created, apy_modified, apy_oper_admin
+      )
+    values (#{apyCandId,jdbcType=BIGINT}, #{apyJobId,jdbcType=BIGINT}, #{apyStatus,jdbcType=CHAR}, 
+      #{apyCreated,jdbcType=TIMESTAMP}, #{apyModified,jdbcType=TIMESTAMP}, #{apyOperAdmin,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="apy_id" keyProperty="apyId" parameterType="com.windcf.vhr.model.entity.Apply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apyCandId != null">
+        apy_cand_id,
+      </if>
+      <if test="apyJobId != null">
+        apy_job_id,
+      </if>
+      <if test="apyStatus != null">
+        apy_status,
+      </if>
+      <if test="apyCreated != null">
+        apy_created,
+      </if>
+      <if test="apyModified != null">
+        apy_modified,
+      </if>
+      <if test="apyOperAdmin != null">
+        apy_oper_admin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apyCandId != null">
+        #{apyCandId,jdbcType=BIGINT},
+      </if>
+      <if test="apyJobId != null">
+        #{apyJobId,jdbcType=BIGINT},
+      </if>
+      <if test="apyStatus != null">
+        #{apyStatus,jdbcType=CHAR},
+      </if>
+      <if test="apyCreated != null">
+        #{apyCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyModified != null">
+        #{apyModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyOperAdmin != null">
+        #{apyOperAdmin,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Apply">
+    <!--@mbg.generated-->
+    update hr_apply
+    <set>
+      <if test="apyCandId != null">
+        apy_cand_id = #{apyCandId,jdbcType=BIGINT},
+      </if>
+      <if test="apyJobId != null">
+        apy_job_id = #{apyJobId,jdbcType=BIGINT},
+      </if>
+      <if test="apyStatus != null">
+        apy_status = #{apyStatus,jdbcType=CHAR},
+      </if>
+      <if test="apyCreated != null">
+        apy_created = #{apyCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyModified != null">
+        apy_modified = #{apyModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyOperAdmin != null">
+        apy_oper_admin = #{apyOperAdmin,jdbcType=BIGINT},
+      </if>
+    </set>
+    where apy_id = #{apyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Apply">
+    <!--@mbg.generated-->
+    update hr_apply
+    set apy_cand_id = #{apyCandId,jdbcType=BIGINT},
+      apy_job_id = #{apyJobId,jdbcType=BIGINT},
+      apy_status = #{apyStatus,jdbcType=CHAR},
+      apy_created = #{apyCreated,jdbcType=TIMESTAMP},
+      apy_modified = #{apyModified,jdbcType=TIMESTAMP},
+      apy_oper_admin = #{apyOperAdmin,jdbcType=BIGINT}
+    where apy_id = #{apyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_apply
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="apy_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyCandId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="apy_job_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyJobId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="apy_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyStatus,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="apy_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="apy_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="apy_oper_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyOperAdmin,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where apy_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.apyId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_apply
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="apy_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyCandId != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyCandId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apy_job_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyJobId != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyJobId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apy_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyStatus != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyStatus,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apy_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyCreated != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apy_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyModified != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="apy_oper_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.apyOperAdmin != null">
+            when apy_id = #{item.apyId,jdbcType=BIGINT} then #{item.apyOperAdmin,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where apy_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.apyId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="apy_id" keyProperty="apyId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_apply
+    (apy_cand_id, apy_job_id, apy_status, apy_created, apy_modified, apy_oper_admin)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.apyCandId,jdbcType=BIGINT}, #{item.apyJobId,jdbcType=BIGINT}, #{item.apyStatus,jdbcType=CHAR}, 
+        #{item.apyCreated,jdbcType=TIMESTAMP}, #{item.apyModified,jdbcType=TIMESTAMP}, 
+        #{item.apyOperAdmin,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="apy_id" keyProperty="apyId" parameterType="com.windcf.vhr.model.entity.Apply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apyId != null">
+        apy_id,
+      </if>
+      apy_cand_id,
+      apy_job_id,
+      apy_status,
+      apy_created,
+      apy_modified,
+      apy_oper_admin,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apyId != null">
+        #{apyId,jdbcType=BIGINT},
+      </if>
+      #{apyCandId,jdbcType=BIGINT},
+      #{apyJobId,jdbcType=BIGINT},
+      #{apyStatus,jdbcType=CHAR},
+      #{apyCreated,jdbcType=TIMESTAMP},
+      #{apyModified,jdbcType=TIMESTAMP},
+      #{apyOperAdmin,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="apyId != null">
+        apy_id = #{apyId,jdbcType=BIGINT},
+      </if>
+      apy_cand_id = #{apyCandId,jdbcType=BIGINT},
+      apy_job_id = #{apyJobId,jdbcType=BIGINT},
+      apy_status = #{apyStatus,jdbcType=CHAR},
+      apy_created = #{apyCreated,jdbcType=TIMESTAMP},
+      apy_modified = #{apyModified,jdbcType=TIMESTAMP},
+      apy_oper_admin = #{apyOperAdmin,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="apy_id" keyProperty="apyId" parameterType="com.windcf.vhr.model.entity.Apply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apyId != null">
+        apy_id,
+      </if>
+      <if test="apyCandId != null">
+        apy_cand_id,
+      </if>
+      <if test="apyJobId != null">
+        apy_job_id,
+      </if>
+      <if test="apyStatus != null">
+        apy_status,
+      </if>
+      <if test="apyCreated != null">
+        apy_created,
+      </if>
+      <if test="apyModified != null">
+        apy_modified,
+      </if>
+      <if test="apyOperAdmin != null">
+        apy_oper_admin,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apyId != null">
+        #{apyId,jdbcType=BIGINT},
+      </if>
+      <if test="apyCandId != null">
+        #{apyCandId,jdbcType=BIGINT},
+      </if>
+      <if test="apyJobId != null">
+        #{apyJobId,jdbcType=BIGINT},
+      </if>
+      <if test="apyStatus != null">
+        #{apyStatus,jdbcType=CHAR},
+      </if>
+      <if test="apyCreated != null">
+        #{apyCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyModified != null">
+        #{apyModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyOperAdmin != null">
+        #{apyOperAdmin,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="apyId != null">
+        apy_id = #{apyId,jdbcType=BIGINT},
+      </if>
+      <if test="apyCandId != null">
+        apy_cand_id = #{apyCandId,jdbcType=BIGINT},
+      </if>
+      <if test="apyJobId != null">
+        apy_job_id = #{apyJobId,jdbcType=BIGINT},
+      </if>
+      <if test="apyStatus != null">
+        apy_status = #{apyStatus,jdbcType=CHAR},
+      </if>
+      <if test="apyCreated != null">
+        apy_created = #{apyCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyModified != null">
+        apy_modified = #{apyModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apyOperAdmin != null">
+        apy_oper_admin = #{apyOperAdmin,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

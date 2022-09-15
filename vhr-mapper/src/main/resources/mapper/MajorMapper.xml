@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.MajorMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    <!--@Table hr_major-->
+    <id column="major_id" jdbcType="VARCHAR" property="majorId" />
+    <result column="major_name" jdbcType="VARCHAR" property="majorName" />
+    <result column="major_pid" jdbcType="VARCHAR" property="majorPid" />
+    <result column="major_level" jdbcType="TINYINT" property="majorLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    major_id, major_name, major_pid, major_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_major
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from hr_major
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    insert into hr_major (major_id, major_name, major_pid, 
+      major_level)
+    values (#{majorId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, #{majorPid,jdbcType=VARCHAR}, 
+      #{majorLevel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    insert into hr_major
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="majorId != null">
+        major_id,
+      </if>
+      <if test="majorName != null">
+        major_name,
+      </if>
+      <if test="majorPid != null">
+        major_pid,
+      </if>
+      <if test="majorLevel != null">
+        major_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="majorId != null">
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null">
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPid != null">
+        #{majorPid,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLevel != null">
+        #{majorLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    update hr_major
+    <set>
+      <if test="majorName != null">
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPid != null">
+        major_pid = #{majorPid,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLevel != null">
+        major_level = #{majorLevel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    update hr_major
+    set major_name = #{majorName,jdbcType=VARCHAR},
+      major_pid = #{majorPid,jdbcType=VARCHAR},
+      major_level = #{majorLevel,jdbcType=TINYINT}
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_major
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="major_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="major_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorPid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="major_level = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorLevel,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where major_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.majorId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_major
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="major_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.majorName != null">
+            when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="major_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.majorPid != null">
+            when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorPid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="major_level = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.majorLevel != null">
+            when major_id = #{item.majorId,jdbcType=VARCHAR} then #{item.majorLevel,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where major_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.majorId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into hr_major
+    (major_id, major_name, major_pid, major_level)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.majorId,jdbcType=VARCHAR}, #{item.majorName,jdbcType=VARCHAR}, #{item.majorPid,jdbcType=VARCHAR}, 
+        #{item.majorLevel,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    insert into hr_major
+    (major_id, major_name, major_pid, major_level)
+    values
+    (#{majorId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, #{majorPid,jdbcType=VARCHAR}, 
+      #{majorLevel,jdbcType=TINYINT})
+    on duplicate key update 
+    major_id = #{majorId,jdbcType=VARCHAR}, 
+    major_name = #{majorName,jdbcType=VARCHAR}, 
+    major_pid = #{majorPid,jdbcType=VARCHAR}, 
+    major_level = #{majorLevel,jdbcType=TINYINT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.windcf.vhr.model.entity.Major">
+    <!--@mbg.generated-->
+    insert into hr_major
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="majorId != null">
+        major_id,
+      </if>
+      <if test="majorName != null">
+        major_name,
+      </if>
+      <if test="majorPid != null">
+        major_pid,
+      </if>
+      <if test="majorLevel != null">
+        major_level,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="majorId != null">
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null">
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPid != null">
+        #{majorPid,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLevel != null">
+        #{majorLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="majorId != null">
+        major_id = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null">
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPid != null">
+        major_pid = #{majorPid,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLevel != null">
+        major_level = #{majorLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

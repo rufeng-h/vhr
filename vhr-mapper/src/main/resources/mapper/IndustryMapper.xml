@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.IndustryMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    <!--@Table hr_industry-->
+    <id column="ind_id" jdbcType="CHAR" property="indId" />
+    <result column="ind_name" jdbcType="VARCHAR" property="indName" />
+    <result column="ind_pid" jdbcType="CHAR" property="indPid" />
+    <result column="ind_level" jdbcType="TINYINT" property="indLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ind_id, ind_name, ind_pid, ind_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_industry
+    where ind_id = #{indId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from hr_industry
+    where ind_id = #{indId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    insert into hr_industry (ind_id, ind_name, ind_pid, 
+      ind_level)
+    values (#{indId,jdbcType=CHAR}, #{indName,jdbcType=VARCHAR}, #{indPid,jdbcType=CHAR}, 
+      #{indLevel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    insert into hr_industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indId != null">
+        ind_id,
+      </if>
+      <if test="indName != null">
+        ind_name,
+      </if>
+      <if test="indPid != null">
+        ind_pid,
+      </if>
+      <if test="indLevel != null">
+        ind_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indId != null">
+        #{indId,jdbcType=CHAR},
+      </if>
+      <if test="indName != null">
+        #{indName,jdbcType=VARCHAR},
+      </if>
+      <if test="indPid != null">
+        #{indPid,jdbcType=CHAR},
+      </if>
+      <if test="indLevel != null">
+        #{indLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    update hr_industry
+    <set>
+      <if test="indName != null">
+        ind_name = #{indName,jdbcType=VARCHAR},
+      </if>
+      <if test="indPid != null">
+        ind_pid = #{indPid,jdbcType=CHAR},
+      </if>
+      <if test="indLevel != null">
+        ind_level = #{indLevel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ind_id = #{indId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    update hr_industry
+    set ind_name = #{indName,jdbcType=VARCHAR},
+      ind_pid = #{indPid,jdbcType=CHAR},
+      ind_level = #{indLevel,jdbcType=TINYINT}
+    where ind_id = #{indId,jdbcType=CHAR}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_industry
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="ind_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ind_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indPid,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ind_level = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indLevel,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where ind_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.indId,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_industry
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="ind_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.indName != null">
+            when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ind_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.indPid != null">
+            when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indPid,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ind_level = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.indLevel != null">
+            when ind_id = #{item.indId,jdbcType=CHAR} then #{item.indLevel,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where ind_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.indId,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into hr_industry
+    (ind_id, ind_name, ind_pid, ind_level)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.indId,jdbcType=CHAR}, #{item.indName,jdbcType=VARCHAR}, #{item.indPid,jdbcType=CHAR}, 
+        #{item.indLevel,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    insert into hr_industry
+    (ind_id, ind_name, ind_pid, ind_level)
+    values
+    (#{indId,jdbcType=CHAR}, #{indName,jdbcType=VARCHAR}, #{indPid,jdbcType=CHAR}, #{indLevel,jdbcType=TINYINT}
+      )
+    on duplicate key update 
+    ind_id = #{indId,jdbcType=CHAR}, 
+    ind_name = #{indName,jdbcType=VARCHAR}, 
+    ind_pid = #{indPid,jdbcType=CHAR}, 
+    ind_level = #{indLevel,jdbcType=TINYINT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.windcf.vhr.model.entity.Industry">
+    <!--@mbg.generated-->
+    insert into hr_industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indId != null">
+        ind_id,
+      </if>
+      <if test="indName != null">
+        ind_name,
+      </if>
+      <if test="indPid != null">
+        ind_pid,
+      </if>
+      <if test="indLevel != null">
+        ind_level,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indId != null">
+        #{indId,jdbcType=CHAR},
+      </if>
+      <if test="indName != null">
+        #{indName,jdbcType=VARCHAR},
+      </if>
+      <if test="indPid != null">
+        #{indPid,jdbcType=CHAR},
+      </if>
+      <if test="indLevel != null">
+        #{indLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="indId != null">
+        ind_id = #{indId,jdbcType=CHAR},
+      </if>
+      <if test="indName != null">
+        ind_name = #{indName,jdbcType=VARCHAR},
+      </if>
+      <if test="indPid != null">
+        ind_pid = #{indPid,jdbcType=CHAR},
+      </if>
+      <if test="indLevel != null">
+        ind_level = #{indLevel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
