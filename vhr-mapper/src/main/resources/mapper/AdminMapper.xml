@@ -13,11 +13,12 @@
     <result column="admin_modified" jdbcType="TIMESTAMP" property="adminModified" />
     <result column="admin_status" jdbcType="CHAR" property="adminStatus" />
     <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="admin_last_login" jdbcType="TIMESTAMP" property="adminLastLogin" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     admin_id, admin_name, admin_phone, admin_email, admin_avatar, admin_created, admin_modified, 
-    admin_status, admin_pwd
+    admin_status, admin_pwd, admin_last_login
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -35,10 +36,12 @@
     <!--@mbg.generated-->
     insert into hr_admin (admin_name, admin_phone, admin_email, 
       admin_avatar, admin_created, admin_modified, 
-      admin_status, admin_pwd)
+      admin_status, admin_pwd, admin_last_login
+      )
     values (#{adminName,jdbcType=VARCHAR}, #{adminPhone,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR}, 
       #{adminAvatar,jdbcType=VARCHAR}, #{adminCreated,jdbcType=TIMESTAMP}, #{adminModified,jdbcType=TIMESTAMP}, 
-      #{adminStatus,jdbcType=CHAR}, #{adminPwd,jdbcType=VARCHAR})
+      #{adminStatus,jdbcType=CHAR}, #{adminPwd,jdbcType=VARCHAR}, #{adminLastLogin,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -68,6 +71,9 @@
       <if test="adminPwd != null">
         admin_pwd,
       </if>
+      <if test="adminLastLogin != null">
+        admin_last_login,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="adminName != null">
@@ -93,6 +99,9 @@
       </if>
       <if test="adminPwd != null">
         #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        #{adminLastLogin,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="adminPwd != null">
         admin_pwd = #{adminPwd,jdbcType=VARCHAR},
       </if>
+      <if test="adminLastLogin != null">
+        admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where admin_id = #{adminId,jdbcType=BIGINT}
   </update>
@@ -137,7 +149,8 @@
       admin_created = #{adminCreated,jdbcType=TIMESTAMP},
       admin_modified = #{adminModified,jdbcType=TIMESTAMP},
       admin_status = #{adminStatus,jdbcType=CHAR},
-      admin_pwd = #{adminPwd,jdbcType=VARCHAR}
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP}
     where admin_id = #{adminId,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
@@ -182,6 +195,11 @@
       <trim prefix="admin_pwd = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPwd,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="admin_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
         </foreach>
       </trim>
     </trim>
@@ -250,6 +268,13 @@
           </if>
         </foreach>
       </trim>
+      <trim prefix="admin_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminLastLogin != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
     </trim>
     where admin_id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -260,13 +285,13 @@
     <!--@mbg.generated-->
     insert into hr_admin
     (admin_name, admin_phone, admin_email, admin_avatar, admin_created, admin_modified, 
-      admin_status, admin_pwd)
+      admin_status, admin_pwd, admin_last_login)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.adminName,jdbcType=VARCHAR}, #{item.adminPhone,jdbcType=VARCHAR}, #{item.adminEmail,jdbcType=VARCHAR}, 
         #{item.adminAvatar,jdbcType=VARCHAR}, #{item.adminCreated,jdbcType=TIMESTAMP}, 
-        #{item.adminModified,jdbcType=TIMESTAMP}, #{item.adminStatus,jdbcType=CHAR}, #{item.adminPwd,jdbcType=VARCHAR}
-        )
+        #{item.adminModified,jdbcType=TIMESTAMP}, #{item.adminStatus,jdbcType=CHAR}, #{item.adminPwd,jdbcType=VARCHAR}, 
+        #{item.adminLastLogin,jdbcType=TIMESTAMP})
     </foreach>
   </insert>
   <insert id="insertOrUpdate" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
@@ -284,6 +309,7 @@
       admin_modified,
       admin_status,
       admin_pwd,
+      admin_last_login,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -298,6 +324,7 @@
       #{adminModified,jdbcType=TIMESTAMP},
       #{adminStatus,jdbcType=CHAR},
       #{adminPwd,jdbcType=VARCHAR},
+      #{adminLastLogin,jdbcType=TIMESTAMP},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -312,6 +339,7 @@
       admin_modified = #{adminModified,jdbcType=TIMESTAMP},
       admin_status = #{adminStatus,jdbcType=CHAR},
       admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
@@ -345,6 +373,9 @@
       <if test="adminPwd != null">
         admin_pwd,
       </if>
+      <if test="adminLastLogin != null">
+        admin_last_login,
+      </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -374,6 +405,9 @@
       </if>
       <if test="adminPwd != null">
         #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        #{adminLastLogin,jdbcType=TIMESTAMP},
       </if>
     </trim>
     on duplicate key update 
@@ -405,6 +439,26 @@
       <if test="adminPwd != null">
         admin_pwd = #{adminPwd,jdbcType=VARCHAR},
       </if>
+      <if test="adminLastLogin != null">
+        admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
+
+    <select id="selectByExample" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_admin
+        <where>
+            <if test="query.adminEmail != null">
+                admin_email = #{query.adminEmail,jdbcType=VARCHAR}
+            </if>
+            <if test="param1.adminPhone != null">
+                and admin_phone = #{query.adminPhone, jdbcType=VARCHAR}
+            </if>
+            <if test="query.adminPwd != null">
+                and admin_pwd = #{param1.adminPwd,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 </mapper>

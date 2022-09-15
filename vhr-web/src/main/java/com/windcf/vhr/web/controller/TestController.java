@@ -1,4 +1,4 @@
-package com.windcf.vhr.controller;
+package com.windcf.vhr.web.controller;
 
 import com.windcf.vhr.common.api.ApiResponse;
 import com.windcf.vhr.model.entity.User;

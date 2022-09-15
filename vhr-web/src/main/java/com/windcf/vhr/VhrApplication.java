@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author chunf
  * @time 2022-09-13 12:26
  * @package com.windcf
- * @description TODO
+ * @description main class
  */
 @SpringBootApplication
 @EnableTransactionManagement

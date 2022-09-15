@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class OpenApiConfig {
     public static final String JWT_SCHEME_NAME = "JWT";
+    public static final String JWT_HEADER_NAME = "Authorization";
 
     @Bean
     public OpenAPI openApi() {
@@ -32,7 +33,7 @@ public class OpenApiConfig {
                         .scheme("bearer")
                         .in(SecurityScheme.In.HEADER)
                         .type(SecurityScheme.Type.APIKEY)
-                        .name("Authorization")
-                        .bearerFormat("JWT"));
+                        .name(JWT_HEADER_NAME)
+                        .bearerFormat(JWT_SCHEME_NAME));
     }
 }

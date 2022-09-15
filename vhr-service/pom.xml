@@ -27,6 +27,11 @@
             <artifactId>vhr-mapper</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.windcf</groupId>
+            <artifactId>vhr-security</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

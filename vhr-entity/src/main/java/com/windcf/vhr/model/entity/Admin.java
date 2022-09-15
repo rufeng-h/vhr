@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
+ * @time 2022-09-15 16:11
+ * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 管理员
-    */
+ * 管理员
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -39,4 +39,6 @@ public class Admin {
     private String adminStatus;
 
     private String adminPwd;
+
+    private LocalDateTime adminLastLogin;
 }

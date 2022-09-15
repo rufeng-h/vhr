@@ -9,15 +9,9 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
- * @description TODO
- */
-
-/**
     * 教育经历
-    */
+ * @author chunf
+ */
 @Data
 @Builder
 @AllArgsConstructor

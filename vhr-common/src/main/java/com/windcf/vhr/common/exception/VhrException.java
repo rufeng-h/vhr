@@ -6,5 +6,5 @@ package com.windcf.vhr.common.exception;
  * @package com.windcf.exception
  * @description TODO
  */
-public class VhException extends RuntimeException {
+public class VhrException extends RuntimeException {
 }

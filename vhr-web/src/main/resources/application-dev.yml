@@ -12,4 +12,4 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /docs
-  packages-to-scan: com.windcf.vhr.web.controller
+  packages-to-scan: com.windcf.vhr.controller

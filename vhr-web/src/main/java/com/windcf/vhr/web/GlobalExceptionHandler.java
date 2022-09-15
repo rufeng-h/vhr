@@ -1,7 +1,7 @@
-package com.windcf.vhr;
+package com.windcf.vhr.web;
 
 import com.windcf.vhr.common.api.ApiResponse;
-import com.windcf.vhr.common.exception.VhException;
+import com.windcf.vhr.common.exception.VhrException;
 import com.windcf.vhr.security.exception.AccessDeniedException;
 import com.windcf.vhr.security.exception.AuthenticationException;
 import org.springframework.validation.BindException;
@@ -28,8 +28,8 @@ public class GlobalExceptionHandler {
     /**
      * 项目自定义异常
      */
-    @ExceptionHandler(VhException.class)
-    public ApiResponse<Void> ptError(VhException e) {
+    @ExceptionHandler(VhrException.class)
+    public ApiResponse<Void> ptError(VhrException e) {
         e.printStackTrace();
         return ApiResponse.clientError(e.getMessage());
     }

@@ -27,7 +27,7 @@ import java.util.Set;
  * @author chunf
  */
 @Component
-@Order(2)
+@Order
 public class AuthenticationFilter extends OncePerRequestFilter {
     protected final AntPathMatcher antPathMatcher = new AntPathMatcher();
     private final AuthenticationFailureHandler authenticationFailureHandler;

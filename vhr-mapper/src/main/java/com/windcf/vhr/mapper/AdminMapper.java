@@ -1,16 +1,19 @@
 package com.windcf.vhr.mapper;
 
 import com.windcf.vhr.model.entity.Admin;
+
 import java.util.List;
+
+import com.windcf.vhr.model.query.AdminQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
+ * @time 2022-09-15 16:11
  * @package com.windcf.vhr.mapper
- * @description TODO
+ * @description admin mapper
  */
 
 @Mapper
@@ -36,4 +39,6 @@ public interface AdminMapper {
     int updateBatchSelective(List<Admin> list);
 
     int batchInsert(@Param("list") List<Admin> list);
+
+    Admin selectByExample(@Param("query") AdminQuery query);
 }
