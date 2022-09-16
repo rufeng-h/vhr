@@ -11,9 +11,24 @@ import java.io.Serializable;
  * @description TODO
  */
 public interface Authentication extends Serializable {
+    /**
+     * get the user id
+     *
+     * @return user id
+     */
     Long getUserId();
 
+    /**
+     * get username
+     *
+     * @return username
+     */
     String getUsername();
 
+    /**
+     * get the use type
+     *
+     * @return usertype
+     */
     UserTypeEnum getUserType();
 }

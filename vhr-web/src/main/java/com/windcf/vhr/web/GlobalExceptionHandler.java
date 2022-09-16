@@ -4,6 +4,7 @@ import com.windcf.vhr.common.api.ApiResponse;
 import com.windcf.vhr.common.exception.VhrException;
 import com.windcf.vhr.security.exception.AccessDeniedException;
 import com.windcf.vhr.security.exception.AuthenticationException;
+import org.springframework.mail.MailException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -55,5 +56,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public ApiResponse<Void> accessDenied() {
         return ApiResponse.accessDenied();
+    }
+
+
+    @ExceptionHandler(MailException.class)
+    public ApiResponse<Void> mailExp(MailException e) {
+        e.printStackTrace();
+        return ApiResponse.serverError("发送邮件失败");
     }
 }

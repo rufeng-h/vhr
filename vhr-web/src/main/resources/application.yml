@@ -2,6 +2,11 @@ server:
   port: 8000
 
 spring:
+  mail:
+    username: chunfengh163@163.com
+    host: smtp.163.com
+    password: OYZDLGLUUOLFGOEV
+#    port: 587
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root

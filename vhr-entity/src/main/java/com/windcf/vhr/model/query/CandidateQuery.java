@@ -1,5 +1,7 @@
 package com.windcf.vhr.model.query;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,6 +11,8 @@ import lombok.Data;
  * @description Candidate mapper query
  */
 @Data
+@AllArgsConstructor
+@Builder
 public class CandidateQuery {
     private String candPhone;
     private String candEmail;

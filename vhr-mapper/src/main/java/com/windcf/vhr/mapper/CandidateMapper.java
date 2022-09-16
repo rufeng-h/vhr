@@ -2,6 +2,8 @@ package com.windcf.vhr.mapper;
 
 import com.windcf.vhr.model.entity.Candidate;
 import java.util.List;
+
+import com.windcf.vhr.model.query.CandidateQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -36,4 +38,6 @@ public interface CandidateMapper {
     int updateBatchSelective(List<Candidate> list);
 
     int batchInsert(@Param("list") List<Candidate> list);
+
+    Candidate selectByExample(@Param("query") CandidateQuery cand);
 }
