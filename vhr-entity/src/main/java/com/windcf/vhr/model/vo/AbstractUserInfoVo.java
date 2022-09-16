@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class AbstractUserInfoVo {
+    private Long userId;
     private String username;
     private String avatar;
     private String email;

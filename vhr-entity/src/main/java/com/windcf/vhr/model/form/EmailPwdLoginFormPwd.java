@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class EmailPwdLoginFormPwd {
-    @NotBlank
+    @NotNull
     @Email
     private String email;
     @NotBlank

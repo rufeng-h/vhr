@@ -17,4 +17,5 @@ public class CandidateQuery {
     private String candPhone;
     private String candEmail;
     private String candPwd;
+    private String candIdCard;
 }

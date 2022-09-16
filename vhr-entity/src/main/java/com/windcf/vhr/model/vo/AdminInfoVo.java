@@ -15,6 +15,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AdminInfoVo extends AbstractUserInfoVo {
     public AdminInfoVo(Admin admin) {
-        super(admin.getAdminName(), admin.getAdminAvatar(), admin.getAdminEmail(), admin.getAdminPhone(), admin.getAdminLastLogin(), UserTypeEnum.ADMIN);
+        super(admin.getAdminId(), admin.getAdminName(), admin.getAdminAvatar(), admin.getAdminEmail(), admin.getAdminPhone(), admin.getAdminLastLogin(), UserTypeEnum.ADMIN);
     }
 }

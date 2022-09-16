@@ -4,6 +4,7 @@ import com.windcf.vhr.common.api.ApiResponse;
 import com.windcf.vhr.common.exception.VhrException;
 import com.windcf.vhr.security.exception.AccessDeniedException;
 import com.windcf.vhr.security.exception.AuthenticationException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.mail.MailException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,7 +49,7 @@ public class GlobalExceptionHandler {
     /**
      * 请求参数、请求体异常
      */
-    @ExceptionHandler({BindException.class})
+    @ExceptionHandler({BindException.class, HttpMessageNotReadableException.class})
     public ApiResponse<Void> validateFailed() {
         return ApiResponse.validateFailed();
     }

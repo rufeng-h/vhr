@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class EmailCodeLoginForm {
     @Email
-    @NotBlank
+    @NotNull
     private String email;
     @NotBlank
     private String code;

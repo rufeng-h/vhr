@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class SendEmailCodeForm {
     @Email
-    @NotBlank
+    @NotNull
     private String email;
     @NotNull
     private UserTypeEnum userType;

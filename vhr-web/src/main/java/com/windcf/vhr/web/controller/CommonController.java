@@ -4,7 +4,9 @@ import com.windcf.vhr.common.api.ApiResponse;
 import com.windcf.vhr.common.enums.UserTypeEnum;
 import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
+import com.windcf.vhr.model.form.RegisterForm;
 import com.windcf.vhr.model.form.SendEmailCodeForm;
+import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.service.AdminService;
 import com.windcf.vhr.service.CandidateService;
@@ -60,5 +62,10 @@ public class CommonController {
             return ApiResponse.success();
         }
         return ApiResponse.authenticateFailed("邮箱不存在");
+    }
+
+    @PostMapping("/register")
+    public ApiResponse<CandidateInfoVo> candRegister(@Validated @RequestBody RegisterForm form) {
+        return ApiResponse.success(candidateService.register(form));
     }
 }
