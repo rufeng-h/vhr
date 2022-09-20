@@ -8,10 +8,12 @@ import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
 import com.windcf.vhr.model.form.RegisterForm;
 import com.windcf.vhr.model.query.CandidateQuery;
+import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
 import com.windcf.vhr.service.CandidateService;
+import com.windcf.vhr.service.VerificationCodeService;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +31,11 @@ import java.time.LocalDateTime;
 @Service
 public class CandidateServiceImpl implements CandidateService {
     private final CandidateMapper candidateMapper;
-    private final StringRedisTemplate stringRedisTemplate;
+    private final VerificationCodeService verificationCodeService;
 
-    public CandidateServiceImpl(CandidateMapper candidateMapper, StringRedisTemplate stringRedisTemplate) {
+    public CandidateServiceImpl(CandidateMapper candidateMapper, VerificationCodeService verificationCodeService) {
         this.candidateMapper = candidateMapper;
-        this.stringRedisTemplate = stringRedisTemplate;
+        this.verificationCodeService = verificationCodeService;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -76,12 +78,13 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public LoginResultVo loginByEmailCode(EmailCodeLoginForm form) {
+    public AbstractUserInfoVo getUserInfo(Long candId) {
+        return new CandidateInfoVo(candidateMapper.selectByPrimaryKey(candId));
+    }
 
-        String code = stringRedisTemplate.opsForValue().get(form.getEmail());
-        if (!form.getCode().equals(code)) {
-            throw new AuthenticationException("验证码错误或不存在!");
-        }
+    @Override
+    public LoginResultVo loginByEmailCode(EmailCodeLoginForm form) {
+        verificationCodeService.validateEmailCode(form.getEmail(), form.getCode());
         Candidate candidate = candidateMapper.selectByExample(CandidateQuery.builder().candEmail(form.getEmail()).build());
         Candidate updCand = Candidate.builder().candId(candidate.getCandId()).candLastLogin(LocalDateTime.now()).build();
         candidateMapper.updateByPrimaryKeySelective(updCand);
@@ -91,6 +94,7 @@ public class CandidateServiceImpl implements CandidateService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public CandidateInfoVo register(RegisterForm form) {
+        verificationCodeService.validateEmailCode(form.getEmail(), form.getEmailCode());
         if (emailExists(form.getEmail())) {
             throw new AuthenticationException("邮箱已存在");
         }
@@ -100,14 +104,7 @@ public class CandidateServiceImpl implements CandidateService {
         if (idCardExists(form.getIdCard())) {
             throw new AuthenticationException("身份证号已存在");
         }
-        Candidate candidate = Candidate.builder()
-                .candEmail(form.getEmail())
-                .candPwd(DigestUtils.md5DigestAsHex(form.getPassword().getBytes(StandardCharsets.UTF_8)))
-                .candIdCard(form.getIdCard())
-                .candName(form.getUsername())
-                .candPhone(form.getPhone())
-                .candGender(form.getGender().name())
-                .build();
+        Candidate candidate = Candidate.builder().candEmail(form.getEmail()).candPwd(DigestUtils.md5DigestAsHex(form.getPassword().getBytes(StandardCharsets.UTF_8))).candIdCard(form.getIdCard()).candName(form.getUsername()).candPhone(form.getPhone()).build();
         candidateMapper.insertSelective(candidate);
         return new CandidateInfoVo(candidate);
     }

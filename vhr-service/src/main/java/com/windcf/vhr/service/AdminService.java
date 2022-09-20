@@ -2,6 +2,7 @@ package com.windcf.vhr.service;
 
 import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
+import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
 import org.springframework.lang.NonNull;
@@ -32,4 +33,6 @@ public interface AdminService {
     boolean emailExists(String email);
 
     LoginResultVo loginByEmailCode(EmailCodeLoginForm form);
+
+    AbstractUserInfoVo getUserInfo(Long userId);
 }

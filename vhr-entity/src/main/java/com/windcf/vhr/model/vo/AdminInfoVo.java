@@ -5,6 +5,8 @@ import com.windcf.vhr.model.entity.Admin;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Collections;
+
 /**
  * @author chunf
  * @time 2022-09-16 9:25
@@ -15,6 +17,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AdminInfoVo extends AbstractUserInfoVo {
     public AdminInfoVo(Admin admin) {
-        super(admin.getAdminId(), admin.getAdminName(), admin.getAdminAvatar(), admin.getAdminEmail(), admin.getAdminPhone(), admin.getAdminLastLogin(), UserTypeEnum.ADMIN);
+        super(admin.getAdminId(), admin.getAdminName(), admin.getAdminAvatar(),
+                admin.getAdminEmail(), admin.getAdminPhone(), admin.getAdminLastLogin(),
+                Collections.singletonList(new RoleImpl(UserTypeEnum.ADMIN)));
     }
 }

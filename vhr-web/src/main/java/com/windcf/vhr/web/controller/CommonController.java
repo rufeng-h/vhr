@@ -6,16 +6,19 @@ import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
 import com.windcf.vhr.model.form.RegisterForm;
 import com.windcf.vhr.model.form.SendEmailCodeForm;
+import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
+import com.windcf.vhr.security.auth.Authentication;
+import com.windcf.vhr.security.context.SecurityContextHolder;
 import com.windcf.vhr.service.AdminService;
 import com.windcf.vhr.service.CandidateService;
 import com.windcf.vhr.service.VerificationCodeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Email;
 
 /**
  * @author chunf
@@ -45,27 +48,50 @@ public class CommonController {
                 ApiResponse.success(candidateService.loginByEmail(form));
     }
 
-    @PostMapping("/login/EmailCode")
+    @PostMapping("/login/emailCode")
     public ApiResponse<LoginResultVo> loginByCode(@Validated @RequestBody EmailCodeLoginForm form) {
         LoginResultVo resultVo = form.getUserType() == UserTypeEnum.ADMIN ? adminService.loginByEmailCode(form) :
                 candidateService.loginByEmailCode(form);
         return ApiResponse.success(resultVo);
     }
 
+    /**
+     * TODO 邮箱存在与不存在
+     */
     @PostMapping("/emailCode")
     public ApiResponse<Void> sendEmailCode(@Validated @RequestBody SendEmailCodeForm form) {
         String email = form.getEmail();
-        boolean b = form.getUserType() == UserTypeEnum.ADMIN ? adminService.emailExists(email) :
-                candidateService.emailExists(email);
-        if (b) {
-            verificationCodeService.sendEmailCode(email);
-            return ApiResponse.success();
-        }
-        return ApiResponse.authenticateFailed("邮箱不存在");
+        verificationCodeService.sendEmailCode(email);
+        return ApiResponse.success();
     }
 
     @PostMapping("/register")
     public ApiResponse<CandidateInfoVo> candRegister(@Validated @RequestBody RegisterForm form) {
         return ApiResponse.success(candidateService.register(form));
+    }
+
+    @GetMapping("/getUserInfo")
+    public ApiResponse<AbstractUserInfoVo> userInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            return null;
+        }
+        Long userId = authentication.getUserId();
+        AbstractUserInfoVo userInfoVo = authentication.getUserType() == UserTypeEnum.ADMIN ?
+                adminService.getUserInfo(userId) : candidateService.getUserInfo(userId);
+        return ApiResponse.success(userInfoVo);
+    }
+
+    @GetMapping("/logout")
+    public ApiResponse<Void> logout() {
+        return ApiResponse.success();
+    }
+
+    /**
+     * 注册时校验邮箱是否已存在，仅用于求职者
+     */
+    @GetMapping("/validate/{email}")
+    public ApiResponse<Boolean> emailExists(@PathVariable @Email String email) {
+        return ApiResponse.success(candidateService.emailExists(email));
     }
 }

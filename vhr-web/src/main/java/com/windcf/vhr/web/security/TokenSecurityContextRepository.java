@@ -41,8 +41,8 @@ public class TokenSecurityContextRepository implements SecurityContextRepository
             return context;
         }
         Long userId = Long.parseLong(claims.getId());
-        UserTypeEnum userType = UserTypeEnum.valueOf(claims.getSubject());
-        String username = claims.getAudience();
+        UserTypeEnum userType = UserTypeEnum.valueOf(claims.getAudience());
+        String username = claims.getSubject();
 
         Authentication authentication = new AuthenticationImpl(userId, username, userType);
 

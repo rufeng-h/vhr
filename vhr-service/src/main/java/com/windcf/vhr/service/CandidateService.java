@@ -3,6 +3,7 @@ package com.windcf.vhr.service;
 import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
 import com.windcf.vhr.model.form.RegisterForm;
+import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
@@ -62,4 +63,6 @@ public interface CandidateService {
      * @return whether idCard in db
      */
     boolean idCardExists(String idCard);
+
+    AbstractUserInfoVo getUserInfo(Long candId);
 }

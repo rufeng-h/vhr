@@ -1,5 +1,6 @@
 package com.windcf.vhr.service.impl;
 
+import com.windcf.vhr.security.exception.AuthenticationException;
 import com.windcf.vhr.service.EmailService;
 import com.windcf.vhr.service.VerificationCodeService;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -37,5 +38,13 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         String code = sb.toString();
         emailService.sendSimpleMail(to, "登录验证码", String.format("验证码为：%s，5分钟内有效", code));
         stringRedisTemplate.opsForValue().set(to, code, 300, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public void validateEmailCode(String email, String code) {
+        String c = stringRedisTemplate.opsForValue().get(email);
+        if (!code.equals(c)) {
+            throw new AuthenticationException("验证码错误或不存在!");
+        }
     }
 }

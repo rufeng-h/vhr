@@ -1,5 +1,6 @@
 package com.windcf.vhr.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class LoginResultVo {
     private String token;
+    @JsonUnwrapped
     private AbstractUserInfoVo userInfo;
 }

@@ -1,11 +1,11 @@
 package com.windcf.vhr.model.vo;
 
-import com.windcf.vhr.common.enums.UserTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author chunf
@@ -23,5 +23,5 @@ public abstract class AbstractUserInfoVo {
     private String email;
     private String phone;
     private LocalDateTime lastLogin;
-    private UserTypeEnum userType;
+    private List<Role> roles;
 }

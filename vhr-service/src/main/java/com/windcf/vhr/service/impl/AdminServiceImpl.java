@@ -7,6 +7,7 @@ import com.windcf.vhr.model.entity.Admin;
 import com.windcf.vhr.model.form.EmailCodeLoginForm;
 import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
 import com.windcf.vhr.model.query.AdminQuery;
+import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.AdminInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
@@ -67,6 +68,11 @@ public class AdminServiceImpl implements AdminService {
         Admin updAdmin = Admin.builder().adminId(admin.getAdminId()).adminLastLogin(LocalDateTime.now()).build();
         adminMapper.updateByPrimaryKeySelective(updAdmin);
         return buildLoginResult(admin);
+    }
+
+    @Override
+    public AbstractUserInfoVo getUserInfo(Long adminId) {
+        return new AdminInfoVo(adminMapper.selectByPrimaryKey(adminId));
     }
 
     private LoginResultVo buildLoginResult(Admin admin) {
