@@ -1,576 +1,561 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.windcf.vhr.mapper.CandidateMapper">
-    <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Candidate">
-        <!--@mbg.generated-->
-        <!--@Table hr_candidate-->
-        <id column="cand_id" jdbcType="BIGINT" property="candId"/>
-        <result column="cand_name" jdbcType="VARCHAR" property="candName"/>
-        <result column="cand_hometown" jdbcType="BIGINT" property="candHometown"/>
-        <result column="cand_email" jdbcType="VARCHAR" property="candEmail"/>
-        <result column="cand_phone" jdbcType="VARCHAR" property="candPhone"/>
-        <result column="cand_gender" jdbcType="CHAR" property="candGender"/>
-        <result column="cand_pwd" jdbcType="VARCHAR" property="candPwd"/>
-        <result column="cand_created" jdbcType="TIMESTAMP" property="candCreated"/>
-        <result column="cand_last_login" jdbcType="TIMESTAMP" property="candLastLogin"/>
-        <result column="cand_status" jdbcType="CHAR" property="candStatus"/>
-        <result column="cand_avatar" jdbcType="VARCHAR" property="candAvatar"/>
-        <result column="cand_id_card" jdbcType="VARCHAR" property="candIdCard"/>
-        <result column="cand_living" jdbcType="BIGINT" property="candLiving"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        cand_id,
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Candidate">
+    <!--@mbg.generated-->
+    <!--@Table hr_candidate-->
+    <id column="cand_id" jdbcType="BIGINT" property="candId" />
+    <result column="cand_name" jdbcType="VARCHAR" property="candName" />
+    <result column="cand_hometown" jdbcType="CHAR" property="candHometown" />
+    <result column="cand_email" jdbcType="VARCHAR" property="candEmail" />
+    <result column="cand_phone" jdbcType="VARCHAR" property="candPhone" />
+    <result column="cand_gender" jdbcType="CHAR" property="candGender" />
+    <result column="cand_pwd" jdbcType="VARCHAR" property="candPwd" />
+    <result column="cand_created" jdbcType="TIMESTAMP" property="candCreated" />
+    <result column="cand_last_login" jdbcType="TIMESTAMP" property="candLastLogin" />
+    <result column="cand_status" jdbcType="CHAR" property="candStatus" />
+    <result column="cand_avatar" jdbcType="VARCHAR" property="candAvatar" />
+    <result column="cand_id_card" jdbcType="VARCHAR" property="candIdCard" />
+    <result column="cand_living" jdbcType="CHAR" property="candLiving" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    cand_id, cand_name, cand_hometown, cand_email, cand_phone, cand_gender, cand_pwd, 
+    cand_created, cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_candidate
+    where cand_id = #{candId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_candidate
+    where cand_id = #{candId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_candidate (cand_name, cand_hometown, cand_email, 
+      cand_phone, cand_gender, cand_pwd, 
+      cand_created, cand_last_login, cand_status, 
+      cand_avatar, cand_id_card, cand_living
+      )
+    values (#{candName,jdbcType=VARCHAR}, #{candHometown,jdbcType=CHAR}, #{candEmail,jdbcType=VARCHAR}, 
+      #{candPhone,jdbcType=VARCHAR}, #{candGender,jdbcType=CHAR}, #{candPwd,jdbcType=VARCHAR}, 
+      #{candCreated,jdbcType=TIMESTAMP}, #{candLastLogin,jdbcType=TIMESTAMP}, #{candStatus,jdbcType=CHAR}, 
+      #{candAvatar,jdbcType=VARCHAR}, #{candIdCard,jdbcType=VARCHAR}, #{candLiving,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_candidate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="candName != null">
         cand_name,
+      </if>
+      <if test="candHometown != null">
         cand_hometown,
+      </if>
+      <if test="candEmail != null">
         cand_email,
+      </if>
+      <if test="candPhone != null">
         cand_phone,
+      </if>
+      <if test="candGender != null">
         cand_gender,
+      </if>
+      <if test="candPwd != null">
         cand_pwd,
+      </if>
+      <if test="candCreated != null">
         cand_created,
+      </if>
+      <if test="candLastLogin != null">
         cand_last_login,
+      </if>
+      <if test="candStatus != null">
         cand_status,
+      </if>
+      <if test="candAvatar != null">
         cand_avatar,
+      </if>
+      <if test="candIdCard != null">
         cand_id_card,
-        cand_living
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
-        from hr_candidate
-        where cand_id = #{candId,jdbcType=BIGINT}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        <!--@mbg.generated-->
-        delete
-        from hr_candidate
-        where cand_id = #{candId,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate"
-            useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_candidate (cand_name, cand_hometown, cand_email,
-                                  cand_phone, cand_gender, cand_pwd,
-                                  cand_created, cand_last_login, cand_status,
-                                  cand_avatar, cand_id_card, cand_living)
-        values (#{candName,jdbcType=VARCHAR}, #{candHometown,jdbcType=BIGINT}, #{candEmail,jdbcType=VARCHAR},
-                #{candPhone,jdbcType=VARCHAR}, #{candGender,jdbcType=CHAR}, #{candPwd,jdbcType=VARCHAR},
-                #{candCreated,jdbcType=TIMESTAMP}, #{candLastLogin,jdbcType=TIMESTAMP}, #{candStatus,jdbcType=CHAR},
-                #{candAvatar,jdbcType=VARCHAR}, #{candIdCard,jdbcType=VARCHAR}, #{candLiving,jdbcType=BIGINT})
-    </insert>
-    <insert id="insertSelective" keyColumn="cand_id" keyProperty="candId"
-            parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_candidate
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="candName != null">
-                cand_name,
-            </if>
-            <if test="candHometown != null">
-                cand_hometown,
-            </if>
-            <if test="candEmail != null">
-                cand_email,
-            </if>
-            <if test="candPhone != null">
-                cand_phone,
-            </if>
-            <if test="candGender != null">
-                cand_gender,
-            </if>
-            <if test="candPwd != null">
-                cand_pwd,
-            </if>
-            <if test="candCreated != null">
-                cand_created,
-            </if>
-            <if test="candLastLogin != null">
-                cand_last_login,
-            </if>
-            <if test="candStatus != null">
-                cand_status,
-            </if>
-            <if test="candAvatar != null">
-                cand_avatar,
-            </if>
-            <if test="candIdCard != null">
-                cand_id_card,
-            </if>
-            <if test="candLiving != null">
-                cand_living,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="candName != null">
-                #{candName,jdbcType=VARCHAR},
-            </if>
-            <if test="candHometown != null">
-                #{candHometown,jdbcType=BIGINT},
-            </if>
-            <if test="candEmail != null">
-                #{candEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="candPhone != null">
-                #{candPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="candGender != null">
-                #{candGender,jdbcType=CHAR},
-            </if>
-            <if test="candPwd != null">
-                #{candPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="candCreated != null">
-                #{candCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candLastLogin != null">
-                #{candLastLogin,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candStatus != null">
-                #{candStatus,jdbcType=CHAR},
-            </if>
-            <if test="candAvatar != null">
-                #{candAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="candIdCard != null">
-                #{candIdCard,jdbcType=VARCHAR},
-            </if>
-            <if test="candLiving != null">
-                #{candLiving,jdbcType=BIGINT},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Candidate">
-        <!--@mbg.generated-->
-        update hr_candidate
-        <set>
-            <if test="candName != null">
-                cand_name = #{candName,jdbcType=VARCHAR},
-            </if>
-            <if test="candHometown != null">
-                cand_hometown = #{candHometown,jdbcType=BIGINT},
-            </if>
-            <if test="candEmail != null">
-                cand_email = #{candEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="candPhone != null">
-                cand_phone = #{candPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="candGender != null">
-                cand_gender = #{candGender,jdbcType=CHAR},
-            </if>
-            <if test="candPwd != null">
-                cand_pwd = #{candPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="candCreated != null">
-                cand_created = #{candCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candLastLogin != null">
-                cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candStatus != null">
-                cand_status = #{candStatus,jdbcType=CHAR},
-            </if>
-            <if test="candAvatar != null">
-                cand_avatar = #{candAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="candIdCard != null">
-                cand_id_card = #{candIdCard,jdbcType=VARCHAR},
-            </if>
-            <if test="candLiving != null">
-                cand_living = #{candLiving,jdbcType=BIGINT},
-            </if>
-        </set>
-        where cand_id = #{candId,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Candidate">
-        <!--@mbg.generated-->
-        update hr_candidate
-        set cand_name       = #{candName,jdbcType=VARCHAR},
-            cand_hometown   = #{candHometown,jdbcType=BIGINT},
-            cand_email      = #{candEmail,jdbcType=VARCHAR},
-            cand_phone      = #{candPhone,jdbcType=VARCHAR},
-            cand_gender     = #{candGender,jdbcType=CHAR},
-            cand_pwd        = #{candPwd,jdbcType=VARCHAR},
-            cand_created    = #{candCreated,jdbcType=TIMESTAMP},
-            cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
-            cand_status     = #{candStatus,jdbcType=CHAR},
-            cand_avatar     = #{candAvatar,jdbcType=VARCHAR},
-            cand_id_card    = #{candIdCard,jdbcType=VARCHAR},
-            cand_living     = #{candLiving,jdbcType=BIGINT}
-        where cand_id = #{candId,jdbcType=BIGINT}
-    </update>
-    <update id="updateBatch" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update hr_candidate
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="cand_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candName,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_hometown = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHometown,jdbcType=BIGINT}
-                </foreach>
-            </trim>
-            <trim prefix="cand_email = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candEmail,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_phone = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPhone,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_gender = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candGender,jdbcType=CHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_pwd = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPwd,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_created = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candCreated,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="cand_last_login = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLastLogin,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="cand_status = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candStatus,jdbcType=CHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_avatar = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candAvatar,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_id_card = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candIdCard,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="cand_living = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLiving,jdbcType=BIGINT}
-                </foreach>
-            </trim>
-        </trim>
-        where cand_id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.candId,jdbcType=BIGINT}
+      </if>
+      <if test="candLiving != null">
+        cand_living,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="candName != null">
+        #{candName,jdbcType=VARCHAR},
+      </if>
+      <if test="candHometown != null">
+        #{candHometown,jdbcType=CHAR},
+      </if>
+      <if test="candEmail != null">
+        #{candEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="candPhone != null">
+        #{candPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="candGender != null">
+        #{candGender,jdbcType=CHAR},
+      </if>
+      <if test="candPwd != null">
+        #{candPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="candCreated != null">
+        #{candCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candLastLogin != null">
+        #{candLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candStatus != null">
+        #{candStatus,jdbcType=CHAR},
+      </if>
+      <if test="candAvatar != null">
+        #{candAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="candIdCard != null">
+        #{candIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="candLiving != null">
+        #{candLiving,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Candidate">
+    <!--@mbg.generated-->
+    update hr_candidate
+    <set>
+      <if test="candName != null">
+        cand_name = #{candName,jdbcType=VARCHAR},
+      </if>
+      <if test="candHometown != null">
+        cand_hometown = #{candHometown,jdbcType=CHAR},
+      </if>
+      <if test="candEmail != null">
+        cand_email = #{candEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="candPhone != null">
+        cand_phone = #{candPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="candGender != null">
+        cand_gender = #{candGender,jdbcType=CHAR},
+      </if>
+      <if test="candPwd != null">
+        cand_pwd = #{candPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="candCreated != null">
+        cand_created = #{candCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candLastLogin != null">
+        cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candStatus != null">
+        cand_status = #{candStatus,jdbcType=CHAR},
+      </if>
+      <if test="candAvatar != null">
+        cand_avatar = #{candAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="candIdCard != null">
+        cand_id_card = #{candIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="candLiving != null">
+        cand_living = #{candLiving,jdbcType=CHAR},
+      </if>
+    </set>
+    where cand_id = #{candId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Candidate">
+    <!--@mbg.generated-->
+    update hr_candidate
+    set cand_name = #{candName,jdbcType=VARCHAR},
+      cand_hometown = #{candHometown,jdbcType=CHAR},
+      cand_email = #{candEmail,jdbcType=VARCHAR},
+      cand_phone = #{candPhone,jdbcType=VARCHAR},
+      cand_gender = #{candGender,jdbcType=CHAR},
+      cand_pwd = #{candPwd,jdbcType=VARCHAR},
+      cand_created = #{candCreated,jdbcType=TIMESTAMP},
+      cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
+      cand_status = #{candStatus,jdbcType=CHAR},
+      cand_avatar = #{candAvatar,jdbcType=VARCHAR},
+      cand_id_card = #{candIdCard,jdbcType=VARCHAR},
+      cand_living = #{candLiving,jdbcType=CHAR}
+    where cand_id = #{candId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_candidate
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="cand_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candName,jdbcType=VARCHAR}
         </foreach>
-    </update>
-    <update id="updateBatchSelective" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update hr_candidate
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="cand_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candName != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candName,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_hometown = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candHometown != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHometown,jdbcType=BIGINT}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_email = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candEmail != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candEmail,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_phone = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candPhone != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPhone,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_gender = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candGender != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candGender,jdbcType=CHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_pwd = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candPwd != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPwd,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_created = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candCreated != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candCreated,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_last_login = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candLastLogin != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLastLogin,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_status = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candStatus != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candStatus,jdbcType=CHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_avatar = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candAvatar != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candAvatar,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_id_card = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candIdCard != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candIdCard,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="cand_living = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.candLiving != null">
-                        when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLiving,jdbcType=BIGINT}
-                    </if>
-                </foreach>
-            </trim>
-        </trim>
-        where cand_id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.candId,jdbcType=BIGINT}
+      </trim>
+      <trim prefix="cand_hometown = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHometown,jdbcType=CHAR}
         </foreach>
-    </update>
-    <insert id="batchInsert" keyColumn="cand_id" keyProperty="candId" parameterType="map" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_candidate
-        (cand_name, cand_hometown, cand_email, cand_phone, cand_gender, cand_pwd, cand_created,
-         cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living)
-        values
-        <foreach collection="list" item="item" separator=",">
-            (#{item.candName,jdbcType=VARCHAR}, #{item.candHometown,jdbcType=BIGINT},
-             #{item.candEmail,jdbcType=VARCHAR},
-             #{item.candPhone,jdbcType=VARCHAR}, #{item.candGender,jdbcType=CHAR}, #{item.candPwd,jdbcType=VARCHAR},
-             #{item.candCreated,jdbcType=TIMESTAMP}, #{item.candLastLogin,jdbcType=TIMESTAMP},
-             #{item.candStatus,jdbcType=CHAR}, #{item.candAvatar,jdbcType=VARCHAR}, #{item.candIdCard,jdbcType=VARCHAR},
-             #{item.candLiving,jdbcType=BIGINT})
+      </trim>
+      <trim prefix="cand_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candEmail,jdbcType=VARCHAR}
         </foreach>
-    </insert>
-    <insert id="insertOrUpdate" keyColumn="cand_id" keyProperty="candId"
-            parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_candidate
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="candId != null">
-                cand_id,
-            </if>
-            cand_name,
-            cand_hometown,
-            cand_email,
-            cand_phone,
-            cand_gender,
-            cand_pwd,
-            cand_created,
-            cand_last_login,
-            cand_status,
-            cand_avatar,
-            cand_id_card,
-            cand_living,
-        </trim>
-        values
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="candId != null">
-                #{candId,jdbcType=BIGINT},
-            </if>
-            #{candName,jdbcType=VARCHAR},
-            #{candHometown,jdbcType=BIGINT},
-            #{candEmail,jdbcType=VARCHAR},
-            #{candPhone,jdbcType=VARCHAR},
-            #{candGender,jdbcType=CHAR},
-            #{candPwd,jdbcType=VARCHAR},
-            #{candCreated,jdbcType=TIMESTAMP},
-            #{candLastLogin,jdbcType=TIMESTAMP},
-            #{candStatus,jdbcType=CHAR},
-            #{candAvatar,jdbcType=VARCHAR},
-            #{candIdCard,jdbcType=VARCHAR},
-            #{candLiving,jdbcType=BIGINT},
-        </trim>
-        on duplicate key update
-        <trim suffixOverrides=",">
-            <if test="candId != null">
-                cand_id = #{candId,jdbcType=BIGINT},
-            </if>
-            cand_name       = #{candName,jdbcType=VARCHAR},
-            cand_hometown   = #{candHometown,jdbcType=BIGINT},
-            cand_email      = #{candEmail,jdbcType=VARCHAR},
-            cand_phone      = #{candPhone,jdbcType=VARCHAR},
-            cand_gender     = #{candGender,jdbcType=CHAR},
-            cand_pwd        = #{candPwd,jdbcType=VARCHAR},
-            cand_created    = #{candCreated,jdbcType=TIMESTAMP},
-            cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
-            cand_status     = #{candStatus,jdbcType=CHAR},
-            cand_avatar     = #{candAvatar,jdbcType=VARCHAR},
-            cand_id_card    = #{candIdCard,jdbcType=VARCHAR},
-            cand_living     = #{candLiving,jdbcType=BIGINT},
-        </trim>
-    </insert>
-    <insert id="insertOrUpdateSelective" keyColumn="cand_id" keyProperty="candId"
-            parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_candidate
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="candId != null">
-                cand_id,
-            </if>
-            <if test="candName != null">
-                cand_name,
-            </if>
-            <if test="candHometown != null">
-                cand_hometown,
-            </if>
-            <if test="candEmail != null">
-                cand_email,
-            </if>
-            <if test="candPhone != null">
-                cand_phone,
-            </if>
-            <if test="candGender != null">
-                cand_gender,
-            </if>
-            <if test="candPwd != null">
-                cand_pwd,
-            </if>
-            <if test="candCreated != null">
-                cand_created,
-            </if>
-            <if test="candLastLogin != null">
-                cand_last_login,
-            </if>
-            <if test="candStatus != null">
-                cand_status,
-            </if>
-            <if test="candAvatar != null">
-                cand_avatar,
-            </if>
-            <if test="candIdCard != null">
-                cand_id_card,
-            </if>
-            <if test="candLiving != null">
-                cand_living,
-            </if>
-        </trim>
-        values
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="candId != null">
-                #{candId,jdbcType=BIGINT},
-            </if>
-            <if test="candName != null">
-                #{candName,jdbcType=VARCHAR},
-            </if>
-            <if test="candHometown != null">
-                #{candHometown,jdbcType=BIGINT},
-            </if>
-            <if test="candEmail != null">
-                #{candEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="candPhone != null">
-                #{candPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="candGender != null">
-                #{candGender,jdbcType=CHAR},
-            </if>
-            <if test="candPwd != null">
-                #{candPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="candCreated != null">
-                #{candCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candLastLogin != null">
-                #{candLastLogin,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candStatus != null">
-                #{candStatus,jdbcType=CHAR},
-            </if>
-            <if test="candAvatar != null">
-                #{candAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="candIdCard != null">
-                #{candIdCard,jdbcType=VARCHAR},
-            </if>
-            <if test="candLiving != null">
-                #{candLiving,jdbcType=BIGINT},
-            </if>
-        </trim>
-        on duplicate key update
-        <trim suffixOverrides=",">
-            <if test="candId != null">
-                cand_id = #{candId,jdbcType=BIGINT},
-            </if>
-            <if test="candName != null">
-                cand_name = #{candName,jdbcType=VARCHAR},
-            </if>
-            <if test="candHometown != null">
-                cand_hometown = #{candHometown,jdbcType=BIGINT},
-            </if>
-            <if test="candEmail != null">
-                cand_email = #{candEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="candPhone != null">
-                cand_phone = #{candPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="candGender != null">
-                cand_gender = #{candGender,jdbcType=CHAR},
-            </if>
-            <if test="candPwd != null">
-                cand_pwd = #{candPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="candCreated != null">
-                cand_created = #{candCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candLastLogin != null">
-                cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
-            </if>
-            <if test="candStatus != null">
-                cand_status = #{candStatus,jdbcType=CHAR},
-            </if>
-            <if test="candAvatar != null">
-                cand_avatar = #{candAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="candIdCard != null">
-                cand_id_card = #{candIdCard,jdbcType=VARCHAR},
-            </if>
-            <if test="candLiving != null">
-                cand_living = #{candLiving,jdbcType=BIGINT},
-            </if>
-        </trim>
-    </insert>
+      </trim>
+      <trim prefix="cand_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPhone,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_gender = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candGender,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_pwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPwd,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="cand_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLastLogin,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="cand_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candStatus,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candAvatar,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_id_card = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candIdCard,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_living = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLiving,jdbcType=CHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where cand_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.candId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_candidate
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="cand_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candName != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_hometown = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candHometown != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHometown,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candEmail != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candEmail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candPhone != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPhone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_gender = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candGender != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candGender,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_pwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candPwd != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPwd,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candCreated != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candLastLogin != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLastLogin,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candStatus != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candStatus,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candAvatar != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candAvatar,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_id_card = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candIdCard != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candIdCard,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_living = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candLiving != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLiving,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where cand_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.candId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="cand_id" keyProperty="candId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_candidate
+    (cand_name, cand_hometown, cand_email, cand_phone, cand_gender, cand_pwd, cand_created, 
+      cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.candName,jdbcType=VARCHAR}, #{item.candHometown,jdbcType=CHAR}, #{item.candEmail,jdbcType=VARCHAR}, 
+        #{item.candPhone,jdbcType=VARCHAR}, #{item.candGender,jdbcType=CHAR}, #{item.candPwd,jdbcType=VARCHAR}, 
+        #{item.candCreated,jdbcType=TIMESTAMP}, #{item.candLastLogin,jdbcType=TIMESTAMP}, 
+        #{item.candStatus,jdbcType=CHAR}, #{item.candAvatar,jdbcType=VARCHAR}, #{item.candIdCard,jdbcType=VARCHAR}, 
+        #{item.candLiving,jdbcType=CHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_candidate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="candId != null">
+        cand_id,
+      </if>
+      cand_name,
+      cand_hometown,
+      cand_email,
+      cand_phone,
+      cand_gender,
+      cand_pwd,
+      cand_created,
+      cand_last_login,
+      cand_status,
+      cand_avatar,
+      cand_id_card,
+      cand_living,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="candId != null">
+        #{candId,jdbcType=BIGINT},
+      </if>
+      #{candName,jdbcType=VARCHAR},
+      #{candHometown,jdbcType=CHAR},
+      #{candEmail,jdbcType=VARCHAR},
+      #{candPhone,jdbcType=VARCHAR},
+      #{candGender,jdbcType=CHAR},
+      #{candPwd,jdbcType=VARCHAR},
+      #{candCreated,jdbcType=TIMESTAMP},
+      #{candLastLogin,jdbcType=TIMESTAMP},
+      #{candStatus,jdbcType=CHAR},
+      #{candAvatar,jdbcType=VARCHAR},
+      #{candIdCard,jdbcType=VARCHAR},
+      #{candLiving,jdbcType=CHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="candId != null">
+        cand_id = #{candId,jdbcType=BIGINT},
+      </if>
+      cand_name = #{candName,jdbcType=VARCHAR},
+      cand_hometown = #{candHometown,jdbcType=CHAR},
+      cand_email = #{candEmail,jdbcType=VARCHAR},
+      cand_phone = #{candPhone,jdbcType=VARCHAR},
+      cand_gender = #{candGender,jdbcType=CHAR},
+      cand_pwd = #{candPwd,jdbcType=VARCHAR},
+      cand_created = #{candCreated,jdbcType=TIMESTAMP},
+      cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
+      cand_status = #{candStatus,jdbcType=CHAR},
+      cand_avatar = #{candAvatar,jdbcType=VARCHAR},
+      cand_id_card = #{candIdCard,jdbcType=VARCHAR},
+      cand_living = #{candLiving,jdbcType=CHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_candidate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="candId != null">
+        cand_id,
+      </if>
+      <if test="candName != null">
+        cand_name,
+      </if>
+      <if test="candHometown != null">
+        cand_hometown,
+      </if>
+      <if test="candEmail != null">
+        cand_email,
+      </if>
+      <if test="candPhone != null">
+        cand_phone,
+      </if>
+      <if test="candGender != null">
+        cand_gender,
+      </if>
+      <if test="candPwd != null">
+        cand_pwd,
+      </if>
+      <if test="candCreated != null">
+        cand_created,
+      </if>
+      <if test="candLastLogin != null">
+        cand_last_login,
+      </if>
+      <if test="candStatus != null">
+        cand_status,
+      </if>
+      <if test="candAvatar != null">
+        cand_avatar,
+      </if>
+      <if test="candIdCard != null">
+        cand_id_card,
+      </if>
+      <if test="candLiving != null">
+        cand_living,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="candId != null">
+        #{candId,jdbcType=BIGINT},
+      </if>
+      <if test="candName != null">
+        #{candName,jdbcType=VARCHAR},
+      </if>
+      <if test="candHometown != null">
+        #{candHometown,jdbcType=CHAR},
+      </if>
+      <if test="candEmail != null">
+        #{candEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="candPhone != null">
+        #{candPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="candGender != null">
+        #{candGender,jdbcType=CHAR},
+      </if>
+      <if test="candPwd != null">
+        #{candPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="candCreated != null">
+        #{candCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candLastLogin != null">
+        #{candLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candStatus != null">
+        #{candStatus,jdbcType=CHAR},
+      </if>
+      <if test="candAvatar != null">
+        #{candAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="candIdCard != null">
+        #{candIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="candLiving != null">
+        #{candLiving,jdbcType=CHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="candId != null">
+        cand_id = #{candId,jdbcType=BIGINT},
+      </if>
+      <if test="candName != null">
+        cand_name = #{candName,jdbcType=VARCHAR},
+      </if>
+      <if test="candHometown != null">
+        cand_hometown = #{candHometown,jdbcType=CHAR},
+      </if>
+      <if test="candEmail != null">
+        cand_email = #{candEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="candPhone != null">
+        cand_phone = #{candPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="candGender != null">
+        cand_gender = #{candGender,jdbcType=CHAR},
+      </if>
+      <if test="candPwd != null">
+        cand_pwd = #{candPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="candCreated != null">
+        cand_created = #{candCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candLastLogin != null">
+        cand_last_login = #{candLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="candStatus != null">
+        cand_status = #{candStatus,jdbcType=CHAR},
+      </if>
+      <if test="candAvatar != null">
+        cand_avatar = #{candAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="candIdCard != null">
+        cand_id_card = #{candIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="candLiving != null">
+        cand_living = #{candLiving,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
 
     <select id="selectByExample" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from hr_candidate
         <where>
             <if test="query.candEmail != null">

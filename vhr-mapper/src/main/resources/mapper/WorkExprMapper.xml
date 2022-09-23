@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.WorkExprMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.WorkExpr">
+    <!--@mbg.generated-->
+    <!--@Table hr_work_expr-->
+    <id column="work_id" jdbcType="BIGINT" property="workId" />
+    <result column="work_comp" jdbcType="VARCHAR" property="workComp" />
+    <result column="work_ind" jdbcType="VARCHAR" property="workInd" />
+    <result column="work_start" jdbcType="DATE" property="workStart" />
+    <result column="work_end" jdbcType="DATE" property="workEnd" />
+    <result column="work_comp_size" jdbcType="CHAR" property="workCompSize" />
+    <result column="work_position" jdbcType="VARCHAR" property="workPosition" />
+    <result column="work_comp_type" jdbcType="CHAR" property="workCompType" />
+    <result column="work_desc" jdbcType="LONGVARCHAR" property="workDesc" />
+    <result column="work_created" jdbcType="TIMESTAMP" property="workCreated" />
+    <result column="work_modified" jdbcType="TIMESTAMP" property="workModified" />
+    <result column="work_cand_id" jdbcType="BIGINT" property="workCandId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    work_id, work_comp, work_ind, work_start, work_end, work_comp_size, work_position, 
+    work_comp_type, work_desc, work_created, work_modified, work_cand_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_work_expr
+    where work_id = #{workId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_work_expr
+    where work_id = #{workId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_work_expr (work_comp, work_ind, work_start, 
+      work_end, work_comp_size, work_position, 
+      work_comp_type, work_desc, work_created, 
+      work_modified, work_cand_id)
+    values (#{workComp,jdbcType=VARCHAR}, #{workInd,jdbcType=VARCHAR}, #{workStart,jdbcType=DATE}, 
+      #{workEnd,jdbcType=DATE}, #{workCompSize,jdbcType=CHAR}, #{workPosition,jdbcType=VARCHAR}, 
+      #{workCompType,jdbcType=CHAR}, #{workDesc,jdbcType=LONGVARCHAR}, #{workCreated,jdbcType=TIMESTAMP}, 
+      #{workModified,jdbcType=TIMESTAMP}, #{workCandId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_work_expr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workComp != null">
+        work_comp,
+      </if>
+      <if test="workInd != null">
+        work_ind,
+      </if>
+      <if test="workStart != null">
+        work_start,
+      </if>
+      <if test="workEnd != null">
+        work_end,
+      </if>
+      <if test="workCompSize != null">
+        work_comp_size,
+      </if>
+      <if test="workPosition != null">
+        work_position,
+      </if>
+      <if test="workCompType != null">
+        work_comp_type,
+      </if>
+      <if test="workDesc != null">
+        work_desc,
+      </if>
+      <if test="workCreated != null">
+        work_created,
+      </if>
+      <if test="workModified != null">
+        work_modified,
+      </if>
+      <if test="workCandId != null">
+        work_cand_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workComp != null">
+        #{workComp,jdbcType=VARCHAR},
+      </if>
+      <if test="workInd != null">
+        #{workInd,jdbcType=VARCHAR},
+      </if>
+      <if test="workStart != null">
+        #{workStart,jdbcType=DATE},
+      </if>
+      <if test="workEnd != null">
+        #{workEnd,jdbcType=DATE},
+      </if>
+      <if test="workCompSize != null">
+        #{workCompSize,jdbcType=CHAR},
+      </if>
+      <if test="workPosition != null">
+        #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="workCompType != null">
+        #{workCompType,jdbcType=CHAR},
+      </if>
+      <if test="workDesc != null">
+        #{workDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workCreated != null">
+        #{workCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workModified != null">
+        #{workModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workCandId != null">
+        #{workCandId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.WorkExpr">
+    <!--@mbg.generated-->
+    update hr_work_expr
+    <set>
+      <if test="workComp != null">
+        work_comp = #{workComp,jdbcType=VARCHAR},
+      </if>
+      <if test="workInd != null">
+        work_ind = #{workInd,jdbcType=VARCHAR},
+      </if>
+      <if test="workStart != null">
+        work_start = #{workStart,jdbcType=DATE},
+      </if>
+      <if test="workEnd != null">
+        work_end = #{workEnd,jdbcType=DATE},
+      </if>
+      <if test="workCompSize != null">
+        work_comp_size = #{workCompSize,jdbcType=CHAR},
+      </if>
+      <if test="workPosition != null">
+        work_position = #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="workCompType != null">
+        work_comp_type = #{workCompType,jdbcType=CHAR},
+      </if>
+      <if test="workDesc != null">
+        work_desc = #{workDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workCreated != null">
+        work_created = #{workCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workModified != null">
+        work_modified = #{workModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workCandId != null">
+        work_cand_id = #{workCandId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where work_id = #{workId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.WorkExpr">
+    <!--@mbg.generated-->
+    update hr_work_expr
+    set work_comp = #{workComp,jdbcType=VARCHAR},
+      work_ind = #{workInd,jdbcType=VARCHAR},
+      work_start = #{workStart,jdbcType=DATE},
+      work_end = #{workEnd,jdbcType=DATE},
+      work_comp_size = #{workCompSize,jdbcType=CHAR},
+      work_position = #{workPosition,jdbcType=VARCHAR},
+      work_comp_type = #{workCompType,jdbcType=CHAR},
+      work_desc = #{workDesc,jdbcType=LONGVARCHAR},
+      work_created = #{workCreated,jdbcType=TIMESTAMP},
+      work_modified = #{workModified,jdbcType=TIMESTAMP},
+      work_cand_id = #{workCandId,jdbcType=BIGINT}
+    where work_id = #{workId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_work_expr
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="work_comp = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workComp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_ind = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workInd,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_start = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workStart,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="work_end = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workEnd,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="work_comp_size = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCompSize,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_position = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workPosition,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_comp_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCompType,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_desc = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workDesc,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="work_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="work_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCandId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where work_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.workId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_work_expr
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="work_comp = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workComp != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workComp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_ind = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workInd != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workInd,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_start = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workStart != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workStart,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_end = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workEnd != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workEnd,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_comp_size = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workCompSize != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCompSize,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_position = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workPosition != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workPosition,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_comp_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workCompType != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCompType,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_desc = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workDesc != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workDesc,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workCreated != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workModified != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workCandId != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCandId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where work_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.workId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="work_id" keyProperty="workId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_work_expr
+    (work_comp, work_ind, work_start, work_end, work_comp_size, work_position, work_comp_type, 
+      work_desc, work_created, work_modified, work_cand_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.workComp,jdbcType=VARCHAR}, #{item.workInd,jdbcType=VARCHAR}, #{item.workStart,jdbcType=DATE}, 
+        #{item.workEnd,jdbcType=DATE}, #{item.workCompSize,jdbcType=CHAR}, #{item.workPosition,jdbcType=VARCHAR}, 
+        #{item.workCompType,jdbcType=CHAR}, #{item.workDesc,jdbcType=LONGVARCHAR}, #{item.workCreated,jdbcType=TIMESTAMP}, 
+        #{item.workModified,jdbcType=TIMESTAMP}, #{item.workCandId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_work_expr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        work_id,
+      </if>
+      work_comp,
+      work_ind,
+      work_start,
+      work_end,
+      work_comp_size,
+      work_position,
+      work_comp_type,
+      work_desc,
+      work_created,
+      work_modified,
+      work_cand_id,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        #{workId,jdbcType=BIGINT},
+      </if>
+      #{workComp,jdbcType=VARCHAR},
+      #{workInd,jdbcType=VARCHAR},
+      #{workStart,jdbcType=DATE},
+      #{workEnd,jdbcType=DATE},
+      #{workCompSize,jdbcType=CHAR},
+      #{workPosition,jdbcType=VARCHAR},
+      #{workCompType,jdbcType=CHAR},
+      #{workDesc,jdbcType=LONGVARCHAR},
+      #{workCreated,jdbcType=TIMESTAMP},
+      #{workModified,jdbcType=TIMESTAMP},
+      #{workCandId,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="workId != null">
+        work_id = #{workId,jdbcType=BIGINT},
+      </if>
+      work_comp = #{workComp,jdbcType=VARCHAR},
+      work_ind = #{workInd,jdbcType=VARCHAR},
+      work_start = #{workStart,jdbcType=DATE},
+      work_end = #{workEnd,jdbcType=DATE},
+      work_comp_size = #{workCompSize,jdbcType=CHAR},
+      work_position = #{workPosition,jdbcType=VARCHAR},
+      work_comp_type = #{workCompType,jdbcType=CHAR},
+      work_desc = #{workDesc,jdbcType=LONGVARCHAR},
+      work_created = #{workCreated,jdbcType=TIMESTAMP},
+      work_modified = #{workModified,jdbcType=TIMESTAMP},
+      work_cand_id = #{workCandId,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_work_expr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="workComp != null">
+        work_comp,
+      </if>
+      <if test="workInd != null">
+        work_ind,
+      </if>
+      <if test="workStart != null">
+        work_start,
+      </if>
+      <if test="workEnd != null">
+        work_end,
+      </if>
+      <if test="workCompSize != null">
+        work_comp_size,
+      </if>
+      <if test="workPosition != null">
+        work_position,
+      </if>
+      <if test="workCompType != null">
+        work_comp_type,
+      </if>
+      <if test="workDesc != null">
+        work_desc,
+      </if>
+      <if test="workCreated != null">
+        work_created,
+      </if>
+      <if test="workModified != null">
+        work_modified,
+      </if>
+      <if test="workCandId != null">
+        work_cand_id,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        #{workId,jdbcType=BIGINT},
+      </if>
+      <if test="workComp != null">
+        #{workComp,jdbcType=VARCHAR},
+      </if>
+      <if test="workInd != null">
+        #{workInd,jdbcType=VARCHAR},
+      </if>
+      <if test="workStart != null">
+        #{workStart,jdbcType=DATE},
+      </if>
+      <if test="workEnd != null">
+        #{workEnd,jdbcType=DATE},
+      </if>
+      <if test="workCompSize != null">
+        #{workCompSize,jdbcType=CHAR},
+      </if>
+      <if test="workPosition != null">
+        #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="workCompType != null">
+        #{workCompType,jdbcType=CHAR},
+      </if>
+      <if test="workDesc != null">
+        #{workDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workCreated != null">
+        #{workCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workModified != null">
+        #{workModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workCandId != null">
+        #{workCandId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="workId != null">
+        work_id = #{workId,jdbcType=BIGINT},
+      </if>
+      <if test="workComp != null">
+        work_comp = #{workComp,jdbcType=VARCHAR},
+      </if>
+      <if test="workInd != null">
+        work_ind = #{workInd,jdbcType=VARCHAR},
+      </if>
+      <if test="workStart != null">
+        work_start = #{workStart,jdbcType=DATE},
+      </if>
+      <if test="workEnd != null">
+        work_end = #{workEnd,jdbcType=DATE},
+      </if>
+      <if test="workCompSize != null">
+        work_comp_size = #{workCompSize,jdbcType=CHAR},
+      </if>
+      <if test="workPosition != null">
+        work_position = #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="workCompType != null">
+        work_comp_type = #{workCompType,jdbcType=CHAR},
+      </if>
+      <if test="workDesc != null">
+        work_desc = #{workDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workCreated != null">
+        work_created = #{workCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workModified != null">
+        work_modified = #{workModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workCandId != null">
+        work_cand_id = #{workCandId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

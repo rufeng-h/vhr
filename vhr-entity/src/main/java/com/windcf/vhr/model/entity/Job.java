@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
+ * @time 2022-09-22 17:15
+ * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 工作岗位
- * @author chunf
+ * 工作岗位
  */
 @Data
 @Builder
@@ -26,45 +25,45 @@ public class Job {
     private Long jobId;
 
     /**
-    * 工作地点
-    */
+     * 工作地点
+     */
     private Long jobArea;
 
     private String jobName;
 
     /**
-    * 工作年限
-    */
+     * 工作年限
+     */
     private Byte jobYear;
 
     /**
-    * 学历要求
-    */
+     * 学历要求
+     */
     private String jobEdu;
 
     /**
-    * 月薪，d+-d+k
-    */
+     * 月薪，d+-d+k
+     */
     private String jobSalary;
 
     /**
-    * 岗位职责
-    */
+     * 岗位职责
+     */
     private String jobDuty;
 
     /**
-    * 任职要求
-    */
+     * 任职要求
+     */
     private String jobReq;
 
     /**
-    * 所属行业
-    */
+     * 所属行业
+     */
     private String jobInd;
 
     /**
-    * 福利待遇，逗号分隔
-    */
+     * 福利待遇，逗号分隔
+     */
     private String jobWeal;
 
     private LocalDateTime jobCreated;
@@ -72,7 +71,7 @@ public class Job {
     private LocalDateTime jobModified;
 
     /**
-    * 过期时间，null长期有效
-    */
+     * 过期时间，null长期有效
+     */
     private LocalDateTime jobExpired;
 }

@@ -9,8 +9,14 @@ import lombok.NoArgsConstructor;
 
 
 /**
-    * 教育经历
  * @author chunf
+ * @time 2022-09-22 17:15
+ * @package com.windcf.vhr.model.entity
+ * @description TODO
+ */
+
+/**
+ * 教育经历
  */
 @Data
 @Builder
@@ -20,23 +26,23 @@ public class EduExpr {
     private Long eduId;
 
     /**
-    * 学历，0 -> 初中及以下，1 -> 高中，2 -> 本科，
-    */
+     * 学历，0 -> 初中及以下，1 -> 高中，2 -> 本科，
+     */
     private String eduEducation;
 
     /**
-    * 学校
-    */
+     * 学校
+     */
     private String eduSchool;
 
     /**
-    * 专业，本科以下选填
-    */
+     * 专业，本科以下选填
+     */
     private String eduMajor;
 
     /**
-    * 专业描述
-    */
+     * 专业描述
+     */
     private String eduMajorDesc;
 
     private LocalDate eduStartDate;
@@ -46,4 +52,9 @@ public class EduExpr {
     private LocalDateTime eduCreated;
 
     private LocalDateTime eduModified;
+
+    /**
+     * 外键
+     */
+    private Long eduCandId;
 }

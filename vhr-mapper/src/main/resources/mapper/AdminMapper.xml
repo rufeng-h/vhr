@@ -1,467 +1,453 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.windcf.vhr.mapper.AdminMapper">
-    <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Admin">
-        <!--@mbg.generated-->
-        <!--@Table hr_admin-->
-        <id column="admin_id" jdbcType="BIGINT" property="adminId"/>
-        <result column="admin_name" jdbcType="VARCHAR" property="adminName"/>
-        <result column="admin_phone" jdbcType="VARCHAR" property="adminPhone"/>
-        <result column="admin_email" jdbcType="VARCHAR" property="adminEmail"/>
-        <result column="admin_avatar" jdbcType="VARCHAR" property="adminAvatar"/>
-        <result column="admin_created" jdbcType="TIMESTAMP" property="adminCreated"/>
-        <result column="admin_modified" jdbcType="TIMESTAMP" property="adminModified"/>
-        <result column="admin_status" jdbcType="CHAR" property="adminStatus"/>
-        <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd"/>
-        <result column="admin_last_login" jdbcType="TIMESTAMP" property="adminLastLogin"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        admin_id,
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Admin">
+    <!--@mbg.generated-->
+    <!--@Table hr_admin-->
+    <id column="admin_id" jdbcType="BIGINT" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_phone" jdbcType="VARCHAR" property="adminPhone" />
+    <result column="admin_email" jdbcType="VARCHAR" property="adminEmail" />
+    <result column="admin_avatar" jdbcType="VARCHAR" property="adminAvatar" />
+    <result column="admin_created" jdbcType="TIMESTAMP" property="adminCreated" />
+    <result column="admin_modified" jdbcType="TIMESTAMP" property="adminModified" />
+    <result column="admin_status" jdbcType="CHAR" property="adminStatus" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="admin_last_login" jdbcType="TIMESTAMP" property="adminLastLogin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    admin_id, admin_name, admin_phone, admin_email, admin_avatar, admin_created, admin_modified, 
+    admin_status, admin_pwd, admin_last_login
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_admin
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_admin
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_admin (admin_name, admin_phone, admin_email, 
+      admin_avatar, admin_created, admin_modified, 
+      admin_status, admin_pwd, admin_last_login
+      )
+    values (#{adminName,jdbcType=VARCHAR}, #{adminPhone,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR}, 
+      #{adminAvatar,jdbcType=VARCHAR}, #{adminCreated,jdbcType=TIMESTAMP}, #{adminModified,jdbcType=TIMESTAMP}, 
+      #{adminStatus,jdbcType=CHAR}, #{adminPwd,jdbcType=VARCHAR}, #{adminLastLogin,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminName != null">
         admin_name,
+      </if>
+      <if test="adminPhone != null">
         admin_phone,
+      </if>
+      <if test="adminEmail != null">
         admin_email,
+      </if>
+      <if test="adminAvatar != null">
         admin_avatar,
+      </if>
+      <if test="adminCreated != null">
         admin_created,
+      </if>
+      <if test="adminModified != null">
         admin_modified,
+      </if>
+      <if test="adminStatus != null">
         admin_status,
+      </if>
+      <if test="adminPwd != null">
         admin_pwd,
-        admin_last_login
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
-        from hr_admin
-        where admin_id = #{adminId,jdbcType=BIGINT}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        <!--@mbg.generated-->
-        delete
-        from hr_admin
-        where admin_id = #{adminId,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin"
-            useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_admin (admin_name, admin_phone, admin_email,
-                              admin_avatar, admin_created, admin_modified,
-                              admin_status, admin_pwd, admin_last_login)
-        values (#{adminName,jdbcType=VARCHAR}, #{adminPhone,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR},
-                #{adminAvatar,jdbcType=VARCHAR}, #{adminCreated,jdbcType=TIMESTAMP},
-                #{adminModified,jdbcType=TIMESTAMP},
-                #{adminStatus,jdbcType=CHAR}, #{adminPwd,jdbcType=VARCHAR}, #{adminLastLogin,jdbcType=TIMESTAMP})
-    </insert>
-    <insert id="insertSelective" keyColumn="admin_id" keyProperty="adminId"
-            parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_admin
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="adminName != null">
-                admin_name,
-            </if>
-            <if test="adminPhone != null">
-                admin_phone,
-            </if>
-            <if test="adminEmail != null">
-                admin_email,
-            </if>
-            <if test="adminAvatar != null">
-                admin_avatar,
-            </if>
-            <if test="adminCreated != null">
-                admin_created,
-            </if>
-            <if test="adminModified != null">
-                admin_modified,
-            </if>
-            <if test="adminStatus != null">
-                admin_status,
-            </if>
-            <if test="adminPwd != null">
-                admin_pwd,
-            </if>
-            <if test="adminLastLogin != null">
-                admin_last_login,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="adminName != null">
-                #{adminName,jdbcType=VARCHAR},
-            </if>
-            <if test="adminPhone != null">
-                #{adminPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="adminEmail != null">
-                #{adminEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="adminAvatar != null">
-                #{adminAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="adminCreated != null">
-                #{adminCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminModified != null">
-                #{adminModified,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminStatus != null">
-                #{adminStatus,jdbcType=CHAR},
-            </if>
-            <if test="adminPwd != null">
-                #{adminPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="adminLastLogin != null">
-                #{adminLastLogin,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Admin">
-        <!--@mbg.generated-->
-        update hr_admin
-        <set>
-            <if test="adminName != null">
-                admin_name = #{adminName,jdbcType=VARCHAR},
-            </if>
-            <if test="adminPhone != null">
-                admin_phone = #{adminPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="adminEmail != null">
-                admin_email = #{adminEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="adminAvatar != null">
-                admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="adminCreated != null">
-                admin_created = #{adminCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminModified != null">
-                admin_modified = #{adminModified,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminStatus != null">
-                admin_status = #{adminStatus,jdbcType=CHAR},
-            </if>
-            <if test="adminPwd != null">
-                admin_pwd = #{adminPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="adminLastLogin != null">
-                admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where admin_id = #{adminId,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Admin">
-        <!--@mbg.generated-->
-        update hr_admin
-        set admin_name       = #{adminName,jdbcType=VARCHAR},
-            admin_phone      = #{adminPhone,jdbcType=VARCHAR},
-            admin_email      = #{adminEmail,jdbcType=VARCHAR},
-            admin_avatar     = #{adminAvatar,jdbcType=VARCHAR},
-            admin_created    = #{adminCreated,jdbcType=TIMESTAMP},
-            admin_modified   = #{adminModified,jdbcType=TIMESTAMP},
-            admin_status     = #{adminStatus,jdbcType=CHAR},
-            admin_pwd        = #{adminPwd,jdbcType=VARCHAR},
-            admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP}
-        where admin_id = #{adminId,jdbcType=BIGINT}
-    </update>
-    <update id="updateBatch" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update hr_admin
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="admin_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminName,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_phone = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPhone,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_email = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminEmail,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_avatar = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminAvatar,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_created = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminCreated,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="admin_modified = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminModified,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="admin_status = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminStatus,jdbcType=CHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_pwd = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPwd,jdbcType=VARCHAR}
-                </foreach>
-            </trim>
-            <trim prefix="admin_last_login = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-        </trim>
-        where admin_id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.adminId,jdbcType=BIGINT}
+      </if>
+      <if test="adminLastLogin != null">
+        admin_last_login,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null">
+        #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adminAvatar != null">
+        #{adminAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreated != null">
+        #{adminCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminModified != null">
+        #{adminModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminStatus != null">
+        #{adminStatus,jdbcType=CHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Admin">
+    <!--@mbg.generated-->
+    update hr_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null">
+        admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        admin_email = #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adminAvatar != null">
+        admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreated != null">
+        admin_created = #{adminCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminModified != null">
+        admin_modified = #{adminModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminStatus != null">
+        admin_status = #{adminStatus,jdbcType=CHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Admin">
+    <!--@mbg.generated-->
+    update hr_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      admin_email = #{adminEmail,jdbcType=VARCHAR},
+      admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
+      admin_created = #{adminCreated,jdbcType=TIMESTAMP},
+      admin_modified = #{adminModified,jdbcType=TIMESTAMP},
+      admin_status = #{adminStatus,jdbcType=CHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_admin
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="admin_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminName,jdbcType=VARCHAR}
         </foreach>
-    </update>
-    <update id="updateBatchSelective" parameterType="java.util.List">
-        <!--@mbg.generated-->
-        update hr_admin
-        <trim prefix="set" suffixOverrides=",">
-            <trim prefix="admin_name = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminName != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminName,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_phone = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminPhone != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPhone,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_email = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminEmail != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminEmail,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_avatar = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminAvatar != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminAvatar,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_created = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminCreated != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminCreated,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_modified = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminModified != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminModified,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_status = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminStatus != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminStatus,jdbcType=CHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_pwd = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminPwd != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPwd,jdbcType=VARCHAR}
-                    </if>
-                </foreach>
-            </trim>
-            <trim prefix="admin_last_login = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    <if test="item.adminLastLogin != null">
-                        when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
-                    </if>
-                </foreach>
-            </trim>
-        </trim>
-        where admin_id in
-        <foreach close=")" collection="list" item="item" open="(" separator=", ">
-            #{item.adminId,jdbcType=BIGINT}
+      </trim>
+      <trim prefix="admin_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPhone,jdbcType=VARCHAR}
         </foreach>
-    </update>
-    <insert id="batchInsert" keyColumn="admin_id" keyProperty="adminId" parameterType="map" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_admin
-        (admin_name, admin_phone, admin_email, admin_avatar, admin_created, admin_modified,
-         admin_status, admin_pwd, admin_last_login)
-        values
-        <foreach collection="list" item="item" separator=",">
-            (#{item.adminName,jdbcType=VARCHAR}, #{item.adminPhone,jdbcType=VARCHAR},
-             #{item.adminEmail,jdbcType=VARCHAR},
-             #{item.adminAvatar,jdbcType=VARCHAR}, #{item.adminCreated,jdbcType=TIMESTAMP},
-             #{item.adminModified,jdbcType=TIMESTAMP}, #{item.adminStatus,jdbcType=CHAR},
-             #{item.adminPwd,jdbcType=VARCHAR},
-             #{item.adminLastLogin,jdbcType=TIMESTAMP})
+      </trim>
+      <trim prefix="admin_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminEmail,jdbcType=VARCHAR}
         </foreach>
-    </insert>
-    <insert id="insertOrUpdate" keyColumn="admin_id" keyProperty="adminId"
-            parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_admin
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="adminId != null">
-                admin_id,
-            </if>
-            admin_name,
-            admin_phone,
-            admin_email,
-            admin_avatar,
-            admin_created,
-            admin_modified,
-            admin_status,
-            admin_pwd,
-            admin_last_login,
-        </trim>
-        values
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="adminId != null">
-                #{adminId,jdbcType=BIGINT},
-            </if>
-            #{adminName,jdbcType=VARCHAR},
-            #{adminPhone,jdbcType=VARCHAR},
-            #{adminEmail,jdbcType=VARCHAR},
-            #{adminAvatar,jdbcType=VARCHAR},
-            #{adminCreated,jdbcType=TIMESTAMP},
-            #{adminModified,jdbcType=TIMESTAMP},
-            #{adminStatus,jdbcType=CHAR},
-            #{adminPwd,jdbcType=VARCHAR},
-            #{adminLastLogin,jdbcType=TIMESTAMP},
-        </trim>
-        on duplicate key update
-        <trim suffixOverrides=",">
-            <if test="adminId != null">
-                admin_id = #{adminId,jdbcType=BIGINT},
-            </if>
-            admin_name       = #{adminName,jdbcType=VARCHAR},
-            admin_phone      = #{adminPhone,jdbcType=VARCHAR},
-            admin_email      = #{adminEmail,jdbcType=VARCHAR},
-            admin_avatar     = #{adminAvatar,jdbcType=VARCHAR},
-            admin_created    = #{adminCreated,jdbcType=TIMESTAMP},
-            admin_modified   = #{adminModified,jdbcType=TIMESTAMP},
-            admin_status     = #{adminStatus,jdbcType=CHAR},
-            admin_pwd        = #{adminPwd,jdbcType=VARCHAR},
-            admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
-        </trim>
-    </insert>
-    <insert id="insertOrUpdateSelective" keyColumn="admin_id" keyProperty="adminId"
-            parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into hr_admin
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="adminId != null">
-                admin_id,
-            </if>
-            <if test="adminName != null">
-                admin_name,
-            </if>
-            <if test="adminPhone != null">
-                admin_phone,
-            </if>
-            <if test="adminEmail != null">
-                admin_email,
-            </if>
-            <if test="adminAvatar != null">
-                admin_avatar,
-            </if>
-            <if test="adminCreated != null">
-                admin_created,
-            </if>
-            <if test="adminModified != null">
-                admin_modified,
-            </if>
-            <if test="adminStatus != null">
-                admin_status,
-            </if>
-            <if test="adminPwd != null">
-                admin_pwd,
-            </if>
-            <if test="adminLastLogin != null">
-                admin_last_login,
-            </if>
-        </trim>
-        values
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="adminId != null">
-                #{adminId,jdbcType=BIGINT},
-            </if>
-            <if test="adminName != null">
-                #{adminName,jdbcType=VARCHAR},
-            </if>
-            <if test="adminPhone != null">
-                #{adminPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="adminEmail != null">
-                #{adminEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="adminAvatar != null">
-                #{adminAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="adminCreated != null">
-                #{adminCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminModified != null">
-                #{adminModified,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminStatus != null">
-                #{adminStatus,jdbcType=CHAR},
-            </if>
-            <if test="adminPwd != null">
-                #{adminPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="adminLastLogin != null">
-                #{adminLastLogin,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-        on duplicate key update
-        <trim suffixOverrides=",">
-            <if test="adminId != null">
-                admin_id = #{adminId,jdbcType=BIGINT},
-            </if>
-            <if test="adminName != null">
-                admin_name = #{adminName,jdbcType=VARCHAR},
-            </if>
-            <if test="adminPhone != null">
-                admin_phone = #{adminPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="adminEmail != null">
-                admin_email = #{adminEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="adminAvatar != null">
-                admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
-            </if>
-            <if test="adminCreated != null">
-                admin_created = #{adminCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminModified != null">
-                admin_modified = #{adminModified,jdbcType=TIMESTAMP},
-            </if>
-            <if test="adminStatus != null">
-                admin_status = #{adminStatus,jdbcType=CHAR},
-            </if>
-            <if test="adminPwd != null">
-                admin_pwd = #{adminPwd,jdbcType=VARCHAR},
-            </if>
-            <if test="adminLastLogin != null">
-                admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
+      </trim>
+      <trim prefix="admin_avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminAvatar,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="admin_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="admin_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="admin_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminStatus,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="admin_pwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPwd,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="admin_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where admin_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.adminId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_admin
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="admin_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminName != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminPhone != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPhone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminEmail != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminEmail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminAvatar != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminAvatar,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminCreated != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminModified != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminStatus != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminStatus,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_pwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminPwd != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminPwd,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_last_login = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminLastLogin != null">
+            when admin_id = #{item.adminId,jdbcType=BIGINT} then #{item.adminLastLogin,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where admin_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.adminId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="admin_id" keyProperty="adminId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_admin
+    (admin_name, admin_phone, admin_email, admin_avatar, admin_created, admin_modified, 
+      admin_status, admin_pwd, admin_last_login)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.adminName,jdbcType=VARCHAR}, #{item.adminPhone,jdbcType=VARCHAR}, #{item.adminEmail,jdbcType=VARCHAR}, 
+        #{item.adminAvatar,jdbcType=VARCHAR}, #{item.adminCreated,jdbcType=TIMESTAMP}, 
+        #{item.adminModified,jdbcType=TIMESTAMP}, #{item.adminStatus,jdbcType=CHAR}, #{item.adminPwd,jdbcType=VARCHAR}, 
+        #{item.adminLastLogin,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      admin_name,
+      admin_phone,
+      admin_email,
+      admin_avatar,
+      admin_created,
+      admin_modified,
+      admin_status,
+      admin_pwd,
+      admin_last_login,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      #{adminName,jdbcType=VARCHAR},
+      #{adminPhone,jdbcType=VARCHAR},
+      #{adminEmail,jdbcType=VARCHAR},
+      #{adminAvatar,jdbcType=VARCHAR},
+      #{adminCreated,jdbcType=TIMESTAMP},
+      #{adminModified,jdbcType=TIMESTAMP},
+      #{adminStatus,jdbcType=CHAR},
+      #{adminPwd,jdbcType=VARCHAR},
+      #{adminLastLogin,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      admin_email = #{adminEmail,jdbcType=VARCHAR},
+      admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
+      admin_created = #{adminCreated,jdbcType=TIMESTAMP},
+      admin_modified = #{adminModified,jdbcType=TIMESTAMP},
+      admin_status = #{adminStatus,jdbcType=CHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="admin_id" keyProperty="adminId" parameterType="com.windcf.vhr.model.entity.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPhone != null">
+        admin_phone,
+      </if>
+      <if test="adminEmail != null">
+        admin_email,
+      </if>
+      <if test="adminAvatar != null">
+        admin_avatar,
+      </if>
+      <if test="adminCreated != null">
+        admin_created,
+      </if>
+      <if test="adminModified != null">
+        admin_modified,
+      </if>
+      <if test="adminStatus != null">
+        admin_status,
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd,
+      </if>
+      <if test="adminLastLogin != null">
+        admin_last_login,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null">
+        #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adminAvatar != null">
+        #{adminAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreated != null">
+        #{adminCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminModified != null">
+        #{adminModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminStatus != null">
+        #{adminStatus,jdbcType=CHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null">
+        admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        admin_email = #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adminAvatar != null">
+        admin_avatar = #{adminAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCreated != null">
+        admin_created = #{adminCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminModified != null">
+        admin_modified = #{adminModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminStatus != null">
+        admin_status = #{adminStatus,jdbcType=CHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLastLogin != null">
+        admin_last_login = #{adminLastLogin,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
 
     <select id="selectByExample" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from hr_admin
         <where>
             <if test="query.adminEmail != null">

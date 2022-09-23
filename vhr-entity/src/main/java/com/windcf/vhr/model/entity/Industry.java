@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
+ * @time 2022-09-22 17:15
+ * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 行业
-    */
+ * 行业信息
+ */
 @Data
 @Builder
 @AllArgsConstructor

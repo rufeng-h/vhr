@@ -1,6 +1,5 @@
 package com.windcf.vhr.model.form;
 
-import com.windcf.vhr.common.enums.GenderEnum;
 import lombok.Data;
 
 import javax.validation.constraints.Email;

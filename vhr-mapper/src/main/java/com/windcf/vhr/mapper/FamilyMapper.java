@@ -1,6 +1,6 @@
 package com.windcf.vhr.mapper;
 
-import com.windcf.vhr.model.entity.Area;
+import com.windcf.vhr.model.entity.Family;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,20 +8,20 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author chunf
- * @time 2022-09-22 17:15
+ * @time 2022-09-23 21:12
  * @package com.windcf.vhr.mapper
  * @description TODO
  */
 
 @Mapper
-public interface AreaMapper {
+public interface FamilyMapper {
     /**
      * delete by primary key
      *
-     * @param areaId primaryKey
+     * @param fmId primaryKey
      * @return deleteCount
      */
-    int deleteByPrimaryKey(Long areaId);
+    int deleteByPrimaryKey(Long fmId);
 
     /**
      * insert record to table
@@ -29,11 +29,11 @@ public interface AreaMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(Area record);
+    int insert(Family record);
 
-    int insertOrUpdate(Area record);
+    int insertOrUpdate(Family record);
 
-    int insertOrUpdateSelective(Area record);
+    int insertOrUpdateSelective(Family record);
 
     /**
      * insert record to table selective
@@ -41,15 +41,15 @@ public interface AreaMapper {
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Area record);
+    int insertSelective(Family record);
 
     /**
      * select by primary key
      *
-     * @param areaId primary key
+     * @param fmId primary key
      * @return object by primary key
      */
-    Area selectByPrimaryKey(Long areaId);
+    Family selectByPrimaryKey(Long fmId);
 
     /**
      * update record selective
@@ -57,7 +57,7 @@ public interface AreaMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Area record);
+    int updateByPrimaryKeySelective(Family record);
 
     /**
      * update record
@@ -65,11 +65,13 @@ public interface AreaMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Area record);
+    int updateByPrimaryKey(Family record);
 
-    int updateBatch(List<Area> list);
+    int updateBatch(List<Family> list);
 
-    int updateBatchSelective(List<Area> list);
+    int updateBatchSelective(List<Family> list);
 
-    int batchInsert(@Param("list") List<Area> list);
+    int batchInsert(@Param("list") List<Family> list);
+
+    List<Family> listByCandId(Long candId);
 }

@@ -78,7 +78,7 @@ public class CommonController {
         }
         Long userId = authentication.getUserId();
         AbstractUserInfoVo userInfoVo = authentication.getUserType() == UserTypeEnum.ADMIN ?
-                adminService.getUserInfo(userId) : candidateService.getUserInfo(userId);
+                adminService.getUserInfo(userId) : candidateService.getCandInfo(userId);
         return ApiResponse.success(userInfoVo);
     }
 

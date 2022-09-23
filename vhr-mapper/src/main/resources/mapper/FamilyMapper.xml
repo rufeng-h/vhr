@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.FamilyMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Family">
+    <!--@mbg.generated-->
+    <!--@Table hr_family-->
+    <id column="fm_id" jdbcType="BIGINT" property="fmId" />
+    <result column="fm_cand_id" jdbcType="BIGINT" property="fmCandId" />
+    <result column="fm_name" jdbcType="VARCHAR" property="fmName" />
+    <result column="fm_relation" jdbcType="VARCHAR" property="fmRelation" />
+    <result column="fm_company" jdbcType="VARCHAR" property="fmCompany" />
+    <result column="fm_modified" jdbcType="TIMESTAMP" property="fmModified" />
+    <result column="fm_created" jdbcType="TIMESTAMP" property="fmCreated" />
+    <result column="fm_position" jdbcType="VARCHAR" property="fmPosition" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    fm_id, fm_cand_id, fm_name, fm_relation, fm_company, fm_modified, fm_created, fm_position
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_family
+    where fm_id = #{fmId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_family
+    where fm_id = #{fmId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="fm_id" keyProperty="fmId" parameterType="com.windcf.vhr.model.entity.Family" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_family (fm_cand_id, fm_name, fm_relation, 
+      fm_company, fm_modified, fm_created, 
+      fm_position)
+    values (#{fmCandId,jdbcType=BIGINT}, #{fmName,jdbcType=VARCHAR}, #{fmRelation,jdbcType=VARCHAR}, 
+      #{fmCompany,jdbcType=VARCHAR}, #{fmModified,jdbcType=TIMESTAMP}, #{fmCreated,jdbcType=TIMESTAMP}, 
+      #{fmPosition,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="fm_id" keyProperty="fmId" parameterType="com.windcf.vhr.model.entity.Family" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_family
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fmCandId != null">
+        fm_cand_id,
+      </if>
+      <if test="fmName != null">
+        fm_name,
+      </if>
+      <if test="fmRelation != null">
+        fm_relation,
+      </if>
+      <if test="fmCompany != null">
+        fm_company,
+      </if>
+      <if test="fmModified != null">
+        fm_modified,
+      </if>
+      <if test="fmCreated != null">
+        fm_created,
+      </if>
+      <if test="fmPosition != null">
+        fm_position,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fmCandId != null">
+        #{fmCandId,jdbcType=BIGINT},
+      </if>
+      <if test="fmName != null">
+        #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRelation != null">
+        #{fmRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCompany != null">
+        #{fmCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="fmModified != null">
+        #{fmModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmCreated != null">
+        #{fmCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmPosition != null">
+        #{fmPosition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Family">
+    <!--@mbg.generated-->
+    update hr_family
+    <set>
+      <if test="fmCandId != null">
+        fm_cand_id = #{fmCandId,jdbcType=BIGINT},
+      </if>
+      <if test="fmName != null">
+        fm_name = #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRelation != null">
+        fm_relation = #{fmRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCompany != null">
+        fm_company = #{fmCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="fmModified != null">
+        fm_modified = #{fmModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmCreated != null">
+        fm_created = #{fmCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmPosition != null">
+        fm_position = #{fmPosition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fm_id = #{fmId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Family">
+    <!--@mbg.generated-->
+    update hr_family
+    set fm_cand_id = #{fmCandId,jdbcType=BIGINT},
+      fm_name = #{fmName,jdbcType=VARCHAR},
+      fm_relation = #{fmRelation,jdbcType=VARCHAR},
+      fm_company = #{fmCompany,jdbcType=VARCHAR},
+      fm_modified = #{fmModified,jdbcType=TIMESTAMP},
+      fm_created = #{fmCreated,jdbcType=TIMESTAMP},
+      fm_position = #{fmPosition,jdbcType=VARCHAR}
+    where fm_id = #{fmId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_family
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="fm_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCandId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="fm_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="fm_relation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmRelation,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="fm_company = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCompany,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="fm_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="fm_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="fm_position = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmPosition,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where fm_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.fmId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_family
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="fm_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmCandId != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCandId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmName != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_relation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmRelation != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmRelation,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_company = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmCompany != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCompany,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmModified != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmCreated != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fm_position = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fmPosition != null">
+            when fm_id = #{item.fmId,jdbcType=BIGINT} then #{item.fmPosition,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where fm_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.fmId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="fm_id" keyProperty="fmId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_family
+    (fm_cand_id, fm_name, fm_relation, fm_company, fm_modified, fm_created, fm_position
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.fmCandId,jdbcType=BIGINT}, #{item.fmName,jdbcType=VARCHAR}, #{item.fmRelation,jdbcType=VARCHAR}, 
+        #{item.fmCompany,jdbcType=VARCHAR}, #{item.fmModified,jdbcType=TIMESTAMP}, #{item.fmCreated,jdbcType=TIMESTAMP}, 
+        #{item.fmPosition,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="fm_id" keyProperty="fmId" parameterType="com.windcf.vhr.model.entity.Family" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_family
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fmId != null">
+        fm_id,
+      </if>
+      fm_cand_id,
+      fm_name,
+      fm_relation,
+      fm_company,
+      fm_modified,
+      fm_created,
+      fm_position,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fmId != null">
+        #{fmId,jdbcType=BIGINT},
+      </if>
+      #{fmCandId,jdbcType=BIGINT},
+      #{fmName,jdbcType=VARCHAR},
+      #{fmRelation,jdbcType=VARCHAR},
+      #{fmCompany,jdbcType=VARCHAR},
+      #{fmModified,jdbcType=TIMESTAMP},
+      #{fmCreated,jdbcType=TIMESTAMP},
+      #{fmPosition,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="fmId != null">
+        fm_id = #{fmId,jdbcType=BIGINT},
+      </if>
+      fm_cand_id = #{fmCandId,jdbcType=BIGINT},
+      fm_name = #{fmName,jdbcType=VARCHAR},
+      fm_relation = #{fmRelation,jdbcType=VARCHAR},
+      fm_company = #{fmCompany,jdbcType=VARCHAR},
+      fm_modified = #{fmModified,jdbcType=TIMESTAMP},
+      fm_created = #{fmCreated,jdbcType=TIMESTAMP},
+      fm_position = #{fmPosition,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="fm_id" keyProperty="fmId" parameterType="com.windcf.vhr.model.entity.Family" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_family
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fmId != null">
+        fm_id,
+      </if>
+      <if test="fmCandId != null">
+        fm_cand_id,
+      </if>
+      <if test="fmName != null">
+        fm_name,
+      </if>
+      <if test="fmRelation != null">
+        fm_relation,
+      </if>
+      <if test="fmCompany != null">
+        fm_company,
+      </if>
+      <if test="fmModified != null">
+        fm_modified,
+      </if>
+      <if test="fmCreated != null">
+        fm_created,
+      </if>
+      <if test="fmPosition != null">
+        fm_position,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fmId != null">
+        #{fmId,jdbcType=BIGINT},
+      </if>
+      <if test="fmCandId != null">
+        #{fmCandId,jdbcType=BIGINT},
+      </if>
+      <if test="fmName != null">
+        #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRelation != null">
+        #{fmRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCompany != null">
+        #{fmCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="fmModified != null">
+        #{fmModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmCreated != null">
+        #{fmCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmPosition != null">
+        #{fmPosition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="fmId != null">
+        fm_id = #{fmId,jdbcType=BIGINT},
+      </if>
+      <if test="fmCandId != null">
+        fm_cand_id = #{fmCandId,jdbcType=BIGINT},
+      </if>
+      <if test="fmName != null">
+        fm_name = #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRelation != null">
+        fm_relation = #{fmRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCompany != null">
+        fm_company = #{fmCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="fmModified != null">
+        fm_modified = #{fmModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmCreated != null">
+        fm_created = #{fmCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fmPosition != null">
+        fm_position = #{fmPosition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <select id="listByCandId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_family
+        where fm_cand_id = #{candId,jdbcType=BIGINT}
+    </select>
+</mapper>

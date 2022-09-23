@@ -24,4 +24,5 @@ public abstract class AbstractUserInfoVo {
     private String phone;
     private LocalDateTime lastLogin;
     private List<Role> roles;
+    private LocalDateTime created;
 }

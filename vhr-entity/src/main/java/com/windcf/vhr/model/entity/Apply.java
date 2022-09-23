@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
+ * @time 2022-09-22 17:15
+ * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 职位申请
-    */
+ * 职位申请
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -25,18 +25,18 @@ public class Apply {
     private Long apyId;
 
     /**
-    * 申请人id
-    */
+     * 申请人id
+     */
     private Long apyCandId;
 
     /**
-    * 职位id
-    */
+     * 职位id
+     */
     private Long apyJobId;
 
     /**
-    * 状态，'1' -> 未审核，'2' -> 通过, '3' -> 不通过
-    */
+     * 状态，'1' -> 未审核，'2' -> 通过, '3' -> 不通过
+     */
     private String apyStatus;
 
     private LocalDateTime apyCreated;
@@ -44,7 +44,7 @@ public class Apply {
     private LocalDateTime apyModified;
 
     /**
-    * 操作人
-    */
+     * 操作人
+     */
     private Long apyOperAdmin;
 }

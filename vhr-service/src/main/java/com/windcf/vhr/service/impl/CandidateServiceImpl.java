@@ -1,20 +1,19 @@
 package com.windcf.vhr.service.impl;
 
+import com.windcf.vhr.common.enums.GenderEnum;
 import com.windcf.vhr.common.enums.UserTypeEnum;
 import com.windcf.vhr.common.util.JwtTokenUtil;
 import com.windcf.vhr.mapper.CandidateMapper;
 import com.windcf.vhr.model.entity.Candidate;
-import com.windcf.vhr.model.form.EmailCodeLoginForm;
-import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
-import com.windcf.vhr.model.form.RegisterForm;
+import com.windcf.vhr.model.form.*;
 import com.windcf.vhr.model.query.CandidateQuery;
 import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
 import com.windcf.vhr.service.CandidateService;
+import com.windcf.vhr.service.UserService;
 import com.windcf.vhr.service.VerificationCodeService;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -33,9 +32,12 @@ public class CandidateServiceImpl implements CandidateService {
     private final CandidateMapper candidateMapper;
     private final VerificationCodeService verificationCodeService;
 
-    public CandidateServiceImpl(CandidateMapper candidateMapper, VerificationCodeService verificationCodeService) {
+    private final UserService userService;
+
+    public CandidateServiceImpl(CandidateMapper candidateMapper, VerificationCodeService verificationCodeService, UserService userService) {
         this.candidateMapper = candidateMapper;
         this.verificationCodeService = verificationCodeService;
+        this.userService = userService;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -50,7 +52,6 @@ public class CandidateServiceImpl implements CandidateService {
 
         Candidate updCand = Candidate.builder().candId(candidate.getCandId()).candLastLogin(LocalDateTime.now()).build();
         candidateMapper.updateByPrimaryKeySelective(updCand);
-
         return buildLoginResult(candidate);
     }
 
@@ -78,9 +79,49 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public AbstractUserInfoVo getUserInfo(Long candId) {
+    public AbstractUserInfoVo getCandInfo(Long candId) {
         return new CandidateInfoVo(candidateMapper.selectByPrimaryKey(candId));
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean modifyPwd(ModifyCandPwdForm form) {
+        Candidate candidate = candidateMapper.selectByPrimaryKey(form.getCandId());
+        /*
+        unexpected
+         */
+        if (candidate == null) {
+            throw new AuthenticationException("参数错误!");
+        }
+
+        if (!candidate.getCandPwd().equals(DigestUtils.md5DigestAsHex(form.getOldPwd().getBytes(StandardCharsets.UTF_8)))) {
+            throw new AuthenticationException("旧密码错误!");
+        }
+
+        Candidate updCand = Candidate.builder().candPwd(DigestUtils.md5DigestAsHex(form.getNewPwd().getBytes(StandardCharsets.UTF_8))).candId(form.getCandId()).build();
+        return candidateMapper.updateByPrimaryKey(updCand) == 1;
+    }
+
+    @Override
+    public boolean updateCand(UpdateCandForm form) {
+        Candidate candidate = Candidate.builder().candId(form.getCandId())
+                .candName(form.getCandName())
+                .candEmail(form.getCandEmail())
+                .candLiving(form.getCandLiving())
+                .candHometown(form.getCandHometown()).build();
+        return candidateMapper.updateByPrimaryKeySelective(candidate) == 1;
+    }
+
+    @Override
+    public boolean updateCandEmail(UpdateCandEmailForm form) {
+        verificationCodeService.validateEmailCode(form.getEmail(), form.getCode());
+        Long candId = userService.getCurrentCandId();
+        Candidate candidate = Candidate.builder()
+                .candId(candId)
+                .candEmail(form.getEmail()).build();
+        return candidateMapper.updateByPrimaryKeySelective(candidate) == 1;
+    }
+
 
     @Override
     public LoginResultVo loginByEmailCode(EmailCodeLoginForm form) {
@@ -104,7 +145,14 @@ public class CandidateServiceImpl implements CandidateService {
         if (idCardExists(form.getIdCard())) {
             throw new AuthenticationException("身份证号已存在");
         }
-        Candidate candidate = Candidate.builder().candEmail(form.getEmail()).candPwd(DigestUtils.md5DigestAsHex(form.getPassword().getBytes(StandardCharsets.UTF_8))).candIdCard(form.getIdCard()).candName(form.getUsername()).candPhone(form.getPhone()).build();
+        GenderEnum genderEnum = Integer.parseInt(form.getIdCard().substring(16, 17)) % 2 == 1 ? GenderEnum.M : GenderEnum.F;
+        Candidate candidate = Candidate.builder()
+                .candEmail(form.getEmail())
+                .candPwd(DigestUtils.md5DigestAsHex(form.getPassword().getBytes(StandardCharsets.UTF_8)))
+                .candIdCard(form.getIdCard())
+                .candName(form.getUsername())
+                .candGender(genderEnum.name())
+                .candPhone(form.getPhone()).build();
         candidateMapper.insertSelective(candidate);
         return new CandidateInfoVo(candidate);
     }

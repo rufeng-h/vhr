@@ -13,11 +13,12 @@
     <result column="edu_end_date" jdbcType="DATE" property="eduEndDate" />
     <result column="edu_created" jdbcType="TIMESTAMP" property="eduCreated" />
     <result column="edu_modified" jdbcType="TIMESTAMP" property="eduModified" />
+    <result column="edu_cand_id" jdbcType="BIGINT" property="eduCandId" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     edu_id, edu_education, edu_school, edu_major, edu_major_desc, edu_start_date, edu_end_date, 
-    edu_created, edu_modified
+    edu_created, edu_modified, edu_cand_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -35,10 +36,12 @@
     <!--@mbg.generated-->
     insert into hr_edu_expr (edu_education, edu_school, edu_major, 
       edu_major_desc, edu_start_date, edu_end_date, 
-      edu_created, edu_modified)
+      edu_created, edu_modified, edu_cand_id
+      )
     values (#{eduEducation,jdbcType=CHAR}, #{eduSchool,jdbcType=VARCHAR}, #{eduMajor,jdbcType=VARCHAR}, 
       #{eduMajorDesc,jdbcType=LONGVARCHAR}, #{eduStartDate,jdbcType=DATE}, #{eduEndDate,jdbcType=DATE}, 
-      #{eduCreated,jdbcType=TIMESTAMP}, #{eduModified,jdbcType=TIMESTAMP})
+      #{eduCreated,jdbcType=TIMESTAMP}, #{eduModified,jdbcType=TIMESTAMP}, #{eduCandId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -68,6 +71,9 @@
       <if test="eduModified != null">
         edu_modified,
       </if>
+      <if test="eduCandId != null">
+        edu_cand_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="eduEducation != null">
@@ -93,6 +99,9 @@
       </if>
       <if test="eduModified != null">
         #{eduModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduCandId != null">
+        #{eduCandId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="eduModified != null">
         edu_modified = #{eduModified,jdbcType=TIMESTAMP},
       </if>
+      <if test="eduCandId != null">
+        edu_cand_id = #{eduCandId,jdbcType=BIGINT},
+      </if>
     </set>
     where edu_id = #{eduId,jdbcType=BIGINT}
   </update>
@@ -137,7 +149,8 @@
       edu_start_date = #{eduStartDate,jdbcType=DATE},
       edu_end_date = #{eduEndDate,jdbcType=DATE},
       edu_created = #{eduCreated,jdbcType=TIMESTAMP},
-      edu_modified = #{eduModified,jdbcType=TIMESTAMP}
+      edu_modified = #{eduModified,jdbcType=TIMESTAMP},
+      edu_cand_id = #{eduCandId,jdbcType=BIGINT}
     where edu_id = #{eduId,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
@@ -182,6 +195,11 @@
       <trim prefix="edu_modified = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="edu_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
         </foreach>
       </trim>
     </trim>
@@ -250,6 +268,13 @@
           </if>
         </foreach>
       </trim>
+      <trim prefix="edu_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.eduCandId != null">
+            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
     </trim>
     where edu_id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -260,13 +285,13 @@
     <!--@mbg.generated-->
     insert into hr_edu_expr
     (edu_education, edu_school, edu_major, edu_major_desc, edu_start_date, edu_end_date, 
-      edu_created, edu_modified)
+      edu_created, edu_modified, edu_cand_id)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.eduEducation,jdbcType=CHAR}, #{item.eduSchool,jdbcType=VARCHAR}, #{item.eduMajor,jdbcType=VARCHAR}, 
         #{item.eduMajorDesc,jdbcType=LONGVARCHAR}, #{item.eduStartDate,jdbcType=DATE}, 
-        #{item.eduEndDate,jdbcType=DATE}, #{item.eduCreated,jdbcType=TIMESTAMP}, #{item.eduModified,jdbcType=TIMESTAMP}
-        )
+        #{item.eduEndDate,jdbcType=DATE}, #{item.eduCreated,jdbcType=TIMESTAMP}, #{item.eduModified,jdbcType=TIMESTAMP}, 
+        #{item.eduCandId,jdbcType=BIGINT})
     </foreach>
   </insert>
   <insert id="insertOrUpdate" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
@@ -284,6 +309,7 @@
       edu_end_date,
       edu_created,
       edu_modified,
+      edu_cand_id,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -298,6 +324,7 @@
       #{eduEndDate,jdbcType=DATE},
       #{eduCreated,jdbcType=TIMESTAMP},
       #{eduModified,jdbcType=TIMESTAMP},
+      #{eduCandId,jdbcType=BIGINT},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -312,6 +339,7 @@
       edu_end_date = #{eduEndDate,jdbcType=DATE},
       edu_created = #{eduCreated,jdbcType=TIMESTAMP},
       edu_modified = #{eduModified,jdbcType=TIMESTAMP},
+      edu_cand_id = #{eduCandId,jdbcType=BIGINT},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
@@ -345,6 +373,9 @@
       <if test="eduModified != null">
         edu_modified,
       </if>
+      <if test="eduCandId != null">
+        edu_cand_id,
+      </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -375,6 +406,9 @@
       <if test="eduModified != null">
         #{eduModified,jdbcType=TIMESTAMP},
       </if>
+      <if test="eduCandId != null">
+        #{eduCandId,jdbcType=BIGINT},
+      </if>
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -404,6 +438,9 @@
       </if>
       <if test="eduModified != null">
         edu_modified = #{eduModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduCandId != null">
+        edu_cand_id = #{eduCandId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>

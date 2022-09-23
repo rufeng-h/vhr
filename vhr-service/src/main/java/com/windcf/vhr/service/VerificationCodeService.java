@@ -16,5 +16,12 @@ public interface VerificationCodeService {
      */
     void sendEmailCode(String to);
 
+    /**
+     * check the email code
+     *
+     * @param email the email
+     * @param code  the code
+     * @throws AuthenticationException check error
+     */
     void validateEmailCode(String email, String code) throws AuthenticationException;
 }

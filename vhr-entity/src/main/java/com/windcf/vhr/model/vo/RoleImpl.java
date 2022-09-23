@@ -9,7 +9,7 @@ import com.windcf.vhr.common.enums.UserTypeEnum;
  * @description simple roleimpl
  */
 public class RoleImpl implements Role {
-    private UserTypeEnum userType;
+    private final UserTypeEnum userType;
 
     public RoleImpl(UserTypeEnum userType) {
         this.userType = userType;

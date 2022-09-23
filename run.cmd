@@ -1,0 +1,1 @@
+java -jar -Dspring.profiles.active=dev ./vhr-web/target/vhr-web-0.0.1-SNAPSHOT.jar

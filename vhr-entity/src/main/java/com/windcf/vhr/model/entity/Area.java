@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-15 14:28
- * @package com.windcf.vhr.model
+ * @time 2022-09-22 17:15
+ * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 全国行政区划
-    */
+ * 全国行政区划
+ */
 @Data
 @Builder
 @AllArgsConstructor

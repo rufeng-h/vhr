@@ -1,6 +1,6 @@
 package com.windcf.vhr.mapper;
 
-import com.windcf.vhr.model.entity.Area;
+import com.windcf.vhr.model.entity.WorkExpr;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,62 +14,56 @@ import org.apache.ibatis.annotations.Param;
  */
 
 @Mapper
-public interface AreaMapper {
+public interface WorkExprMapper {
     /**
      * delete by primary key
-     *
-     * @param areaId primaryKey
+     * @param workId primaryKey
      * @return deleteCount
      */
-    int deleteByPrimaryKey(Long areaId);
+    int deleteByPrimaryKey(Long workId);
 
     /**
      * insert record to table
-     *
      * @param record the record
      * @return insert count
      */
-    int insert(Area record);
+    int insert(WorkExpr record);
 
-    int insertOrUpdate(Area record);
+    int insertOrUpdate(WorkExpr record);
 
-    int insertOrUpdateSelective(Area record);
+    int insertOrUpdateSelective(WorkExpr record);
 
     /**
      * insert record to table selective
-     *
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Area record);
+    int insertSelective(WorkExpr record);
 
     /**
      * select by primary key
-     *
-     * @param areaId primary key
+     * @param workId primary key
      * @return object by primary key
      */
-    Area selectByPrimaryKey(Long areaId);
+    WorkExpr selectByPrimaryKey(Long workId);
 
     /**
      * update record selective
-     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Area record);
+    int updateByPrimaryKeySelective(WorkExpr record);
 
     /**
      * update record
-     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Area record);
+    int updateByPrimaryKey(WorkExpr record);
 
-    int updateBatch(List<Area> list);
+    int updateBatch(List<WorkExpr> list);
 
-    int updateBatchSelective(List<Area> list);
+    int updateBatchSelective(List<WorkExpr> list);
 
-    int batchInsert(@Param("list") List<Area> list);
+    int batchInsert(@Param("list") List<WorkExpr> list);
 }

@@ -1,12 +1,11 @@
 package com.windcf.vhr.service;
 
-import com.windcf.vhr.model.form.EmailCodeLoginForm;
-import com.windcf.vhr.model.form.EmailPwdLoginFormPwd;
-import com.windcf.vhr.model.form.RegisterForm;
+import com.windcf.vhr.model.form.*;
 import com.windcf.vhr.model.vo.AbstractUserInfoVo;
 import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
+import org.springframework.lang.Nullable;
 
 /**
  * @author chunf
@@ -64,5 +63,30 @@ public interface CandidateService {
      */
     boolean idCardExists(String idCard);
 
-    AbstractUserInfoVo getUserInfo(Long candId);
+    /**
+     * gets  candinfo
+     *
+     * @param candId id
+     * @return info or null
+     */
+    AbstractUserInfoVo getCandInfo(Long candId);
+
+    /**
+     * chane pwd
+     *
+     * @param form formdata
+     * @return success or fail
+     */
+    boolean modifyPwd(ModifyCandPwdForm form);
+
+    /**
+     * update candidate info
+     *
+     * @param form form
+     * @return success or fail
+     */
+    boolean updateCand(UpdateCandForm form);
+
+
+    boolean updateCandEmail(UpdateCandEmailForm form);
 }

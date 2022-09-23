@@ -1,11 +1,14 @@
 package com.windcf.vhr.model.vo;
 
+import com.windcf.vhr.common.enums.GenderEnum;
 import com.windcf.vhr.common.enums.UserTypeEnum;
 import com.windcf.vhr.model.entity.Candidate;
+import com.windcf.vhr.model.entity.Family;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @author chunf
@@ -16,9 +19,18 @@ import java.util.Collections;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CandidateInfoVo extends AbstractUserInfoVo {
+    private String hometown;
+    private String living;
+    private String idCard;
+    private GenderEnum gender;
+
     public CandidateInfoVo(Candidate candidate) {
-        super(candidate.getCandId(), candidate.getCandName(), candidate.getCandAvatar(), candidate.getCandEmail(),
-                candidate.getCandPhone(), candidate.getCandLastLogin(),
-                Collections.singletonList(new RoleImpl(UserTypeEnum.CANDIDATE)));
+        super(candidate.getCandId(), candidate.getCandName(), candidate.getCandAvatar(),
+                candidate.getCandEmail(), candidate.getCandPhone(), candidate.getCandLastLogin(),
+                Collections.singletonList(new RoleImpl(UserTypeEnum.CANDIDATE)), candidate.getCandCreated());
+        this.gender = GenderEnum.valueOf(candidate.getCandGender());
+        this.hometown = candidate.getCandHometown();
+        this.living = candidate.getCandLiving();
+        this.idCard = candidate.getCandIdCard();
     }
 }
