@@ -5,11 +5,13 @@ import com.windcf.vhr.model.form.ModifyCandPwdForm;
 import com.windcf.vhr.model.form.UpdateCandEmailForm;
 import com.windcf.vhr.model.form.UpdateCandForm;
 import com.windcf.vhr.service.CandidateService;
+import com.windcf.vhr.service.FileService;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.net.URI;
 
 /**
  * @author chunf
@@ -25,6 +27,7 @@ public class CandidateController {
 
     public CandidateController(CandidateService candidateService) {
         this.candidateService = candidateService;
+
     }
 
     @PutMapping("/pwd")
@@ -41,5 +44,10 @@ public class CandidateController {
     @PutMapping("/email")
     public ApiResponse<Boolean> updateCandEmail(@Validated @RequestBody UpdateCandEmailForm form) {
         return ApiResponse.success(candidateService.updateCandEmail(form));
+    }
+
+    @PostMapping(value = "/uploadAvatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ApiResponse<URI> uploadAvatar(@RequestPart MultipartFile file) {
+        return ApiResponse.success(candidateService.updateAvatar(file));
     }
 }

@@ -6,7 +6,7 @@ spring:
     username: chunfengh163@163.com
     host: smtp.163.com
     password: OYZDLGLUUOLFGOEV
-#    port: 587
+  #    port: 587
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -32,3 +32,5 @@ mybatis:
     local-cache-scope: statement
   mapper-locations: classpath:/mapper/**/*.xml
 #  type-aliases-package: com.rufeng.healthman.pojo
+vhr:
+  work-dir: ${user.home}/.vhr

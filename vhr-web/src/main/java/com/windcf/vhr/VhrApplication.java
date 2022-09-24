@@ -1,7 +1,9 @@
 package com.windcf.vhr;
 
+import com.windcf.vhr.common.VhrProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 @EnableTransactionManagement
+@EnableConfigurationProperties(VhrProperties.class)
 public class VhrApplication {
     public static void main(String[] args) {
         SpringApplication.run(VhrApplication.class);

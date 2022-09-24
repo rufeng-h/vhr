@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-22 18:08
+ * @time 2022-09-24 15:09
  * @package com.windcf.vhr.model.entity
  * @description TODO
  */
@@ -83,4 +83,19 @@ public class Candidate {
      * 现居住地，同籍贯
      */
     private String candLiving;
+
+    private Double candVisionLeft;
+
+    private Double candVisionRight;
+
+    /**
+     * 政治面貌
+     */
+    private String candPolitic;
+
+    private String candNation;
+
+    private Integer candHeight;
+
+    private Integer candHeavy;
 }

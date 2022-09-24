@@ -6,6 +6,9 @@ import com.windcf.vhr.model.vo.CandidateInfoVo;
 import com.windcf.vhr.model.vo.LoginResultVo;
 import com.windcf.vhr.security.exception.AuthenticationException;
 import org.springframework.lang.Nullable;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.net.URI;
 
 /**
  * @author chunf
@@ -89,4 +92,6 @@ public interface CandidateService {
 
 
     boolean updateCandEmail(UpdateCandEmailForm form);
+
+    URI updateAvatar(MultipartFile file);
 }

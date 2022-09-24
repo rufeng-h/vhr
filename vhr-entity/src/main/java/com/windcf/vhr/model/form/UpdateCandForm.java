@@ -1,9 +1,8 @@
 package com.windcf.vhr.model.form;
 
-import com.windcf.vhr.common.enums.GenderEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -11,20 +10,30 @@ import javax.validation.constraints.NotNull;
  * @time 2022-09-22 18:34
  * @package com.windcf.vhr.model.form
  * @description update cand info
+ * TODO 前后端参数校验都没做全，枚举类型
  */
+
+
 @Data
 public class UpdateCandForm {
     @NotNull
     private Long candId;
-
-    @Length(min = 1)
-    private String candName;
-    @Length(min = 1)
-    private String candPhone;
-    @Length(min = 1)
-    private String candEmail;
-    @Length(min = 1)
-    private String candHometown;
-    @Length(min = 1)
-    private String candLiving;
+    @NotEmpty
+    private String username;
+    @NotNull
+    private Integer heavy;
+    @NotNull
+    private Integer height;
+    @NotEmpty
+    private String hometown;
+    @NotEmpty
+    private String living;
+    @NotNull
+    private Double visionLeft;
+    @NotNull
+    private Double visionRight;
+    @NotEmpty
+    private String nation;
+    @NotEmpty
+    private String politic;
 }

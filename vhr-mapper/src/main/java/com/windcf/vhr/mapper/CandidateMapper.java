@@ -1,17 +1,14 @@
 package com.windcf.vhr.mapper;
 
 import com.windcf.vhr.model.entity.Candidate;
-
 import java.util.List;
-
-import com.windcf.vhr.model.query.CandidateQuery;
-import org.apache.ibatis.annotations.Mapper;
+import com.windcf.vhr.model.query.CandidateQuery;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
 /**
  * @author chunf
- * @time 2022-09-22 18:08
+ * @time 2022-09-24 15:09
  * @package com.windcf.vhr.mapper
  * @description TODO
  */

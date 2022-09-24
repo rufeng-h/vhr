@@ -17,11 +17,18 @@
     <result column="cand_avatar" jdbcType="VARCHAR" property="candAvatar" />
     <result column="cand_id_card" jdbcType="VARCHAR" property="candIdCard" />
     <result column="cand_living" jdbcType="CHAR" property="candLiving" />
+    <result column="cand_vision_left" jdbcType="FLOAT" property="candVisionLeft" />
+    <result column="cand_vision_right" jdbcType="FLOAT" property="candVisionRight" />
+    <result column="cand_politic" jdbcType="CHAR" property="candPolitic" />
+    <result column="cand_nation" jdbcType="CHAR" property="candNation" />
+    <result column="cand_height" jdbcType="INTEGER" property="candHeight" />
+    <result column="cand_heavy" jdbcType="INTEGER" property="candHeavy" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     cand_id, cand_name, cand_hometown, cand_email, cand_phone, cand_gender, cand_pwd, 
-    cand_created, cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living
+    cand_created, cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living, 
+    cand_vision_left, cand_vision_right, cand_politic, cand_nation, cand_height, cand_heavy
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -40,12 +47,16 @@
     insert into hr_candidate (cand_name, cand_hometown, cand_email, 
       cand_phone, cand_gender, cand_pwd, 
       cand_created, cand_last_login, cand_status, 
-      cand_avatar, cand_id_card, cand_living
+      cand_avatar, cand_id_card, cand_living, 
+      cand_vision_left, cand_vision_right, cand_politic, 
+      cand_nation, cand_height, cand_heavy
       )
     values (#{candName,jdbcType=VARCHAR}, #{candHometown,jdbcType=CHAR}, #{candEmail,jdbcType=VARCHAR}, 
       #{candPhone,jdbcType=VARCHAR}, #{candGender,jdbcType=CHAR}, #{candPwd,jdbcType=VARCHAR}, 
       #{candCreated,jdbcType=TIMESTAMP}, #{candLastLogin,jdbcType=TIMESTAMP}, #{candStatus,jdbcType=CHAR}, 
-      #{candAvatar,jdbcType=VARCHAR}, #{candIdCard,jdbcType=VARCHAR}, #{candLiving,jdbcType=CHAR}
+      #{candAvatar,jdbcType=VARCHAR}, #{candIdCard,jdbcType=VARCHAR}, #{candLiving,jdbcType=CHAR}, 
+      #{candVisionLeft,jdbcType=FLOAT}, #{candVisionRight,jdbcType=FLOAT}, #{candPolitic,jdbcType=CHAR}, 
+      #{candNation,jdbcType=CHAR}, #{candHeight,jdbcType=INTEGER}, #{candHeavy,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
@@ -88,6 +99,24 @@
       <if test="candLiving != null">
         cand_living,
       </if>
+      <if test="candVisionLeft != null">
+        cand_vision_left,
+      </if>
+      <if test="candVisionRight != null">
+        cand_vision_right,
+      </if>
+      <if test="candPolitic != null">
+        cand_politic,
+      </if>
+      <if test="candNation != null">
+        cand_nation,
+      </if>
+      <if test="candHeight != null">
+        cand_height,
+      </if>
+      <if test="candHeavy != null">
+        cand_heavy,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="candName != null">
@@ -125,6 +154,24 @@
       </if>
       <if test="candLiving != null">
         #{candLiving,jdbcType=CHAR},
+      </if>
+      <if test="candVisionLeft != null">
+        #{candVisionLeft,jdbcType=FLOAT},
+      </if>
+      <if test="candVisionRight != null">
+        #{candVisionRight,jdbcType=FLOAT},
+      </if>
+      <if test="candPolitic != null">
+        #{candPolitic,jdbcType=CHAR},
+      </if>
+      <if test="candNation != null">
+        #{candNation,jdbcType=CHAR},
+      </if>
+      <if test="candHeight != null">
+        #{candHeight,jdbcType=INTEGER},
+      </if>
+      <if test="candHeavy != null">
+        #{candHeavy,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -168,6 +215,24 @@
       <if test="candLiving != null">
         cand_living = #{candLiving,jdbcType=CHAR},
       </if>
+      <if test="candVisionLeft != null">
+        cand_vision_left = #{candVisionLeft,jdbcType=FLOAT},
+      </if>
+      <if test="candVisionRight != null">
+        cand_vision_right = #{candVisionRight,jdbcType=FLOAT},
+      </if>
+      <if test="candPolitic != null">
+        cand_politic = #{candPolitic,jdbcType=CHAR},
+      </if>
+      <if test="candNation != null">
+        cand_nation = #{candNation,jdbcType=CHAR},
+      </if>
+      <if test="candHeight != null">
+        cand_height = #{candHeight,jdbcType=INTEGER},
+      </if>
+      <if test="candHeavy != null">
+        cand_heavy = #{candHeavy,jdbcType=INTEGER},
+      </if>
     </set>
     where cand_id = #{candId,jdbcType=BIGINT}
   </update>
@@ -185,7 +250,13 @@
       cand_status = #{candStatus,jdbcType=CHAR},
       cand_avatar = #{candAvatar,jdbcType=VARCHAR},
       cand_id_card = #{candIdCard,jdbcType=VARCHAR},
-      cand_living = #{candLiving,jdbcType=CHAR}
+      cand_living = #{candLiving,jdbcType=CHAR},
+      cand_vision_left = #{candVisionLeft,jdbcType=FLOAT},
+      cand_vision_right = #{candVisionRight,jdbcType=FLOAT},
+      cand_politic = #{candPolitic,jdbcType=CHAR},
+      cand_nation = #{candNation,jdbcType=CHAR},
+      cand_height = #{candHeight,jdbcType=INTEGER},
+      cand_heavy = #{candHeavy,jdbcType=INTEGER}
     where cand_id = #{candId,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
@@ -250,6 +321,36 @@
       <trim prefix="cand_living = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candLiving,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_vision_left = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candVisionLeft,jdbcType=FLOAT}
+        </foreach>
+      </trim>
+      <trim prefix="cand_vision_right = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candVisionRight,jdbcType=FLOAT}
+        </foreach>
+      </trim>
+      <trim prefix="cand_politic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPolitic,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candNation,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cand_height = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHeight,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="cand_heavy = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHeavy,jdbcType=INTEGER}
         </foreach>
       </trim>
     </trim>
@@ -346,6 +447,48 @@
           </if>
         </foreach>
       </trim>
+      <trim prefix="cand_vision_left = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candVisionLeft != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candVisionLeft,jdbcType=FLOAT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_vision_right = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candVisionRight != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candVisionRight,jdbcType=FLOAT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_politic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candPolitic != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candPolitic,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candNation != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candNation,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_height = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candHeight != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHeight,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cand_heavy = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.candHeavy != null">
+            when cand_id = #{item.candId,jdbcType=BIGINT} then #{item.candHeavy,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
     </trim>
     where cand_id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -356,14 +499,17 @@
     <!--@mbg.generated-->
     insert into hr_candidate
     (cand_name, cand_hometown, cand_email, cand_phone, cand_gender, cand_pwd, cand_created, 
-      cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living)
+      cand_last_login, cand_status, cand_avatar, cand_id_card, cand_living, cand_vision_left, 
+      cand_vision_right, cand_politic, cand_nation, cand_height, cand_heavy)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.candName,jdbcType=VARCHAR}, #{item.candHometown,jdbcType=CHAR}, #{item.candEmail,jdbcType=VARCHAR}, 
         #{item.candPhone,jdbcType=VARCHAR}, #{item.candGender,jdbcType=CHAR}, #{item.candPwd,jdbcType=VARCHAR}, 
         #{item.candCreated,jdbcType=TIMESTAMP}, #{item.candLastLogin,jdbcType=TIMESTAMP}, 
         #{item.candStatus,jdbcType=CHAR}, #{item.candAvatar,jdbcType=VARCHAR}, #{item.candIdCard,jdbcType=VARCHAR}, 
-        #{item.candLiving,jdbcType=CHAR})
+        #{item.candLiving,jdbcType=CHAR}, #{item.candVisionLeft,jdbcType=FLOAT}, #{item.candVisionRight,jdbcType=FLOAT}, 
+        #{item.candPolitic,jdbcType=CHAR}, #{item.candNation,jdbcType=CHAR}, #{item.candHeight,jdbcType=INTEGER}, 
+        #{item.candHeavy,jdbcType=INTEGER})
     </foreach>
   </insert>
   <insert id="insertOrUpdate" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
@@ -385,6 +531,12 @@
       cand_avatar,
       cand_id_card,
       cand_living,
+      cand_vision_left,
+      cand_vision_right,
+      cand_politic,
+      cand_nation,
+      cand_height,
+      cand_heavy,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -403,6 +555,12 @@
       #{candAvatar,jdbcType=VARCHAR},
       #{candIdCard,jdbcType=VARCHAR},
       #{candLiving,jdbcType=CHAR},
+      #{candVisionLeft,jdbcType=FLOAT},
+      #{candVisionRight,jdbcType=FLOAT},
+      #{candPolitic,jdbcType=CHAR},
+      #{candNation,jdbcType=CHAR},
+      #{candHeight,jdbcType=INTEGER},
+      #{candHeavy,jdbcType=INTEGER},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -421,6 +579,12 @@
       cand_avatar = #{candAvatar,jdbcType=VARCHAR},
       cand_id_card = #{candIdCard,jdbcType=VARCHAR},
       cand_living = #{candLiving,jdbcType=CHAR},
+      cand_vision_left = #{candVisionLeft,jdbcType=FLOAT},
+      cand_vision_right = #{candVisionRight,jdbcType=FLOAT},
+      cand_politic = #{candPolitic,jdbcType=CHAR},
+      cand_nation = #{candNation,jdbcType=CHAR},
+      cand_height = #{candHeight,jdbcType=INTEGER},
+      cand_heavy = #{candHeavy,jdbcType=INTEGER},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="cand_id" keyProperty="candId" parameterType="com.windcf.vhr.model.entity.Candidate" useGeneratedKeys="true">
@@ -466,6 +630,24 @@
       <if test="candLiving != null">
         cand_living,
       </if>
+      <if test="candVisionLeft != null">
+        cand_vision_left,
+      </if>
+      <if test="candVisionRight != null">
+        cand_vision_right,
+      </if>
+      <if test="candPolitic != null">
+        cand_politic,
+      </if>
+      <if test="candNation != null">
+        cand_nation,
+      </if>
+      <if test="candHeight != null">
+        cand_height,
+      </if>
+      <if test="candHeavy != null">
+        cand_heavy,
+      </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -508,6 +690,24 @@
       <if test="candLiving != null">
         #{candLiving,jdbcType=CHAR},
       </if>
+      <if test="candVisionLeft != null">
+        #{candVisionLeft,jdbcType=FLOAT},
+      </if>
+      <if test="candVisionRight != null">
+        #{candVisionRight,jdbcType=FLOAT},
+      </if>
+      <if test="candPolitic != null">
+        #{candPolitic,jdbcType=CHAR},
+      </if>
+      <if test="candNation != null">
+        #{candNation,jdbcType=CHAR},
+      </if>
+      <if test="candHeight != null">
+        #{candHeight,jdbcType=INTEGER},
+      </if>
+      <if test="candHeavy != null">
+        #{candHeavy,jdbcType=INTEGER},
+      </if>
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -549,6 +749,24 @@
       </if>
       <if test="candLiving != null">
         cand_living = #{candLiving,jdbcType=CHAR},
+      </if>
+      <if test="candVisionLeft != null">
+        cand_vision_left = #{candVisionLeft,jdbcType=FLOAT},
+      </if>
+      <if test="candVisionRight != null">
+        cand_vision_right = #{candVisionRight,jdbcType=FLOAT},
+      </if>
+      <if test="candPolitic != null">
+        cand_politic = #{candPolitic,jdbcType=CHAR},
+      </if>
+      <if test="candNation != null">
+        cand_nation = #{candNation,jdbcType=CHAR},
+      </if>
+      <if test="candHeight != null">
+        cand_height = #{candHeight,jdbcType=INTEGER},
+      </if>
+      <if test="candHeavy != null">
+        cand_heavy = #{candHeavy,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
