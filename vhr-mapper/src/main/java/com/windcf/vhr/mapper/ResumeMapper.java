@@ -1,6 +1,6 @@
 package com.windcf.vhr.mapper;
 
-import com.windcf.vhr.model.entity.EduExpr;
+import com.windcf.vhr.model.entity.Resume;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,20 +8,20 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author chunf
- * @time 2022-09-26 9:30
+ * @time 2022-09-25 16:04
  * @package com.windcf.vhr.mapper
  * @description TODO
  */
 
 @Mapper
-public interface EduExprMapper {
+public interface ResumeMapper {
     /**
      * delete by primary key
      *
-     * @param eduId primaryKey
+     * @param rsId primaryKey
      * @return deleteCount
      */
-    int deleteByPrimaryKey(Long eduId);
+    int deleteByPrimaryKey(Long rsId);
 
     /**
      * insert record to table
@@ -29,11 +29,11 @@ public interface EduExprMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(EduExpr record);
+    int insert(Resume record);
 
-    int insertOrUpdate(EduExpr record);
+    int insertOrUpdate(Resume record);
 
-    int insertOrUpdateSelective(EduExpr record);
+    int insertOrUpdateSelective(Resume record);
 
     /**
      * insert record to table selective
@@ -41,15 +41,15 @@ public interface EduExprMapper {
      * @param record the record
      * @return insert count
      */
-    int insertSelective(EduExpr record);
+    int insertSelective(Resume record);
 
     /**
      * select by primary key
      *
-     * @param eduId primary key
+     * @param rsId primary key
      * @return object by primary key
      */
-    EduExpr selectByPrimaryKey(Long eduId);
+    Resume selectByPrimaryKey(Long rsId);
 
     /**
      * update record selective
@@ -57,7 +57,7 @@ public interface EduExprMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(EduExpr record);
+    int updateByPrimaryKeySelective(Resume record);
 
     /**
      * update record
@@ -65,13 +65,13 @@ public interface EduExprMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(EduExpr record);
+    int updateByPrimaryKey(Resume record);
 
-    int updateBatch(List<EduExpr> list);
+    int updateBatch(List<Resume> list);
 
-    int updateBatchSelective(List<EduExpr> list);
+    int updateBatchSelective(List<Resume> list);
 
-    int batchInsert(@Param("list") List<EduExpr> list);
+    int batchInsert(@Param("list") List<Resume> list);
 
-    List<EduExpr> selectByRsId(Long rsId);
+    List<Resume> listByCandId(Long candId);
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-22 17:15
+ * @time 2022-09-26 9:30
  * @package com.windcf.vhr.model.entity
  * @description TODO
  */
@@ -57,4 +57,9 @@ public class EduExpr {
      * 外键
      */
     private Long eduCandId;
+
+    /**
+     * 所属简历
+     */
+    private Long eduRsId;
 }

@@ -1,6 +1,6 @@
 package com.windcf.vhr.mapper;
 
-import com.windcf.vhr.model.entity.EduExpr;
+import com.windcf.vhr.model.entity.Advantage;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,20 +8,20 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author chunf
- * @time 2022-09-26 9:30
+ * @time 2022-09-25 22:37
  * @package com.windcf.vhr.mapper
  * @description TODO
  */
 
 @Mapper
-public interface EduExprMapper {
+public interface AdvantageMapper {
     /**
      * delete by primary key
      *
-     * @param eduId primaryKey
+     * @param advId primaryKey
      * @return deleteCount
      */
-    int deleteByPrimaryKey(Long eduId);
+    int deleteByPrimaryKey(Long advId);
 
     /**
      * insert record to table
@@ -29,11 +29,11 @@ public interface EduExprMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(EduExpr record);
+    int insert(Advantage record);
 
-    int insertOrUpdate(EduExpr record);
+    int insertOrUpdate(Advantage record);
 
-    int insertOrUpdateSelective(EduExpr record);
+    int insertOrUpdateSelective(Advantage record);
 
     /**
      * insert record to table selective
@@ -41,15 +41,15 @@ public interface EduExprMapper {
      * @param record the record
      * @return insert count
      */
-    int insertSelective(EduExpr record);
+    int insertSelective(Advantage record);
 
     /**
      * select by primary key
      *
-     * @param eduId primary key
+     * @param advId primary key
      * @return object by primary key
      */
-    EduExpr selectByPrimaryKey(Long eduId);
+    Advantage selectByPrimaryKey(Long advId);
 
     /**
      * update record selective
@@ -57,7 +57,7 @@ public interface EduExprMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(EduExpr record);
+    int updateByPrimaryKeySelective(Advantage record);
 
     /**
      * update record
@@ -65,13 +65,13 @@ public interface EduExprMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(EduExpr record);
+    int updateByPrimaryKey(Advantage record);
 
-    int updateBatch(List<EduExpr> list);
+    int updateBatch(List<Advantage> list);
 
-    int updateBatchSelective(List<EduExpr> list);
+    int updateBatchSelective(List<Advantage> list);
 
-    int batchInsert(@Param("list") List<EduExpr> list);
+    int batchInsert(@Param("list") List<Advantage> list);
 
-    List<EduExpr> selectByRsId(Long rsId);
+    Advantage selectByRsId(Long rsId);
 }

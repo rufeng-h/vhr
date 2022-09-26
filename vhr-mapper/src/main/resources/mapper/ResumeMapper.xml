@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.ResumeMapper">
+  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Resume">
+    <!--@mbg.generated-->
+    <!--@Table hr_resume-->
+    <id column="rs_id" jdbcType="BIGINT" property="rsId" />
+    <result column="rs_name" jdbcType="VARCHAR" property="rsName" />
+    <result column="rs_desc" jdbcType="VARCHAR" property="rsDesc" />
+    <result column="rs_created" jdbcType="TIMESTAMP" property="rsCreated" />
+    <result column="rs_modified" jdbcType="TIMESTAMP" property="rsModified" />
+    <result column="rs_cand_id" jdbcType="BIGINT" property="rsCandId" />
+    <result column="rs_public" jdbcType="BIT" property="rsPublic" />
+    <result column="rs_default" jdbcType="BIT" property="rsDefault" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    rs_id, rs_name, rs_desc, rs_created, rs_modified, rs_cand_id, rs_public, rs_default
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hr_resume
+    where rs_id = #{rsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from hr_resume
+    where rs_id = #{rsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="rs_id" keyProperty="rsId" parameterType="com.windcf.vhr.model.entity.Resume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_resume (rs_name, rs_desc, rs_created, 
+      rs_modified, rs_cand_id, rs_public, 
+      rs_default)
+    values (#{rsName,jdbcType=VARCHAR}, #{rsDesc,jdbcType=VARCHAR}, #{rsCreated,jdbcType=TIMESTAMP}, 
+      #{rsModified,jdbcType=TIMESTAMP}, #{rsCandId,jdbcType=BIGINT}, #{rsPublic,jdbcType=BIT}, 
+      #{rsDefault,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="rs_id" keyProperty="rsId" parameterType="com.windcf.vhr.model.entity.Resume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rsName != null">
+        rs_name,
+      </if>
+      <if test="rsDesc != null">
+        rs_desc,
+      </if>
+      <if test="rsCreated != null">
+        rs_created,
+      </if>
+      <if test="rsModified != null">
+        rs_modified,
+      </if>
+      <if test="rsCandId != null">
+        rs_cand_id,
+      </if>
+      <if test="rsPublic != null">
+        rs_public,
+      </if>
+      <if test="rsDefault != null">
+        rs_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rsName != null">
+        #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDesc != null">
+        #{rsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rsCreated != null">
+        #{rsCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsModified != null">
+        #{rsModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsCandId != null">
+        #{rsCandId,jdbcType=BIGINT},
+      </if>
+      <if test="rsPublic != null">
+        #{rsPublic,jdbcType=BIT},
+      </if>
+      <if test="rsDefault != null">
+        #{rsDefault,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Resume">
+    <!--@mbg.generated-->
+    update hr_resume
+    <set>
+      <if test="rsName != null">
+        rs_name = #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDesc != null">
+        rs_desc = #{rsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rsCreated != null">
+        rs_created = #{rsCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsModified != null">
+        rs_modified = #{rsModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsCandId != null">
+        rs_cand_id = #{rsCandId,jdbcType=BIGINT},
+      </if>
+      <if test="rsPublic != null">
+        rs_public = #{rsPublic,jdbcType=BIT},
+      </if>
+      <if test="rsDefault != null">
+        rs_default = #{rsDefault,jdbcType=BIT},
+      </if>
+    </set>
+    where rs_id = #{rsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Resume">
+    <!--@mbg.generated-->
+    update hr_resume
+    set rs_name = #{rsName,jdbcType=VARCHAR},
+      rs_desc = #{rsDesc,jdbcType=VARCHAR},
+      rs_created = #{rsCreated,jdbcType=TIMESTAMP},
+      rs_modified = #{rsModified,jdbcType=TIMESTAMP},
+      rs_cand_id = #{rsCandId,jdbcType=BIGINT},
+      rs_public = #{rsPublic,jdbcType=BIT},
+      rs_default = #{rsDefault,jdbcType=BIT}
+    where rs_id = #{rsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_resume
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="rs_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="rs_desc = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsDesc,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="rs_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsCreated,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="rs_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsModified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="rs_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsCandId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="rs_public = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsPublic,jdbcType=BIT}
+        </foreach>
+      </trim>
+      <trim prefix="rs_default = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsDefault,jdbcType=BIT}
+        </foreach>
+      </trim>
+    </trim>
+    where rs_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.rsId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update hr_resume
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="rs_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsName != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_desc = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsDesc != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsDesc,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_created = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsCreated != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsCreated,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsModified != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsModified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_cand_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsCandId != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsCandId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_public = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsPublic != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsPublic,jdbcType=BIT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rs_default = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rsDefault != null">
+            when rs_id = #{item.rsId,jdbcType=BIGINT} then #{item.rsDefault,jdbcType=BIT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where rs_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.rsId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="rs_id" keyProperty="rsId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_resume
+    (rs_name, rs_desc, rs_created, rs_modified, rs_cand_id, rs_public, rs_default)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.rsName,jdbcType=VARCHAR}, #{item.rsDesc,jdbcType=VARCHAR}, #{item.rsCreated,jdbcType=TIMESTAMP}, 
+        #{item.rsModified,jdbcType=TIMESTAMP}, #{item.rsCandId,jdbcType=BIGINT}, #{item.rsPublic,jdbcType=BIT}, 
+        #{item.rsDefault,jdbcType=BIT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="rs_id" keyProperty="rsId" parameterType="com.windcf.vhr.model.entity.Resume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rsId != null">
+        rs_id,
+      </if>
+      rs_name,
+      rs_desc,
+      rs_created,
+      rs_modified,
+      rs_cand_id,
+      rs_public,
+      rs_default,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rsId != null">
+        #{rsId,jdbcType=BIGINT},
+      </if>
+      #{rsName,jdbcType=VARCHAR},
+      #{rsDesc,jdbcType=VARCHAR},
+      #{rsCreated,jdbcType=TIMESTAMP},
+      #{rsModified,jdbcType=TIMESTAMP},
+      #{rsCandId,jdbcType=BIGINT},
+      #{rsPublic,jdbcType=BIT},
+      #{rsDefault,jdbcType=BIT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="rsId != null">
+        rs_id = #{rsId,jdbcType=BIGINT},
+      </if>
+      rs_name = #{rsName,jdbcType=VARCHAR},
+      rs_desc = #{rsDesc,jdbcType=VARCHAR},
+      rs_created = #{rsCreated,jdbcType=TIMESTAMP},
+      rs_modified = #{rsModified,jdbcType=TIMESTAMP},
+      rs_cand_id = #{rsCandId,jdbcType=BIGINT},
+      rs_public = #{rsPublic,jdbcType=BIT},
+      rs_default = #{rsDefault,jdbcType=BIT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="rs_id" keyProperty="rsId" parameterType="com.windcf.vhr.model.entity.Resume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hr_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rsId != null">
+        rs_id,
+      </if>
+      <if test="rsName != null">
+        rs_name,
+      </if>
+      <if test="rsDesc != null">
+        rs_desc,
+      </if>
+      <if test="rsCreated != null">
+        rs_created,
+      </if>
+      <if test="rsModified != null">
+        rs_modified,
+      </if>
+      <if test="rsCandId != null">
+        rs_cand_id,
+      </if>
+      <if test="rsPublic != null">
+        rs_public,
+      </if>
+      <if test="rsDefault != null">
+        rs_default,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rsId != null">
+        #{rsId,jdbcType=BIGINT},
+      </if>
+      <if test="rsName != null">
+        #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDesc != null">
+        #{rsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rsCreated != null">
+        #{rsCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsModified != null">
+        #{rsModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsCandId != null">
+        #{rsCandId,jdbcType=BIGINT},
+      </if>
+      <if test="rsPublic != null">
+        #{rsPublic,jdbcType=BIT},
+      </if>
+      <if test="rsDefault != null">
+        #{rsDefault,jdbcType=BIT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="rsId != null">
+        rs_id = #{rsId,jdbcType=BIGINT},
+      </if>
+      <if test="rsName != null">
+        rs_name = #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsDesc != null">
+        rs_desc = #{rsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rsCreated != null">
+        rs_created = #{rsCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsModified != null">
+        rs_modified = #{rsModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsCandId != null">
+        rs_cand_id = #{rsCandId,jdbcType=BIGINT},
+      </if>
+      <if test="rsPublic != null">
+        rs_public = #{rsPublic,jdbcType=BIT},
+      </if>
+      <if test="rsDefault != null">
+        rs_default = #{rsDefault,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+    <select id="listByCandId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_resume
+        where rs_cand_id = #{candId,jdbcType=BIGINT}
+    </select>
+</mapper>

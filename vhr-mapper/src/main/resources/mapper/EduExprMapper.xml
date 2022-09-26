@@ -1,447 +1,504 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.windcf.vhr.mapper.EduExprMapper">
-  <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.EduExpr">
-    <!--@mbg.generated-->
-    <!--@Table hr_edu_expr-->
-    <id column="edu_id" jdbcType="BIGINT" property="eduId" />
-    <result column="edu_education" jdbcType="CHAR" property="eduEducation" />
-    <result column="edu_school" jdbcType="VARCHAR" property="eduSchool" />
-    <result column="edu_major" jdbcType="VARCHAR" property="eduMajor" />
-    <result column="edu_major_desc" jdbcType="LONGVARCHAR" property="eduMajorDesc" />
-    <result column="edu_start_date" jdbcType="DATE" property="eduStartDate" />
-    <result column="edu_end_date" jdbcType="DATE" property="eduEndDate" />
-    <result column="edu_created" jdbcType="TIMESTAMP" property="eduCreated" />
-    <result column="edu_modified" jdbcType="TIMESTAMP" property="eduModified" />
-    <result column="edu_cand_id" jdbcType="BIGINT" property="eduCandId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    edu_id, edu_education, edu_school, edu_major, edu_major_desc, edu_start_date, edu_end_date, 
-    edu_created, edu_modified, edu_cand_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from hr_edu_expr
-    where edu_id = #{eduId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from hr_edu_expr
-    where edu_id = #{eduId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into hr_edu_expr (edu_education, edu_school, edu_major, 
-      edu_major_desc, edu_start_date, edu_end_date, 
-      edu_created, edu_modified, edu_cand_id
-      )
-    values (#{eduEducation,jdbcType=CHAR}, #{eduSchool,jdbcType=VARCHAR}, #{eduMajor,jdbcType=VARCHAR}, 
-      #{eduMajorDesc,jdbcType=LONGVARCHAR}, #{eduStartDate,jdbcType=DATE}, #{eduEndDate,jdbcType=DATE}, 
-      #{eduCreated,jdbcType=TIMESTAMP}, #{eduModified,jdbcType=TIMESTAMP}, #{eduCandId,jdbcType=BIGINT}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into hr_edu_expr
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eduEducation != null">
-        edu_education,
-      </if>
-      <if test="eduSchool != null">
-        edu_school,
-      </if>
-      <if test="eduMajor != null">
-        edu_major,
-      </if>
-      <if test="eduMajorDesc != null">
-        edu_major_desc,
-      </if>
-      <if test="eduStartDate != null">
-        edu_start_date,
-      </if>
-      <if test="eduEndDate != null">
-        edu_end_date,
-      </if>
-      <if test="eduCreated != null">
-        edu_created,
-      </if>
-      <if test="eduModified != null">
-        edu_modified,
-      </if>
-      <if test="eduCandId != null">
-        edu_cand_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="eduEducation != null">
-        #{eduEducation,jdbcType=CHAR},
-      </if>
-      <if test="eduSchool != null">
-        #{eduSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajor != null">
-        #{eduMajor,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajorDesc != null">
-        #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="eduStartDate != null">
-        #{eduStartDate,jdbcType=DATE},
-      </if>
-      <if test="eduEndDate != null">
-        #{eduEndDate,jdbcType=DATE},
-      </if>
-      <if test="eduCreated != null">
-        #{eduCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduModified != null">
-        #{eduModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduCandId != null">
-        #{eduCandId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.EduExpr">
-    <!--@mbg.generated-->
-    update hr_edu_expr
-    <set>
-      <if test="eduEducation != null">
-        edu_education = #{eduEducation,jdbcType=CHAR},
-      </if>
-      <if test="eduSchool != null">
-        edu_school = #{eduSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajor != null">
-        edu_major = #{eduMajor,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajorDesc != null">
-        edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="eduStartDate != null">
-        edu_start_date = #{eduStartDate,jdbcType=DATE},
-      </if>
-      <if test="eduEndDate != null">
-        edu_end_date = #{eduEndDate,jdbcType=DATE},
-      </if>
-      <if test="eduCreated != null">
-        edu_created = #{eduCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduModified != null">
-        edu_modified = #{eduModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduCandId != null">
-        edu_cand_id = #{eduCandId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where edu_id = #{eduId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.EduExpr">
-    <!--@mbg.generated-->
-    update hr_edu_expr
-    set edu_education = #{eduEducation,jdbcType=CHAR},
-      edu_school = #{eduSchool,jdbcType=VARCHAR},
-      edu_major = #{eduMajor,jdbcType=VARCHAR},
-      edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      edu_start_date = #{eduStartDate,jdbcType=DATE},
-      edu_end_date = #{eduEndDate,jdbcType=DATE},
-      edu_created = #{eduCreated,jdbcType=TIMESTAMP},
-      edu_modified = #{eduModified,jdbcType=TIMESTAMP},
-      edu_cand_id = #{eduCandId,jdbcType=BIGINT}
-    where edu_id = #{eduId,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update hr_edu_expr
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="edu_education = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEducation,jdbcType=CHAR}
-        </foreach>
-      </trim>
-      <trim prefix="edu_school = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduSchool,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="edu_major = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajor,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="edu_major_desc = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajorDesc,jdbcType=LONGVARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="edu_start_date = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduStartDate,jdbcType=DATE}
-        </foreach>
-      </trim>
-      <trim prefix="edu_end_date = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEndDate,jdbcType=DATE}
-        </foreach>
-      </trim>
-      <trim prefix="edu_created = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCreated,jdbcType=TIMESTAMP}
-        </foreach>
-      </trim>
-      <trim prefix="edu_modified = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduModified,jdbcType=TIMESTAMP}
-        </foreach>
-      </trim>
-      <trim prefix="edu_cand_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
-        </foreach>
-      </trim>
-    </trim>
-    where edu_id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.eduId,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update hr_edu_expr
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="edu_education = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduEducation != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEducation,jdbcType=CHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_school = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduSchool != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduSchool,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_major = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduMajor != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajor,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_major_desc = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduMajorDesc != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajorDesc,jdbcType=LONGVARCHAR}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_start_date = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduStartDate != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduStartDate,jdbcType=DATE}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_end_date = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduEndDate != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEndDate,jdbcType=DATE}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_created = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduCreated != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCreated,jdbcType=TIMESTAMP}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_modified = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduModified != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduModified,jdbcType=TIMESTAMP}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="edu_cand_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.eduCandId != null">
-            when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where edu_id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.eduId,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <insert id="batchInsert" keyColumn="edu_id" keyProperty="eduId" parameterType="map" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into hr_edu_expr
-    (edu_education, edu_school, edu_major, edu_major_desc, edu_start_date, edu_end_date, 
-      edu_created, edu_modified, edu_cand_id)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.eduEducation,jdbcType=CHAR}, #{item.eduSchool,jdbcType=VARCHAR}, #{item.eduMajor,jdbcType=VARCHAR}, 
-        #{item.eduMajorDesc,jdbcType=LONGVARCHAR}, #{item.eduStartDate,jdbcType=DATE}, 
-        #{item.eduEndDate,jdbcType=DATE}, #{item.eduCreated,jdbcType=TIMESTAMP}, #{item.eduModified,jdbcType=TIMESTAMP}, 
-        #{item.eduCandId,jdbcType=BIGINT})
-    </foreach>
-  </insert>
-  <insert id="insertOrUpdate" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into hr_edu_expr
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eduId != null">
+    <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.EduExpr">
+        <!--@mbg.generated-->
+        <!--@Table hr_edu_expr-->
+        <id column="edu_id" jdbcType="BIGINT" property="eduId"/>
+        <result column="edu_education" jdbcType="CHAR" property="eduEducation"/>
+        <result column="edu_school" jdbcType="VARCHAR" property="eduSchool"/>
+        <result column="edu_major" jdbcType="VARCHAR" property="eduMajor"/>
+        <result column="edu_major_desc" jdbcType="LONGVARCHAR" property="eduMajorDesc"/>
+        <result column="edu_start_date" jdbcType="DATE" property="eduStartDate"/>
+        <result column="edu_end_date" jdbcType="DATE" property="eduEndDate"/>
+        <result column="edu_created" jdbcType="TIMESTAMP" property="eduCreated"/>
+        <result column="edu_modified" jdbcType="TIMESTAMP" property="eduModified"/>
+        <result column="edu_cand_id" jdbcType="BIGINT" property="eduCandId"/>
+        <result column="edu_rs_id" jdbcType="BIGINT" property="eduRsId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
         edu_id,
-      </if>
-      edu_education,
-      edu_school,
-      edu_major,
-      edu_major_desc,
-      edu_start_date,
-      edu_end_date,
-      edu_created,
-      edu_modified,
-      edu_cand_id,
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eduId != null">
-        #{eduId,jdbcType=BIGINT},
-      </if>
-      #{eduEducation,jdbcType=CHAR},
-      #{eduSchool,jdbcType=VARCHAR},
-      #{eduMajor,jdbcType=VARCHAR},
-      #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      #{eduStartDate,jdbcType=DATE},
-      #{eduEndDate,jdbcType=DATE},
-      #{eduCreated,jdbcType=TIMESTAMP},
-      #{eduModified,jdbcType=TIMESTAMP},
-      #{eduCandId,jdbcType=BIGINT},
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="eduId != null">
-        edu_id = #{eduId,jdbcType=BIGINT},
-      </if>
-      edu_education = #{eduEducation,jdbcType=CHAR},
-      edu_school = #{eduSchool,jdbcType=VARCHAR},
-      edu_major = #{eduMajor,jdbcType=VARCHAR},
-      edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      edu_start_date = #{eduStartDate,jdbcType=DATE},
-      edu_end_date = #{eduEndDate,jdbcType=DATE},
-      edu_created = #{eduCreated,jdbcType=TIMESTAMP},
-      edu_modified = #{eduModified,jdbcType=TIMESTAMP},
-      edu_cand_id = #{eduCandId,jdbcType=BIGINT},
-    </trim>
-  </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into hr_edu_expr
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eduId != null">
-        edu_id,
-      </if>
-      <if test="eduEducation != null">
         edu_education,
-      </if>
-      <if test="eduSchool != null">
         edu_school,
-      </if>
-      <if test="eduMajor != null">
         edu_major,
-      </if>
-      <if test="eduMajorDesc != null">
         edu_major_desc,
-      </if>
-      <if test="eduStartDate != null">
         edu_start_date,
-      </if>
-      <if test="eduEndDate != null">
         edu_end_date,
-      </if>
-      <if test="eduCreated != null">
         edu_created,
-      </if>
-      <if test="eduModified != null">
         edu_modified,
-      </if>
-      <if test="eduCandId != null">
         edu_cand_id,
-      </if>
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eduId != null">
-        #{eduId,jdbcType=BIGINT},
-      </if>
-      <if test="eduEducation != null">
-        #{eduEducation,jdbcType=CHAR},
-      </if>
-      <if test="eduSchool != null">
-        #{eduSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajor != null">
-        #{eduMajor,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajorDesc != null">
-        #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="eduStartDate != null">
-        #{eduStartDate,jdbcType=DATE},
-      </if>
-      <if test="eduEndDate != null">
-        #{eduEndDate,jdbcType=DATE},
-      </if>
-      <if test="eduCreated != null">
-        #{eduCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduModified != null">
-        #{eduModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduCandId != null">
-        #{eduCandId,jdbcType=BIGINT},
-      </if>
-    </trim>
-    on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="eduId != null">
-        edu_id = #{eduId,jdbcType=BIGINT},
-      </if>
-      <if test="eduEducation != null">
-        edu_education = #{eduEducation,jdbcType=CHAR},
-      </if>
-      <if test="eduSchool != null">
-        edu_school = #{eduSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajor != null">
-        edu_major = #{eduMajor,jdbcType=VARCHAR},
-      </if>
-      <if test="eduMajorDesc != null">
-        edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="eduStartDate != null">
-        edu_start_date = #{eduStartDate,jdbcType=DATE},
-      </if>
-      <if test="eduEndDate != null">
-        edu_end_date = #{eduEndDate,jdbcType=DATE},
-      </if>
-      <if test="eduCreated != null">
-        edu_created = #{eduCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduModified != null">
-        edu_modified = #{eduModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="eduCandId != null">
-        edu_cand_id = #{eduCandId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
+        edu_rs_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from hr_edu_expr
+        where edu_id = #{eduId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from hr_edu_expr
+        where edu_id = #{eduId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="edu_id" keyProperty="eduId" parameterType="com.windcf.vhr.model.entity.EduExpr"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_edu_expr (edu_education, edu_school, edu_major,
+                                 edu_major_desc, edu_start_date, edu_end_date,
+                                 edu_created, edu_modified, edu_cand_id,
+                                 edu_rs_id)
+        values (#{eduEducation,jdbcType=CHAR}, #{eduSchool,jdbcType=VARCHAR}, #{eduMajor,jdbcType=VARCHAR},
+                #{eduMajorDesc,jdbcType=LONGVARCHAR}, #{eduStartDate,jdbcType=DATE}, #{eduEndDate,jdbcType=DATE},
+                #{eduCreated,jdbcType=TIMESTAMP}, #{eduModified,jdbcType=TIMESTAMP}, #{eduCandId,jdbcType=BIGINT},
+                #{eduRsId,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="edu_id" keyProperty="eduId"
+            parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_edu_expr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eduEducation != null">
+                edu_education,
+            </if>
+            <if test="eduSchool != null">
+                edu_school,
+            </if>
+            <if test="eduMajor != null">
+                edu_major,
+            </if>
+            <if test="eduMajorDesc != null">
+                edu_major_desc,
+            </if>
+            <if test="eduStartDate != null">
+                edu_start_date,
+            </if>
+            <if test="eduEndDate != null">
+                edu_end_date,
+            </if>
+            <if test="eduCreated != null">
+                edu_created,
+            </if>
+            <if test="eduModified != null">
+                edu_modified,
+            </if>
+            <if test="eduCandId != null">
+                edu_cand_id,
+            </if>
+            <if test="eduRsId != null">
+                edu_rs_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eduEducation != null">
+                #{eduEducation,jdbcType=CHAR},
+            </if>
+            <if test="eduSchool != null">
+                #{eduSchool,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajor != null">
+                #{eduMajor,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajorDesc != null">
+                #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="eduStartDate != null">
+                #{eduStartDate,jdbcType=DATE},
+            </if>
+            <if test="eduEndDate != null">
+                #{eduEndDate,jdbcType=DATE},
+            </if>
+            <if test="eduCreated != null">
+                #{eduCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduModified != null">
+                #{eduModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduCandId != null">
+                #{eduCandId,jdbcType=BIGINT},
+            </if>
+            <if test="eduRsId != null">
+                #{eduRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.EduExpr">
+        <!--@mbg.generated-->
+        update hr_edu_expr
+        <set>
+            <if test="eduEducation != null">
+                edu_education = #{eduEducation,jdbcType=CHAR},
+            </if>
+            <if test="eduSchool != null">
+                edu_school = #{eduSchool,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajor != null">
+                edu_major = #{eduMajor,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajorDesc != null">
+                edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="eduStartDate != null">
+                edu_start_date = #{eduStartDate,jdbcType=DATE},
+            </if>
+            <if test="eduEndDate != null">
+                edu_end_date = #{eduEndDate,jdbcType=DATE},
+            </if>
+            <if test="eduCreated != null">
+                edu_created = #{eduCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduModified != null">
+                edu_modified = #{eduModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduCandId != null">
+                edu_cand_id = #{eduCandId,jdbcType=BIGINT},
+            </if>
+            <if test="eduRsId != null">
+                edu_rs_id = #{eduRsId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where edu_id = #{eduId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.EduExpr">
+        <!--@mbg.generated-->
+        update hr_edu_expr
+        set edu_education  = #{eduEducation,jdbcType=CHAR},
+            edu_school     = #{eduSchool,jdbcType=VARCHAR},
+            edu_major      = #{eduMajor,jdbcType=VARCHAR},
+            edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            edu_start_date = #{eduStartDate,jdbcType=DATE},
+            edu_end_date   = #{eduEndDate,jdbcType=DATE},
+            edu_created    = #{eduCreated,jdbcType=TIMESTAMP},
+            edu_modified   = #{eduModified,jdbcType=TIMESTAMP},
+            edu_cand_id    = #{eduCandId,jdbcType=BIGINT},
+            edu_rs_id      = #{eduRsId,jdbcType=BIGINT}
+        where edu_id = #{eduId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hr_edu_expr
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="edu_education = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEducation,jdbcType=CHAR}
+                </foreach>
+            </trim>
+            <trim prefix="edu_school = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduSchool,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="edu_major = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajor,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="edu_major_desc = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajorDesc,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="edu_start_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduStartDate,jdbcType=DATE}
+                </foreach>
+            </trim>
+            <trim prefix="edu_end_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEndDate,jdbcType=DATE}
+                </foreach>
+            </trim>
+            <trim prefix="edu_created = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCreated,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="edu_modified = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduModified,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="edu_cand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="edu_rs_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduRsId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+        </trim>
+        where edu_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.eduId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hr_edu_expr
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="edu_education = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduEducation != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEducation,jdbcType=CHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_school = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduSchool != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduSchool,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_major = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduMajor != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajor,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_major_desc = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduMajorDesc != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduMajorDesc,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_start_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduStartDate != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduStartDate,jdbcType=DATE}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_end_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduEndDate != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduEndDate,jdbcType=DATE}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_created = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduCreated != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCreated,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_modified = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduModified != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduModified,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_cand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduCandId != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduCandId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="edu_rs_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.eduRsId != null">
+                        when edu_id = #{item.eduId,jdbcType=BIGINT} then #{item.eduRsId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where edu_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.eduId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="edu_id" keyProperty="eduId" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_edu_expr
+        (edu_education, edu_school, edu_major, edu_major_desc, edu_start_date, edu_end_date,
+         edu_created, edu_modified, edu_cand_id, edu_rs_id)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.eduEducation,jdbcType=CHAR}, #{item.eduSchool,jdbcType=VARCHAR}, #{item.eduMajor,jdbcType=VARCHAR},
+             #{item.eduMajorDesc,jdbcType=LONGVARCHAR}, #{item.eduStartDate,jdbcType=DATE},
+             #{item.eduEndDate,jdbcType=DATE}, #{item.eduCreated,jdbcType=TIMESTAMP},
+             #{item.eduModified,jdbcType=TIMESTAMP},
+             #{item.eduCandId,jdbcType=BIGINT}, #{item.eduRsId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="edu_id" keyProperty="eduId"
+            parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_edu_expr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eduId != null">
+                edu_id,
+            </if>
+            edu_education,
+            edu_school,
+            edu_major,
+            edu_major_desc,
+            edu_start_date,
+            edu_end_date,
+            edu_created,
+            edu_modified,
+            edu_cand_id,
+            edu_rs_id,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eduId != null">
+                #{eduId,jdbcType=BIGINT},
+            </if>
+            #{eduEducation,jdbcType=CHAR},
+            #{eduSchool,jdbcType=VARCHAR},
+            #{eduMajor,jdbcType=VARCHAR},
+            #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            #{eduStartDate,jdbcType=DATE},
+            #{eduEndDate,jdbcType=DATE},
+            #{eduCreated,jdbcType=TIMESTAMP},
+            #{eduModified,jdbcType=TIMESTAMP},
+            #{eduCandId,jdbcType=BIGINT},
+            #{eduRsId,jdbcType=BIGINT},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="eduId != null">
+                edu_id = #{eduId,jdbcType=BIGINT},
+            </if>
+            edu_education  = #{eduEducation,jdbcType=CHAR},
+            edu_school     = #{eduSchool,jdbcType=VARCHAR},
+            edu_major      = #{eduMajor,jdbcType=VARCHAR},
+            edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            edu_start_date = #{eduStartDate,jdbcType=DATE},
+            edu_end_date   = #{eduEndDate,jdbcType=DATE},
+            edu_created    = #{eduCreated,jdbcType=TIMESTAMP},
+            edu_modified   = #{eduModified,jdbcType=TIMESTAMP},
+            edu_cand_id    = #{eduCandId,jdbcType=BIGINT},
+            edu_rs_id      = #{eduRsId,jdbcType=BIGINT},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="edu_id" keyProperty="eduId"
+            parameterType="com.windcf.vhr.model.entity.EduExpr" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_edu_expr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eduId != null">
+                edu_id,
+            </if>
+            <if test="eduEducation != null">
+                edu_education,
+            </if>
+            <if test="eduSchool != null">
+                edu_school,
+            </if>
+            <if test="eduMajor != null">
+                edu_major,
+            </if>
+            <if test="eduMajorDesc != null">
+                edu_major_desc,
+            </if>
+            <if test="eduStartDate != null">
+                edu_start_date,
+            </if>
+            <if test="eduEndDate != null">
+                edu_end_date,
+            </if>
+            <if test="eduCreated != null">
+                edu_created,
+            </if>
+            <if test="eduModified != null">
+                edu_modified,
+            </if>
+            <if test="eduCandId != null">
+                edu_cand_id,
+            </if>
+            <if test="eduRsId != null">
+                edu_rs_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eduId != null">
+                #{eduId,jdbcType=BIGINT},
+            </if>
+            <if test="eduEducation != null">
+                #{eduEducation,jdbcType=CHAR},
+            </if>
+            <if test="eduSchool != null">
+                #{eduSchool,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajor != null">
+                #{eduMajor,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajorDesc != null">
+                #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="eduStartDate != null">
+                #{eduStartDate,jdbcType=DATE},
+            </if>
+            <if test="eduEndDate != null">
+                #{eduEndDate,jdbcType=DATE},
+            </if>
+            <if test="eduCreated != null">
+                #{eduCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduModified != null">
+                #{eduModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduCandId != null">
+                #{eduCandId,jdbcType=BIGINT},
+            </if>
+            <if test="eduRsId != null">
+                #{eduRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="eduId != null">
+                edu_id = #{eduId,jdbcType=BIGINT},
+            </if>
+            <if test="eduEducation != null">
+                edu_education = #{eduEducation,jdbcType=CHAR},
+            </if>
+            <if test="eduSchool != null">
+                edu_school = #{eduSchool,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajor != null">
+                edu_major = #{eduMajor,jdbcType=VARCHAR},
+            </if>
+            <if test="eduMajorDesc != null">
+                edu_major_desc = #{eduMajorDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="eduStartDate != null">
+                edu_start_date = #{eduStartDate,jdbcType=DATE},
+            </if>
+            <if test="eduEndDate != null">
+                edu_end_date = #{eduEndDate,jdbcType=DATE},
+            </if>
+            <if test="eduCreated != null">
+                edu_created = #{eduCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduModified != null">
+                edu_modified = #{eduModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eduCandId != null">
+                edu_cand_id = #{eduCandId,jdbcType=BIGINT},
+            </if>
+            <if test="eduRsId != null">
+                edu_rs_id = #{eduRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByRsId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from hr_edu_expr
+        where edu_rs_id = #{rsId,jdbcType=BIGINT}
+    </select>
 </mapper>

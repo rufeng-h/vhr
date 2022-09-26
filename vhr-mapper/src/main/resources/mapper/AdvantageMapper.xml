@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windcf.vhr.mapper.AdvantageMapper">
+    <resultMap id="BaseResultMap" type="com.windcf.vhr.model.entity.Advantage">
+        <!--@mbg.generated-->
+        <!--@Table hr_advantage-->
+        <id column="adv_id" jdbcType="BIGINT" property="advId"/>
+        <result column="adv_content" jdbcType="LONGVARCHAR" property="advContent"/>
+        <result column="adv_created" jdbcType="TIMESTAMP" property="advCreated"/>
+        <result column="adv_modified" jdbcType="TIMESTAMP" property="advModified"/>
+        <result column="adv_cand_id" jdbcType="BIGINT" property="advCandId"/>
+        <result column="adv_rs_id" jdbcType="BIGINT" property="advRsId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        adv_id,
+        adv_content,
+        adv_created,
+        adv_modified,
+        adv_cand_id,
+        adv_rs_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from hr_advantage
+        where adv_id = #{advId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from hr_advantage
+        where adv_id = #{advId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="adv_id" keyProperty="advId" parameterType="com.windcf.vhr.model.entity.Advantage"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_advantage (adv_content, adv_created, adv_modified,
+                                  adv_cand_id, adv_rs_id)
+        values (#{advContent,jdbcType=LONGVARCHAR}, #{advCreated,jdbcType=TIMESTAMP}, #{advModified,jdbcType=TIMESTAMP},
+                #{advCandId,jdbcType=BIGINT}, #{advRsId,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="adv_id" keyProperty="advId"
+            parameterType="com.windcf.vhr.model.entity.Advantage" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_advantage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="advContent != null">
+                adv_content,
+            </if>
+            <if test="advCreated != null">
+                adv_created,
+            </if>
+            <if test="advModified != null">
+                adv_modified,
+            </if>
+            <if test="advCandId != null">
+                adv_cand_id,
+            </if>
+            <if test="advRsId != null">
+                adv_rs_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="advContent != null">
+                #{advContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="advCreated != null">
+                #{advCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advModified != null">
+                #{advModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advCandId != null">
+                #{advCandId,jdbcType=BIGINT},
+            </if>
+            <if test="advRsId != null">
+                #{advRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.windcf.vhr.model.entity.Advantage">
+        <!--@mbg.generated-->
+        update hr_advantage
+        <set>
+            <if test="advContent != null">
+                adv_content = #{advContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="advCreated != null">
+                adv_created = #{advCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advModified != null">
+                adv_modified = #{advModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advCandId != null">
+                adv_cand_id = #{advCandId,jdbcType=BIGINT},
+            </if>
+            <if test="advRsId != null">
+                adv_rs_id = #{advRsId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where adv_id = #{advId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.windcf.vhr.model.entity.Advantage">
+        <!--@mbg.generated-->
+        update hr_advantage
+        set adv_content  = #{advContent,jdbcType=LONGVARCHAR},
+            adv_created  = #{advCreated,jdbcType=TIMESTAMP},
+            adv_modified = #{advModified,jdbcType=TIMESTAMP},
+            adv_cand_id  = #{advCandId,jdbcType=BIGINT},
+            adv_rs_id    = #{advRsId,jdbcType=BIGINT}
+        where adv_id = #{advId,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hr_advantage
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="adv_content = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advContent,jdbcType=LONGVARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="adv_created = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advCreated,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="adv_modified = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advModified,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="adv_cand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advCandId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="adv_rs_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advRsId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+        </trim>
+        where adv_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.advId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update hr_advantage
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="adv_content = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.advContent != null">
+                        when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advContent,jdbcType=LONGVARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="adv_created = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.advCreated != null">
+                        when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advCreated,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="adv_modified = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.advModified != null">
+                        when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advModified,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="adv_cand_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.advCandId != null">
+                        when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advCandId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="adv_rs_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.advRsId != null">
+                        when adv_id = #{item.advId,jdbcType=BIGINT} then #{item.advRsId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where adv_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.advId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="adv_id" keyProperty="advId" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_advantage
+            (adv_content, adv_created, adv_modified, adv_cand_id, adv_rs_id)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.advContent,jdbcType=LONGVARCHAR}, #{item.advCreated,jdbcType=TIMESTAMP},
+             #{item.advModified,jdbcType=TIMESTAMP}, #{item.advCandId,jdbcType=BIGINT}, #{item.advRsId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="adv_id" keyProperty="advId"
+            parameterType="com.windcf.vhr.model.entity.Advantage" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_advantage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="advId != null">
+                adv_id,
+            </if>
+            adv_content,
+            adv_created,
+            adv_modified,
+            adv_cand_id,
+            adv_rs_id,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="advId != null">
+                #{advId,jdbcType=BIGINT},
+            </if>
+            #{advContent,jdbcType=LONGVARCHAR},
+            #{advCreated,jdbcType=TIMESTAMP},
+            #{advModified,jdbcType=TIMESTAMP},
+            #{advCandId,jdbcType=BIGINT},
+            #{advRsId,jdbcType=BIGINT},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="advId != null">
+                adv_id = #{advId,jdbcType=BIGINT},
+            </if>
+            adv_content  = #{advContent,jdbcType=LONGVARCHAR},
+            adv_created  = #{advCreated,jdbcType=TIMESTAMP},
+            adv_modified = #{advModified,jdbcType=TIMESTAMP},
+            adv_cand_id  = #{advCandId,jdbcType=BIGINT},
+            adv_rs_id    = #{advRsId,jdbcType=BIGINT},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="adv_id" keyProperty="advId"
+            parameterType="com.windcf.vhr.model.entity.Advantage" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr_advantage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="advId != null">
+                adv_id,
+            </if>
+            <if test="advContent != null">
+                adv_content,
+            </if>
+            <if test="advCreated != null">
+                adv_created,
+            </if>
+            <if test="advModified != null">
+                adv_modified,
+            </if>
+            <if test="advCandId != null">
+                adv_cand_id,
+            </if>
+            <if test="advRsId != null">
+                adv_rs_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="advId != null">
+                #{advId,jdbcType=BIGINT},
+            </if>
+            <if test="advContent != null">
+                #{advContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="advCreated != null">
+                #{advCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advModified != null">
+                #{advModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advCandId != null">
+                #{advCandId,jdbcType=BIGINT},
+            </if>
+            <if test="advRsId != null">
+                #{advRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="advId != null">
+                adv_id = #{advId,jdbcType=BIGINT},
+            </if>
+            <if test="advContent != null">
+                adv_content = #{advContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="advCreated != null">
+                adv_created = #{advCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advModified != null">
+                adv_modified = #{advModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="advCandId != null">
+                adv_cand_id = #{advCandId,jdbcType=BIGINT},
+            </if>
+            <if test="advRsId != null">
+                adv_rs_id = #{advRsId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByRsId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from hr_advantage
+        where adv_rs_id = #{rsId,jdbcType=BIGINT}
+    </select>
+</mapper>
