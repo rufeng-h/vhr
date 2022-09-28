@@ -3,6 +3,10 @@ package com.windcf.vhr;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author chunf
@@ -11,6 +15,6 @@ import java.nio.charset.StandardCharsets;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(DigestUtils.md5DigestAsHex("123456".getBytes(StandardCharsets.UTF_8)));
+
     }
 }

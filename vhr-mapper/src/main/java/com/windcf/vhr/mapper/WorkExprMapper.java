@@ -1,14 +1,16 @@
 package com.windcf.vhr.mapper;
 
 import com.windcf.vhr.model.entity.WorkExpr;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
 /**
  * @author chunf
- * @time 2022-09-22 17:15
+ * @time 2022-09-28 8:16
  * @package com.windcf.vhr.mapper
  * @description TODO
  */
@@ -17,6 +19,7 @@ import org.apache.ibatis.annotations.Param;
 public interface WorkExprMapper {
     /**
      * delete by primary key
+     *
      * @param workId primaryKey
      * @return deleteCount
      */
@@ -24,6 +27,7 @@ public interface WorkExprMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
@@ -35,6 +39,7 @@ public interface WorkExprMapper {
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
@@ -42,6 +47,7 @@ public interface WorkExprMapper {
 
     /**
      * select by primary key
+     *
      * @param workId primary key
      * @return object by primary key
      */
@@ -49,6 +55,7 @@ public interface WorkExprMapper {
 
     /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
@@ -56,6 +63,7 @@ public interface WorkExprMapper {
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */
@@ -66,4 +74,6 @@ public interface WorkExprMapper {
     int updateBatchSelective(List<WorkExpr> list);
 
     int batchInsert(@Param("list") List<WorkExpr> list);
+
+    List<WorkExpr> selectByRsId(Long rsId);
 }

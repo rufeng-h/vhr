@@ -16,11 +16,14 @@
     <result column="work_created" jdbcType="TIMESTAMP" property="workCreated" />
     <result column="work_modified" jdbcType="TIMESTAMP" property="workModified" />
     <result column="work_cand_id" jdbcType="BIGINT" property="workCandId" />
+    <result column="work_rs_id" jdbcType="BIGINT" property="workRsId" />
+    <result column="work_type" jdbcType="CHAR" property="workType" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     work_id, work_comp, work_ind, work_start, work_end, work_comp_size, work_position, 
-    work_comp_type, work_desc, work_created, work_modified, work_cand_id
+    work_comp_type, work_desc, work_created, work_modified, work_cand_id, work_rs_id, 
+    work_type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -39,11 +42,13 @@
     insert into hr_work_expr (work_comp, work_ind, work_start, 
       work_end, work_comp_size, work_position, 
       work_comp_type, work_desc, work_created, 
-      work_modified, work_cand_id)
+      work_modified, work_cand_id, work_rs_id, 
+      work_type)
     values (#{workComp,jdbcType=VARCHAR}, #{workInd,jdbcType=VARCHAR}, #{workStart,jdbcType=DATE}, 
       #{workEnd,jdbcType=DATE}, #{workCompSize,jdbcType=CHAR}, #{workPosition,jdbcType=VARCHAR}, 
       #{workCompType,jdbcType=CHAR}, #{workDesc,jdbcType=LONGVARCHAR}, #{workCreated,jdbcType=TIMESTAMP}, 
-      #{workModified,jdbcType=TIMESTAMP}, #{workCandId,jdbcType=BIGINT})
+      #{workModified,jdbcType=TIMESTAMP}, #{workCandId,jdbcType=BIGINT}, #{workRsId,jdbcType=BIGINT}, 
+      #{workType,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -82,6 +87,12 @@
       <if test="workCandId != null">
         work_cand_id,
       </if>
+      <if test="workRsId != null">
+        work_rs_id,
+      </if>
+      <if test="workType != null">
+        work_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="workComp != null">
@@ -116,6 +127,12 @@
       </if>
       <if test="workCandId != null">
         #{workCandId,jdbcType=BIGINT},
+      </if>
+      <if test="workRsId != null">
+        #{workRsId,jdbcType=BIGINT},
+      </if>
+      <if test="workType != null">
+        #{workType,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +173,12 @@
       <if test="workCandId != null">
         work_cand_id = #{workCandId,jdbcType=BIGINT},
       </if>
+      <if test="workRsId != null">
+        work_rs_id = #{workRsId,jdbcType=BIGINT},
+      </if>
+      <if test="workType != null">
+        work_type = #{workType,jdbcType=CHAR},
+      </if>
     </set>
     where work_id = #{workId,jdbcType=BIGINT}
   </update>
@@ -172,7 +195,9 @@
       work_desc = #{workDesc,jdbcType=LONGVARCHAR},
       work_created = #{workCreated,jdbcType=TIMESTAMP},
       work_modified = #{workModified,jdbcType=TIMESTAMP},
-      work_cand_id = #{workCandId,jdbcType=BIGINT}
+      work_cand_id = #{workCandId,jdbcType=BIGINT},
+      work_rs_id = #{workRsId,jdbcType=BIGINT},
+      work_type = #{workType,jdbcType=CHAR}
     where work_id = #{workId,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
@@ -232,6 +257,16 @@
       <trim prefix="work_cand_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workCandId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="work_rs_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workRsId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="work_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workType,jdbcType=CHAR}
         </foreach>
       </trim>
     </trim>
@@ -321,6 +356,20 @@
           </if>
         </foreach>
       </trim>
+      <trim prefix="work_rs_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workRsId != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workRsId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workType != null">
+            when work_id = #{item.workId,jdbcType=BIGINT} then #{item.workType,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
     </trim>
     where work_id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -331,13 +380,14 @@
     <!--@mbg.generated-->
     insert into hr_work_expr
     (work_comp, work_ind, work_start, work_end, work_comp_size, work_position, work_comp_type, 
-      work_desc, work_created, work_modified, work_cand_id)
+      work_desc, work_created, work_modified, work_cand_id, work_rs_id, work_type)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.workComp,jdbcType=VARCHAR}, #{item.workInd,jdbcType=VARCHAR}, #{item.workStart,jdbcType=DATE}, 
         #{item.workEnd,jdbcType=DATE}, #{item.workCompSize,jdbcType=CHAR}, #{item.workPosition,jdbcType=VARCHAR}, 
         #{item.workCompType,jdbcType=CHAR}, #{item.workDesc,jdbcType=LONGVARCHAR}, #{item.workCreated,jdbcType=TIMESTAMP}, 
-        #{item.workModified,jdbcType=TIMESTAMP}, #{item.workCandId,jdbcType=BIGINT})
+        #{item.workModified,jdbcType=TIMESTAMP}, #{item.workCandId,jdbcType=BIGINT}, #{item.workRsId,jdbcType=BIGINT}, 
+        #{item.workType,jdbcType=CHAR})
     </foreach>
   </insert>
   <insert id="insertOrUpdate" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
@@ -358,6 +408,8 @@
       work_created,
       work_modified,
       work_cand_id,
+      work_rs_id,
+      work_type,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -375,6 +427,8 @@
       #{workCreated,jdbcType=TIMESTAMP},
       #{workModified,jdbcType=TIMESTAMP},
       #{workCandId,jdbcType=BIGINT},
+      #{workRsId,jdbcType=BIGINT},
+      #{workType,jdbcType=CHAR},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -392,6 +446,8 @@
       work_created = #{workCreated,jdbcType=TIMESTAMP},
       work_modified = #{workModified,jdbcType=TIMESTAMP},
       work_cand_id = #{workCandId,jdbcType=BIGINT},
+      work_rs_id = #{workRsId,jdbcType=BIGINT},
+      work_type = #{workType,jdbcType=CHAR},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="work_id" keyProperty="workId" parameterType="com.windcf.vhr.model.entity.WorkExpr" useGeneratedKeys="true">
@@ -434,6 +490,12 @@
       <if test="workCandId != null">
         work_cand_id,
       </if>
+      <if test="workRsId != null">
+        work_rs_id,
+      </if>
+      <if test="workType != null">
+        work_type,
+      </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -472,6 +534,12 @@
       </if>
       <if test="workCandId != null">
         #{workCandId,jdbcType=BIGINT},
+      </if>
+      <if test="workRsId != null">
+        #{workRsId,jdbcType=BIGINT},
+      </if>
+      <if test="workType != null">
+        #{workType,jdbcType=CHAR},
       </if>
     </trim>
     on duplicate key update 
@@ -512,6 +580,19 @@
       <if test="workCandId != null">
         work_cand_id = #{workCandId,jdbcType=BIGINT},
       </if>
+      <if test="workRsId != null">
+        work_rs_id = #{workRsId,jdbcType=BIGINT},
+      </if>
+      <if test="workType != null">
+        work_type = #{workType,jdbcType=CHAR},
+      </if>
     </trim>
   </insert>
+
+    <select id="selectByRsId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from hr_work_expr
+        where work_rs_id = #{rsId,jdbcType=BIGINT}
+    </select>
 </mapper>

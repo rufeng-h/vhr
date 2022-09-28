@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author chunf
- * @time 2022-09-22 17:15
+ * @time 2022-09-28 8:16
  * @package com.windcf.vhr.model.entity
  * @description TODO
  */
 
 /**
-    * 工作经历
-    */
+ * 工作经历
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -26,13 +26,13 @@ public class WorkExpr {
     private Long workId;
 
     /**
-    * 公司名称
-    */
+     * 公司名称
+     */
     private String workComp;
 
     /**
-    * 所属行业
-    */
+     * 所属行业
+     */
     private String workInd;
 
     private LocalDate workStart;
@@ -40,23 +40,23 @@ public class WorkExpr {
     private LocalDate workEnd;
 
     /**
-    * 公司规模
-    */
+     * 公司规模
+     */
     private String workCompSize;
 
     /**
-    * 职位
-    */
+     * 职位
+     */
     private String workPosition;
 
     /**
-    * 公司性质
-    */
+     * 公司性质
+     */
     private String workCompType;
 
     /**
-    * 工作描述
-    */
+     * 工作描述
+     */
     private String workDesc;
 
     private LocalDateTime workCreated;
@@ -64,4 +64,11 @@ public class WorkExpr {
     private LocalDateTime workModified;
 
     private Long workCandId;
+
+    private Long workRsId;
+
+    /**
+     * 工作类型 全职 兼职
+     */
+    private String workType;
 }

@@ -3,6 +3,7 @@ package com.windcf.vhr.model.vo;
 import com.windcf.vhr.model.entity.Advantage;
 import com.windcf.vhr.model.entity.EduExpr;
 import com.windcf.vhr.model.entity.Resume;
+import com.windcf.vhr.model.entity.WorkExpr;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -37,9 +38,12 @@ public class ResumeInfo {
 
     private List<EduExpr> edus;
 
-    public ResumeInfo(Resume resume, Advantage adv, List<EduExpr> eduExprs) {
+    private List<WorkExpr> workExprs;
+
+    public ResumeInfo(Resume resume, Advantage adv, List<EduExpr> eduExprs, List<WorkExpr> workExprs) {
         BeanUtils.copyProperties(resume, this);
         this.adv = adv;
         this.edus = eduExprs;
+        this.workExprs = workExprs;
     }
 }
